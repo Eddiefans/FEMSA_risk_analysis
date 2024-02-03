@@ -40,23 +40,28 @@ year_quarter_formatter <- function(x) {
 
 
 ```{r, include=FALSE, echo=FALSE}
-(EPS <- read_excel("C:/Users/AgJo413/Documents/GitHub/Clases/6/Analisis de riesgo/Proyecto final/Proyecto_final.xlsx", sheet = "EPS", col_types = c("date", "numeric", "numeric", "numeric", "skip", "skip")))
+
+url <- "https://github.com/Eddiefans/FEMSA_risk_analysis/raw/main/Proyecto_final.xlsx"
+excel <- "Proyecto_final.xlsx"
+curl::curl_download(url, excel)
+
+(EPS <- read_excel(excel, sheet = "EPS", col_types = c("date", "numeric", "numeric", "numeric", "skip", "skip")))
 EPS$`Rendimiento total` <- dollar_format()(EPS$`Rendimiento total`) 
 EPS$Qu <- sapply(EPS$Q, year_quarter_formatter)
 EPS <- select(EPS, Qu, everything(), -Q) %>% rename(Q = Qu)
 
-(dividendos <- read_excel("C:/Users/AgJo413/Documents/GitHub/Clases/6/Analisis de riesgo/Proyecto final/Proyecto_final.xlsx", sheet = "Dividendos", col_types = c("text", "numeric", "numeric")))
+(dividendos <- read_excel(excel, sheet = "Dividendos", col_types = c("text", "numeric", "numeric")))
 dividendos$`Monto total de dividendos` <- dollar_format()(dividendos$`Monto total de dividendos`) 
 
-(splits <- read_excel("C:/Users/AgJo413/Documents/GitHub/Clases/6/Analisis de riesgo/Proyecto final/Proyecto_final.xlsx", sheet = "Splits", col_types = c("date", "text", "text"))) %>% as_tsibble(index = Fecha)
+(splits <- read_excel(excel, sheet = "Splits", col_types = c("date", "text", "text"))) %>% as_tsibble(index = Fecha)
 
-(razonesL <- read_excel("C:/Users/AgJo413/Documents/GitHub/Clases/6/Analisis de riesgo/Proyecto final/Proyecto_final.xlsx", sheet = "Razones liquidez", col_types = c("text", "numeric", "numeric", "numeric")))
+(razonesL <- read_excel(excel, sheet = "Razones liquidez", col_types = c("text", "numeric", "numeric", "numeric")))
 
-(razonesC <- read_excel("C:/Users/AgJo413/Documents/GitHub/Clases/6/Analisis de riesgo/Proyecto final/Proyecto_final.xlsx", sheet = "Razones Cobertura-Endeudamiento", col_types = c("text", "numeric", "numeric"))) 
+(razonesC <- read_excel(excel, sheet = "Razones Cobertura-Endeudamiento", col_types = c("text", "numeric", "numeric"))) 
 
-(EBITDA <- read_excel("C:/Users/AgJo413/Documents/GitHub/Clases/6/Analisis de riesgo/Proyecto final/Proyecto_final.xlsx", sheet = "EBITDA-Interest Expense", col_types = c("text", "numeric"))) %>% mutate(Anio = tsibble::yearmonth(Anio))
+(EBITDA <- read_excel(excel, sheet = "EBITDA-Interest Expense", col_types = c("text", "numeric"))) %>% mutate(Anio = tsibble::yearmonth(Anio))
 
-(turnover <- read_excel("C:/Users/AgJo413/Documents/GitHub/Clases/6/Analisis de riesgo/Proyecto final/Proyecto_final.xlsx", sheet = "Receivables Turnover", col_types = c("text", "numeric"))) %>% mutate(Anio = tsibble::yearmonth(Anio))
+(turnover <- read_excel(excel, sheet = "Receivables Turnover", col_types = c("text", "numeric"))) %>% mutate(Anio = tsibble::yearmonth(Anio))
 
 ```
 
