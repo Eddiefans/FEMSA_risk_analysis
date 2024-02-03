@@ -1,0 +1,304 @@
+---
+title: "Proyecto final"
+subtitle: "Análisis de riesgo"
+output: 
+  html_document
+author:
+  - José Eddie Aguilar Ceballos
+  - Antonio Lomelí Ureña
+  - Carolina Martínez Escalante
+  - Enrique Tonatiuh Pérez Cortés Barba
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r, echo=FALSE}
+#| message: false
+library("tidyverse")
+library("tidyquant")
+library("fpp3") 
+library("patchwork")
+library("plotly")
+library(ggplot2)
+library(readxl)
+library(data.table)
+library(dplyr)
+library(formattable)
+library(tidyr)
+library(lubridate)
+library(scales)
+library(reshape2)
+```
+
+```{r, echo=FALSE}
+year_quarter_formatter <- function(x) {
+  paste0(year(x), "Q", quarter(x))
+}
+```
+
+
+```{r, include=FALSE, echo=FALSE}
+(EPS <- read_excel("C:/Users/AgJo413/Documents/GitHub/Clases/6/Analisis de riesgo/Proyecto final/Proyecto_final.xlsx", sheet = "EPS", col_types = c("date", "numeric", "numeric", "numeric", "skip", "skip")))
+EPS$`Rendimiento total` <- dollar_format()(EPS$`Rendimiento total`) 
+EPS$Qu <- sapply(EPS$Q, year_quarter_formatter)
+EPS <- select(EPS, Qu, everything(), -Q) %>% rename(Q = Qu)
+
+(dividendos <- read_excel("C:/Users/AgJo413/Documents/GitHub/Clases/6/Analisis de riesgo/Proyecto final/Proyecto_final.xlsx", sheet = "Dividendos", col_types = c("text", "numeric", "numeric")))
+dividendos$`Monto total de dividendos` <- dollar_format()(dividendos$`Monto total de dividendos`) 
+
+(splits <- read_excel("C:/Users/AgJo413/Documents/GitHub/Clases/6/Analisis de riesgo/Proyecto final/Proyecto_final.xlsx", sheet = "Splits", col_types = c("date", "text", "text"))) %>% as_tsibble(index = Fecha)
+
+(razonesL <- read_excel("C:/Users/AgJo413/Documents/GitHub/Clases/6/Analisis de riesgo/Proyecto final/Proyecto_final.xlsx", sheet = "Razones liquidez", col_types = c("text", "numeric", "numeric", "numeric")))
+
+(razonesC <- read_excel("C:/Users/AgJo413/Documents/GitHub/Clases/6/Analisis de riesgo/Proyecto final/Proyecto_final.xlsx", sheet = "Razones Cobertura-Endeudamiento", col_types = c("text", "numeric", "numeric"))) 
+
+(EBITDA <- read_excel("C:/Users/AgJo413/Documents/GitHub/Clases/6/Analisis de riesgo/Proyecto final/Proyecto_final.xlsx", sheet = "EBITDA-Interest Expense", col_types = c("text", "numeric"))) %>% mutate(Anio = tsibble::yearmonth(Anio))
+
+(turnover <- read_excel("C:/Users/AgJo413/Documents/GitHub/Clases/6/Analisis de riesgo/Proyecto final/Proyecto_final.xlsx", sheet = "Receivables Turnover", col_types = c("text", "numeric"))) %>% mutate(Anio = tsibble::yearmonth(Anio))
+
+```
+
+<br><br>
+
+# INTRODUCCIÓN GENERAL 
+
+FEMSA es una de las grandes empresas mexicanas que cotizan en la Bolsa Mexicana de Valores. Este proyecto busca contextualizar a los inversionistas o personas con interés en esta empresa, para esto se describirá la información general de la empresa, datos financieros de la misma y riesgos a los que esta se puede enfrentar.
+
+Para llevar a cabo este proyecto, se realizaron diversas investigaciones en distintas fuentes de información. Se analizó primeramente la historia y las actividades que realizaba la compañía, para continuar con la recopilación de datos financieros relacionados con su cotización en la bolsa y continuar con el análisis de los riesgos a los que se puede enfrentar como compañía.
+
+Este proceso de investigación se realizó en etapas, primeramente, el enfoque se centró en explicar qué es FEMSA, sus distintas funciones como empresa, qué divisiones tiene, los países en los que se encuentra, en que bolsas cotiza y cuando comenzó a cotizar en la bolsa, por mencionar algunos de los datos importantes. Posterior a eso se buscaron datos financieros que ayudaran a entender mejor la situación de la compañía como los rendimientos de sus acciones en los últimos años, si reparte dividendos o si alguna vez ha tenido splits, para cerrar con un análisis de distintos tipos de riesgos a los que se puede enfrentar la empresa como los riesgos financieros o tecnológicos, por mencionar algunos.
+
+Como resultado se obtuvo un documento en el que se agrega toda la información relevante de la empresa, su situación actual, diversos datos importantes acerca de sus activos y un análisis de las amenazas potenciales de las que debe estar atenta la compañía con diversos gráficos, todo con el fin de saber si realmente es una empresa digna de inversión para las personas interesadas.
+
+
+<br><br>
+
+# DESCRIPCIÓN DEL ACTIVO
+
+<br>
+
+## EMPRESA - Fomento Económico Mexicano S.A.B. de C.V (FEMSA)
+<br>
+
+Fomento Económico Mexicano S.A.B. de C.V., mejor conocido como FEMSA, es una de las grandes empresas que cotizan en la Bolsa Mexicana de Valores (BMV). Inició operaciones en el año de 1890 en Monterrey como una empresa cervecera e ingresó a la BMV el 22 de septiembre de 1978.
+
+Actualmente se posiciona como una empresa líder global en las industrias de bebidas, comercio al detalle, y logística y distribución. Se desarrolla en el sector de productos de consumo frecuente, especializándose en el ramo de bebidas; ofreciendo como principales productos y servicios los refrescos Coca-Cola, Sprite, Fanta, Mundet, Powerade, Jugos del Valle Y Agua Ciel, además de contar con la cadena de tiendas de conveniencia más extensa y de mayor crecimiento en América: OXXO (Grupo BMV, s. f.).
+
+Esta gigante empresa funciona gracias al trabajo de más de 320 mil colaboradores en 17 distintos países: Alemania, Argentina, Austria, Brasil, Chile, Colombia, Costa Rica, Ecuador, Guatemala, Luxemburgo, México, Nicaragua, Países Bajos, Panamá, Perú, Suiza y Uruguay. 
+
+El presidente ejecutivo y director general es José Antonio Fernández Carbajal, mientras que Francisco Camacho Beltrán se desarrolla en el cargo de director corporativo en esta empresa. 
+
+Para llevar a cabo sus operaciones, FEMSA se divide en 5 unidades de negocio: Proximidad, FEMSA Salud, Digital@FEMSA, Coca-Cola FEMSA y Negocios estratégicos.
+
+La división de Proximidad se conforma por 3 elementos principales: OXXO, OXXO GAS Y Valora. OXXO sobresale y se posiciona como elemento más importante de esta división al contar con más de 23,500 tiendas en 5 países (México, Colombia, Chile, Perú y Brasil). Además, estas tiendas reciben aproximadamente 12 millones de clientes al día. Por su parte OXXO GAS cuenta con 571 estaciones de combustible y servicio en 17 estados de México. Por último, con 15 mil colaboradores y 2,772 puntos de venta en 5 países europeos (Suiza, Alemania, Austria, Luxemburgo y Países Bajos) Valora es uno de los principales productores mundiales de pretzels.  
+Pasando a FEMSA Salud, esta división opera una de las plataformas de salud más grandes de Latinoamérica. Farmacias como Cruz Verde en Chile y Colombia, YZA en México, y Fybeca y Sana Sana en Ecuador forman parte de las unidades de negocios que operan. Cuenta con 4,347 puntos de venta distribuidos en estos 4 países.
+
+Creada en 2021 con el fin de aprovechar todo el potencial que ofrece el entorno digital Digital@FEMSA desarrolla iniciativas de servicios financieros y programas de lealtad apalancados. Las soluciones financieras propuestas por esta división incluyen Spin by OXXO (billetera digital para agilizar la forma como los clientes manejan su dinero, a través de una cuenta de fondos de pago electrónico).
+
+Siendo sin duda una de las divisiones más importantes para esta empresa se puede encontrar Coca-Cola FEMSA, el embotellador más grande por volumen de ventas en todo el sistema de Coca-Cola. Tiene un gran alcance, llegando a atender a más de 270 millones de personas a través de 2.1 millones de puntos de venta. Cuenta con 56 plantas embotelladoras y 249 centros de distribución en 9 países en Latinoamérica (México, Brasil, Guatemala, Colombia, Argentina Costa Rica, Nicaragua, Panamá y Uruguay)
+
+Por último, Negocios Estratégicos. Con el fin de complementar su ventaja competitiva, FEMSA opera distintos negocios estratégicos. Estos negocios proporcionan logística, transporte, sistemas de refrigeración y servicios de alimentos a los negocios principales de la empresa y otras compañías a nivel local y mundial. Dentro de esta división podemos encontrar negocios como Solistica, AlPunto, Imbera, Torrey, Cooking Depot y PTM.
+
+FEMSA se preocupa por el medio ambiente. Cuenta con 110 estaciones de servicio de OXXO GAS y 640 farmacias funcionando con energía renovable, los empaques de PET de las botellas que son utilizadas en Coca-Cola FEMSA se conforman en un 27% de resina reciclada y el 66% de la electricidad consumida en esta división proviene de fuentes limpias. Gracias a ello, es miembro del del Índice de Sostenibilidad MILA Pacific Alliance del Dow Jones, del FTSE4Good Emerging Index y del índice S&P/BMV Total México ESG, entre otros índices que evalúan el desempeño en sostenibilidad de la empresa. 
+
+En la parte social, Fundación FEMSA se dedica a hacer inversiones sociales para tener un impacto positivo en la vida de las personas y construir comunidades más sólidas y sostenibles. Trabaja con más de 250 socios en 18 países centrándose en 4 áreas de acción: seguridad hídrica, primera infancia, arte y cultura y economía circular (FEMSA, 2023). 
+
+<br><br>
+
+## DATOS FINANCIEROS
+Como se mencionó anteriormente, esta empresa puede ser encontrada en la Bolsa Mexicana de Valores con el ticker FEMSAUBD.MX desde el 22 de septiembre de 1978. Además, también se puede adquirir en la Bolsa de Nueva York con el símbolo FMX. También la división Coca-Cola FEMSA cotiza en la BMV como KOFUBL listada en esta institución desde el 14 de septiembre de 1993 y en la NYSE como KOF. Sin embargo, para fines de este proyecto solo se trabajará con FEMSA (específicamente en la BMV) (Grupo BMV, s. f.).
+
+Algunos de los datos financieros más importantes para una empresa que cotiza en la bolsa de valores sin duda son los rendimientos y las ganancias por acción. A continuación, se expone una tabla en la que se contiene y calcula esta información desde el primer trimestre de 2019 hasta el cuarto trimestre de 2023. 
+
+<br><br>
+
+
+```{r, echo=FALSE}
+formattable(EPS, align =c("l","c","c","r"), 
+            list(
+              `Indicator Name` = formatter("span", style = ~ style(
+                color = "gray",
+                font.weight = "bold"))
+              )
+            )
+```
+
+
+<br><br>
+
+Hablando sobre dividendos, FEMSA es una empresa que sí otorga este beneficio a sus inversionistas. FEMSA paga los dividendos en dos exhibiciones, una en mayo y otra en noviembre, según datos de Google Finance, a día 29 de enero de 2024, el rendimiento anual que generan estos dividendos es de 1.56%. A continuación, se presentan datos del total de dividendos que se obtuvieron anualmente en FEMSA, los más recientes de los pagados en 2022:
+
+<br><br>
+
+
+```{r, echo=FALSE}
+formattable(dividendos, align =c("l","c","r"), 
+            list(
+              `Indicator Name` = formatter("span", style = ~ style(
+                color = "gray",
+                font.weight = "bold"))
+              )
+            )
+```
+
+<br>
+
+Según la información obtenida, el activo de FEMSA solo ha tenido un split en su historia, a continuación, se muestra su tabla de datos. 
+
+<br><br>
+
+
+```{r, echo=FALSE}
+formattable(splits, align =c("l","c","c"), 
+            list(
+              `Indicator Name` = formatter("span", style = ~ style(
+                color = "gray",
+                font.weight = "bold"))
+              )
+            )
+```
+
+
+<br><br>
+
+También es importante mencionar que la división Coca-Cola FEMSA también tuvo un Split de 8:1 el 11 de abril de 2019 (Investing.com, s. f.)
+
+<br><br>
+
+
+# RIESGOS 
+
+<br>
+
+Se divide el análisis del riesgo en dos partes. La primera en los riesgos específicos de las operaciones de la empresa en la industria de bebidas embotelladas y tiendas de proximidad. En la segunda analizamos los riesgos financieros de la empresa.
+
+**Riesgos específicos para sector de bebidas embotelladas y tiendas de proximidad:**
+
+Una de las principales ramas de FEMSA, la preparación de bebidas embotelladas, enfrente un importante riesgo económico, el cambio en los gustos de los consumidores. Los consumidores están cada vez más relacionados por su salud y sostenibilidad (Marsh, 2022). Es posible que la demanda por refrescos baje por la preocupación de los consumidores por su salud. También la industria enfrenta un riesgo político por las regulaciones más duras por parte de los gobiernos (Marsh, 2022), poner sellos en las bebidas o disminuir los niveles de azúcar puede resultar en menores márgenes e ingresos. 
+
+Continuando con estos riesgos, uno no sistemático de las empresas en el sector es el riesgo de reputación. Una sociedad más informada y preocupada por el medio ambiente se toma en serio escándalos ambientales y corrupción, así como los rumores de calidad dudosa en los alimentos, cualquiera puede dañar fuertemente la reputación de la marca y su participación de mercado.
+
+Los cambios en tecnología, no solo en la manera directa de producir, pero en los sistemas de apoyo de las empresas puede suponer una ventaja de una sobre otra. Un buen ejemplo es el uso de la “Big Data” en sistemas logísticos (Marsh, 2022) que puede incrementar la eficiencia de las cadenas de suministro. La operación de FEMSA es robusta y dependiente de sus sistemas de distribución y almacenamiento, un rezago en esta área supone un riesgo tecnológico para FEMSA.
+
+En la industria del consumo minorista, el otro gran sector de FEMSA, los ciberataques suponen un riesgo operacional que no se puede ignorar y que está en crecimiento. Los comercios mayoristas y minoristas son los más atacados por ciber criminales en América Latina, “secuestran” la información personal de los clientes y solicitan rescates a las empresas, encargadas de proteger los datos de sus clientes (González Dubraska, 2023).  
+
+Finalmente, un gran riesgo sistemático que afecta a las empresas de consumo es el de las tasas de interés (e inflación). Periodos de alta inflación y tasas de interés suelen desincentivar el consumo (Bahena Lola, 2024), aunque FEMSA vende productos de “primera necesidad”, sus ingresos y márgenes de ganancias se verán afectados por estas variables.
+
+<br><br>
+
+## Riesgos Financieros
+
+Pasando a los riesgos financieros, podemos analizar el riesgo de liquidez y de crédito desde la perspectiva financiera de una empresa de operación no financiera.
+Con información de factset de la empresa _Fomento Economico Mexicano SAB de CV Units Cons. Of 1 ShsB And 4 ShsD (FEMSAUBD-MX)_ consultada al 29 de enero de 2024 realizamos un análisis de razones financeras.
+
+<br>
+
+### Riesgo de Liquidez:
+
+Observando la razón circulante, prueba del ácido y la razón de efectivo:
+
+<br><br>
+
+```{r, echo=FALSE}
+melted_data <- melt(razonesL, id.vars = "Anio")
+
+ggplot(melted_data, aes(x = Anio, y = value, fill = variable)) +
+  geom_bar(stat = "identity", position = "dodge") +
+  labs(title = "Razones de Liquidez", x = "Anio", y = "", caption= "Figura 1: Elaboracion propia") +
+  scale_fill_manual(values = c("Current Ratio (x)" = "#e9724d", "Quick Ratio (x)" = "#d6d727", "Cash Ratio" = "#92cad1"))
+```
+
+<br><br>
+
+Los últimos 5 años ha mantenido razones de liquidez estables, la razón corriente ha sido mayor a uno en todos los años, la prueba ácida se mantiene cerca de uno, la razón de efectivo varia y en 2022 fue menor a 0.5, pero en otros años se acerca a cero. Suponiendo que en un año convertirá sus inventarios en efectivos y tiene una gestión adecuada de sus cuentas por cobrar, **_no hay indicios de que la empresa enfrente un problema de liquidez inminente._**
+
+Pasando a las razones de cobertura, que hablan también de riesgos financieros que presenta la empresa. Tomamos la razón de Deuda Neta/EBITDA y la Deuda Total/EBITDA, que dan una buena idea del endeudamiento de la empresa.
+
+<br><br>
+
+```{r, echo=FALSE}
+melted_data <- melt(razonesC, id.vars = "Anio")
+
+ggplot(melted_data, aes(x = Anio, y = value, fill = variable)) +
+  geom_bar(stat = "identity", position = "dodge") +
+  labs(title = "Razones de Cobertura y Endeudamiento", x = "Anio", y = "", caption = "Figura 2: Elaboracion propia") +
+  scale_fill_manual(values = c("Net Debt/EBITDA" = "#e9724d", "Total Debt/EBITDA" = "#92cad1"))
+```
+
+<br><br>
+
+En los últimos 4 años la empresa ha contraído deuda. La deuda total como razón del EBITDA ha superado los últimos años el valor de 3, es decir, la empresa debería usar todas sus utilidades (antes de intereses e impuestos) de 3 años para pagar la totalidad de su deuda, considerando que cerca de un 60% de su deuda es de largo plazo, la razón no muestra un endeudamiento desmedido.
+
+El mismo indicador con la deuda neta fue de 2.23 en 2022, mostrando el efecto de sus activos líquidos en el nivel de endeudamiento. Sería importante conocer para qué está usando FEMSA el crédito.
+
+Finalmente, se revisa la razón del EBITDA sobre los gastos de interés para evaluar la sostenibilidad a corto plazo del financiamiento de las obligaciones.
+
+<br><br>
+
+
+```{r, echo=FALSE}
+
+ggplot(EBITDA, aes(x = Anio, y = `EBITDA/Interest Expense`)) +
+  geom_bar(stat = "identity", fill = "#92cad1") +
+  labs(title = "EBITDA / Interest Expense", x = "Anio", y = "Expense", caption = "Figura 3: Elaboracion propia")
+```
+
+<br><br>
+
+Se observa que el incremento de la deuda también ha impactado este indicador, seguramente la pandemia también redujo la utilidad, y aunque se ha reducido este margen sigue estando en niveles sanos, es decir, la utilidad generada por la operación de la empresa ha crecido al punto que el gasto de financiamiento, en términos relativos, no ha crecido ni cambiado.
+
+<br>
+
+### Riesgo de Crédito:
+
+El riesgo de crédito en una empresa de este tipo se puede evaluar con su ratio de rotación de cartera (Accounts Receivable Turnover) y otros indicadores de calidad de cartera, nos enfocamos en el primero por su disponibilidad en factset.
+
+<br><br>
+
+```{r, echo=FALSE}
+ggplot(turnover, aes(x = Anio, y = `Receivables Turnover Ratio`)) +
+  geom_bar(stat = "identity", fill = "#e9724d") +
+  labs(title = "Receivables Turnover Ratio", x = "Anio", y = "Ratio", caption = "Figura 4: Elaboracion propia") + 
+  coord_cartesian(ylim = c(9, 12))
+```
+
+<br><br>
+
+En los últimos 3 años ha mejorado bastante, mientras más grande es su ratio mejor, porque la empresa es más eficiente en cobrar a sus clientes. Se tendría que comparar contra otras empresas de la industria para tener una mejor idea de qué tan “bueno” es este número, sin embargo, se puede interpretar que a cada cliente le cobra 11 veces al año y su tiempo medio para cobrar la deuda es un poco mayor al mes.
+
+
+<br><br><br><br>
+
+# BIBLIOGRAFÍA
+<br>
+
+•	Investing.com (s. f.). Investing.com. https://in.investing.com/equities/coca-cola-femsa-l-historical-data-splits
+
+
+•	FEMSA. (2023, 1 noviembre). Quiénes somos - FEMSA. https://www.femsa.com/es/acerca-de-femsa/quienes-somos/
+
+
+•	Grupo BMV. (s. f.). https://www.bmv.com.mx/es/emisoras/perfil/FEMSA-5305
+
+
+•	El Economista. (2022, 11 abril). Pago de dividendo. El Economista. https://www.eleconomista.com.mx/opinion/Pago-de-dividendo-20220410-0077.html 
+
+
+•	Google Finance. (2023, 29 enero). Fomento Economico Mexicano SAB de CV Unit. https://www.google.com/finance/quote/FEMSAUBD:BMV?sa=X&ved=2ahUKEwiKoIv7vYOEAxWpM0QIHXORBb8Q3ecFegQINhAg 
+
+
+•	FEMSA. (s. f.). Historial de dividendos. FEMSA. https://femsa.gcs-web.com/es/stock-information/dividend-history
+
+
+•	Yahoo Finance. (2023, 31 enero). Fomento Económico Mexicano, S.A.B. de C.V. (FEMSAUBD.MX). https://finance.yahoo.com/quote/FEMSAUBD.MX/history?period1=1177977600&period2=1180569600&interval=1d&filter=history&frequency=1d&includeAdjustedClose=true
+
+
+•	Bahena Lola, 15 de enero de 2024. Panorama de consumo del 2023 y expectativas de 2024, The Food Tech. Kantar: Panorama del consumo en México durante 2023 y 2024 (thefoodtech.com)
+
+
+•	González Dubraska, 5 de marzo de 2023. El sector de retail de Latinoamérica recibió más ciberataques en 2022, America Retail. El sector de retail de Latinoamérica recibió más ciberataques en 2022 - América Retail (america-retail.com)
+
+
+•	Redacción Marsh, 10 de noviembre de 2022. 5 nuevos riesgos en empresas de alimentos y bebidas. Marsh. 5 nuevos riesgos en empresas de alimentos y bebidas | Marsh
