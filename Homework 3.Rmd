@@ -41,8 +41,27 @@ x0 = 4.60
 
 ### 1.8 Use R to prove your answer. Simulate the equation X=Xo+adt+bdW using the Xo you found on 7) with dt=4 and a,b for the problem. Once you have at least 10000 simulations for X, calculate its mean and variance. Finally, use pnorm(0, mean(X), sd(X)) to find the probability that X (initial cash position) has to be less than zero. 
 
-```{r}
 
+```{r}
+set.seed(40)
+n <- 100000
+dt <- 4
+
+a <- 0.5
+b <- 2
+x0 <- 4.6
+
+epsilon <- rnorm(n, 0, 1)
+dw <- epsilon*sqrt(dt) 
+dX <- a*dt + b*dw
+X <- x0 + dX
+
+mean(X)
+sd(X)^2
+```
+
+```{r}
+1  - pnorm(q=0, mean=mean(X), sd=sd(X), lower.tail=FALSE) 
 ```
 
 
@@ -52,7 +71,7 @@ b = √.16 = 0.4 per month
 x0 = 2
 
 dx = 0.1dt + 0.4dW
-dx = 0.12dt + 0.4ε√dt  Cambios por mes
+dx = 0.1dt + 0.4ε√dt  Cambios por mes
 
 dx = 0.12 + 0.4√12ε Cambios por año 
 
@@ -66,8 +85,98 @@ Var[x] = Var[2] + Var[0.12] + Var[0.4√12ε ] = 0 +0+  =
 
 ### 2.1 What are the probability distributions of the cash position after 1 month, 6 months, and 1 year?
 
+> A un mes
+
+$$ X = 2 + 0.1dt + 0.4\epsilon\sqrt{dt} = 2 + 0.1(1) + 0.44\sqrt{1}\epsilon $$
+$$ X = 2.1 + 0.4\epsilon $$
+$$ E[X] = E[2.1] + 0.4E[\epsilon] = 2.1 $$
+$$ Var[X] = Var[2.1] + Var[0.4\epsilon] = 0.16Var[\epsilon] = 0.16 $$
+Entonces $ N ~ (2.1,0.16) $
+
+> A seis meses
+
+$$ X = 2 + 0.1dt + 0.4\epsilon\sqrt{dt} = 2 + 0.1(6) + 0.4\sqrt{6}\epsilon $$
+$$ X = 2.6 + 0.4\sqrt{6}\epsilon $$
+$$ E[X] = E[2.6] + 0.4\sqrt{6} E[\epsilon] = 2.6 $$
+$$ Var[X] = Var[2.6] + Var[0.4\sqrt{6}\epsilon] = 0.96Var[\epsilon] = 0.96 $$
+Entonces, cuando pasen seis meses la variable X tendrá una distribución $ N ~ (2.6,\sqrt{0.96}) $
+
+> A un año
+
+$$ X = 2 + 0.1dt + 0.4\epsilon\sqrt{dt} = 2 + 0.1(12) + 0.4\sqrt{12}\epsilon $$
+$$ X = 3.2 + 0.4\sqrt{12}\epsilon $$
+$$ E[X] = E[3.2] + 0.4\sqrt{12} E[\epsilon] = E[3.2] + 0.4\sqrt{12}*0 = 3.2 $$
+$$ Var[X] = Var[2.6] + Var[0.4\sqrt{12}\epsilon] = 192Var[\epsilon] = 1.92 $$
+Entonces, a un año X tendrá una distribución $ N ~ (3.2,\sqrt{1.92}) $
+
 ### 2.2 What are the probabilities of a negative cash position at the end of 6 months and 1 year?
+
+> At the end of six months
+
+Standarizing the distribution $ Z = \frac{q-\mu}{\sigma} = \frac{0-2.6}{\sqrt{0.96}} = -2.6533 $
+
+Finding the value of Z in Excel $P(X<0) = 0.003982$
+
+> At the end of one year
+
+Standarizing the distribution $ Z = \frac{q-\mu}{\sigma} = \frac{0-3.2}{\sqrt{1.92}} = -2.3094 $
+
+Finding the value of Z in Excel $P(X<0) = 0.0104$
 
 ### 2.3 Use R to simulate the process and make a graph where you can see the relation between t form 1 to 40 months and the evolution of the probability 
 
+```{r}
+n <- 100000
+dt <- 40
+
+a <- 0.1
+b <- 0.4
+x0 <- 2
+
+epsilon <- rnorm(n, 0, 1)
+dw <- epsilon*sqrt(dt) 
+dX <- a*dt + b*dw
+X <- x0 + dX
+
+mean(X)
+sd(X)^2
+
+```
+
+```{r}
+# Simular para graficar los dias
+n <- 2000
+dt <- 1
+dias <- 40
+a <- 0.1
+b <- 0.4
+
+X0 <- 2
+X <- matrix(0, nrow=n, ncol=dias)
+
+X[,1] <- X0
+
+for (j in 1:n) {
+epsilon <- rnorm(n,mean = 0, sd = 1)
+dw <- epsilon*sqrt(dt)
+dX <- a*dt + b*dw
+
+for (t in 2:dias) {
+    X[j,t] <- X[j,t-1] + dX[t]
+}}
+
+mean(X[,40])
+sd(X[,40])^2
+```
+
+```{r}
+# Graficar
+X_graficar = colMeans(X)
+
+plot(X_graficar, type="l")
+```
+
+```{r}
+plot(X[31,], type='l')
+```
 
