@@ -124,7 +124,7 @@ x = 2 + 0.12 + 0.4√12ε  Efectivo total en un año
 
 E[x] = E[2] + E[0.12] + E[0.4√12ε] = 2 + 0.12 + 0 = 2.12
 
-Var[x] = Var[2] + Var[0.12] + Var[0.4√12ε ] = 0 +0 + = 
+Var[x] = Var[2] + Var[0.12] + Var[0.4√12ε ] = 0 + 0 + (0.16)(12) = 1.92
 
 <br>
 
@@ -159,7 +159,7 @@ $$ X = 2 + 0.1dt + 0.4\epsilon\sqrt{dt} = 2 + 0.1(12) + 0.4\sqrt{12}\epsilon $$
 $$ X = 3.2 + 0.4\sqrt{12}\epsilon $$
 $$ E[X] = E[3.2] + 0.4\sqrt{12} E[\epsilon] = E[3.2] + 0.4\sqrt{12}*0 = 3.2 $$
 $$ Var[X] = Var[2.6] + Var[0.4\sqrt{12}\epsilon] = 192Var[\epsilon] = 1.92 $$
-<p style="text-align: center;">Entonces, a un año X tendrá una distribución $ N ~ (3.2,\sqrt{1.92}) $</p>
+<p style="text-align: center;"> Entonces, a un año X tendrá una distribución $N ~ (3.2,\sqrt{1.92})$</p>
 
 <br>
 
