@@ -1,0 +1,30 @@
+---
+title: "Proyecto parte 2"
+output: html_document
+date: "2024-02-18"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+#Entrega 2
+
+## Precio y rentabilidad a través del tiempo
+Realizar la gráfica del precio y rentabilidad desde el inicio de la salida a bolsa de la empresa hasta el año 2023 (fecha de corte según la fecha de presentación) para el caso de estudio en el que está trabajando el estudiante. Utilice este gráfico e identifique las causas de los cambios observados en el precio. Es decir, primero se debe analizar visualmente el comportamiento del activo e identificar periodos donde el precio ha cambiado significativamente, ya sea hacia arriba o hacia abajo. El siguiente paso es buscar noticias e información financiera, económica y/o política nacional y/o internacional, así como información de la empresa, que podría haber tenido un impacto en el comportamiento del precio, analizado anteriormente.
+
+### Gráfica
+
+### Identificación y análisis de cambios en el comportamiento del precio 
+
+
+## Precio contra Producto Interno Bruto
+Realice una gráfica que muestre el comportamiento compuesto del precio de los activos y el Producto Interno Bruto. Esta gráfica debe realizarse considerando el rendimiento anual y la tasa de crecimiento anual de la economía de México. Crear un análisis del comportamiento del activo y del PIB.
+
+### Gráfica
+
+### Análisis
+
+
+## Elementos actuales que repercuten en el precio 
+Identificar elementos actuales (situaciones durante el último año) que han tenido algún tipo de impacto en el comportamiento del activo, por lo que se debe estar consciente de la situación económica, política y financiera nacional e internacional, para identificar cómo diversos eventos influyen en el comportamiento del activo
