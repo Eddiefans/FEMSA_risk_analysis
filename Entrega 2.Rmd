@@ -11,36 +11,96 @@ knitr::opts_chunk$set(echo = TRUE)
 #Entrega 2
 
 ## Precio y rentabilidad a través del tiempo
-Realizar la gráfica del precio y rentabilidad desde el inicio de la salida a bolsa de la empresa hasta el año 2023 (fecha de corte según la fecha de presentación) para el caso de estudio en el que está trabajando el estudiante. Utilice este gráfico e identifique las causas de los cambios observados en el precio. Es decir, primero se debe analizar visualmente el comportamiento del activo e identificar periodos donde el precio ha cambiado significativamente, ya sea hacia arriba o hacia abajo. El siguiente paso es buscar noticias e información financiera, económica y/o política nacional y/o internacional, así como información de la empresa, que podría haber tenido un impacto en el comportamiento del precio, analizado anteriormente.
+Realizar la gráfica del precio y rentabilidad desde el inicio de la salida a bolsa de la empresa hasta el año 2023 (fecha de corte según la fecha de presentación) para el caso de estudio en el que está trabajando el estudiante.
+
+Utilice este gráfico e identifique las causas de los cambios observados en el precio. Es decir, primero se debe analizar visualmente el comportamiento del activo e identificar periodos donde el precio ha cambiado significativamente, ya sea hacia arriba o hacia abajo.
+
+El siguiente paso es buscar noticias e información financiera, económica y/o política nacional y/o internacional, así como información de la empresa, que podría haber tenido un impacto en el comportamiento del precio, analizado anteriormente.
+
+
 
 ```{r}
 library(rlang)
 library(quantmod)
 library(ggplot2)
+library(scales)
 ```
-
 ```{r}
 symbol <- "FEMSAUBD.MX"
 start_date <- "1978-09-22"
 end_date <- Sys.Date()
 getSymbols(symbol, src = "yahoo", from = start_date, to = end_date)
+```
+
+```{r}
 prices <- Ad(get(symbol))
-prices_df <- data.frame(Date = index(prices), Price = coredata(prices))
+prices_df <- data.frame(Fecha = index(prices), Precio = coredata(prices))
+colnames(prices_df)[colnames(prices_df) == "FEMSAUBD.MX.Adjusted"] <- "Precio"
 prices_df
 ```
 
+
+```{r}
+returns <- dailyReturn(prices)
+returns_df <- data.frame(Fecha = index(prices), Rendimiento = coredata(returns))
+colnames(returns_df)[colnames(returns_df) == "daily.returns"] <- "Rendimiento diario"
+returns_df
+```
+
+
 ### Gráfica
 ```{r}
-ggplot(prices_df, aes(x = Date, y = FEMSAUBD.MX.Adjusted)) +
+ggplot(prices_df, aes(x = Fecha, y = Precio)) +
   geom_line() +
-  labs(title = paste("Precio de cierre de", symbol),
+  labs(title = paste("Precio de cierre de"),
        x = "Fecha",
        y = "Precio de cierre") +
   theme_minimal()
 ```
-### Gráfica
+
+
+```{r}
+ggplot(data = as.data.frame(returns), aes(x = index(returns), y = returns)) +
+  geom_line() +
+  labs(title = "Rendimientos diarios",
+       x = "Fecha",
+       y = "Rendimiento") +
+  theme_minimal() +
+  scale_x_date(labels = date_format("%Y-%m-%d"), breaks = date_breaks("1 year")) +
+  scale_y_continuous(labels = percent_format())
+```
 
 ### Identificación y análisis de cambios en el comportamiento del precio 
+Ligera caída en 2009
+
+
+Subida de 2010 a 2014
+https://www.femsa.com/es/sala-de-prensa/comunicado/femsa-crece-utilidad-de-operacion-en-todas-sus-operaciones-en-el-4t10-y-en-el-2010/
+https://t21.com.mx/general-2014-10-28-femsa-aumenta-ingresos-132-3t/
+
+
+
+CAÍDA EN 2020
+Durante el 2020, los ingresos de FEMSA cayeron 10.7% en el segundo trimestre del año debido a la pandemia por COVID-19. Esto se tradujo como una pérdida neta de 10,775 millones de pesos. Esta pérdida también estuvo influenciada por el cierre de las operaciones de Specialty’s Café and Bakery, así como un impacto negativo de la participación de FEMSA en los resultados de Heineken. Tras reportar estas pérdidas a la BMV el precio de su acción cayó un 1.53%. 
+Las tiendas OXXO disminuyeron sus ventas debido a las restricciones de movilidad impuestas, haciendo que los consumidores disminuyeran sus compras. A esto se sumó la falta de cerveza y otras bebidas alcohólicas. En cuanto al sector de salud, este tuvo un mejor desempeño, lógico por el contexto que se vivió en ese año. La demanda de los productos se mantuvo elevada, aunque las ventas también se vieron afectadas por las restricciones y el aislamiento. La baja considerable en el uso de los vehículos fue la causa de que la división referente a las gasolineras fuese la más afectada (Santiago, 2020). 
+
+2021
+
+
+BAJADA EN 2022
+En julio de 2022, las acciones de FEMSA tuvieron su mayor caída desde el comienzo de la pandemia después de que acordó la compra de la compañía suiza Valora por 1,200 millones de dólares. Las acciones cayeron un 6.4%. Esta adquisición representó una prima del 52% sobre el precio de cierre del lunes, la cual fue tomada como excesiva por muchos de los inversionistas (Navarro, 2022. 
+
+SUBIDA EN 2023
+Durante el año 2023, las acciones de FEMSA crecieron del 46%. Este aumento fue consecuencia del reacomodo de sus planes para enfocarse en sus negocios estratégicos. A principios de 2022, la compañía anunció una estrategia en la que se pretendía deshacerse de los negocios no estratégicos para enfocarse en Oxxo, farmacias, gasolineras y la división Coca-Cola. Roberto Solano, analista de Monex Casa de Bolsa, aseguró que FEMSA consiguió una cantidad de capital importante que será invertida en los próximos años en sus negocios de Coca-Cola FEMSA, Oxxo, farmacias, y gasolineras, así como en su área digital con Spin y Oxxo Premia.
+Además de esta estrategia, la empresa tuvo sólidos resultados financieros en 2023,impulsados por el crecimiento de las ventas y la utilidad de la división de Oxxo, lo que a su vez apoyó al crecimiento del precio de la acción dentro de la Bolsa Mexicana de Valores. De enero a septiembre de 2023, las ventas tuvieron un incremento del 19.4% con respecto al año anterior (El Economista, 2023). 
+
+
+https://www.eleconomista.com.mx/mercados/BMV-opera-con-perdidas-destaca-caida-de-acciones-de-FEMSA-20231124-0015.html
+https://www.eleconomista.com.mx/mercados/Bolsa-mexicana-opera-con-perdidas-perfila-fuerte-caida-semanal-20231013-0041.html
+
+
+
+
 
 
 ## Precio contra Producto Interno Bruto
@@ -53,3 +113,18 @@ Realice una gráfica que muestre el comportamiento compuesto del precio de los a
 
 ## Elementos actuales que repercuten en el precio 
 Identificar elementos actuales (situaciones durante el último año) que han tenido algún tipo de impacto en el comportamiento del activo, por lo que se debe estar consciente de la situación económica, política y financiera nacional e internacional, para identificar cómo diversos eventos influyen en el comportamiento del activo
+
+https://www.bloomberglinea.com/latinoamerica/mexico/accion-de-femsa-cae-precio-y-cotizacion-en-bolsa-hoy-12-de-febrero-de-2024/
+https://elceo.com/mercados/femsa-tropieza-en-la-bmv-tras-anuncio-de-inversion-millonaria-y-dividendos/
+https://www.bloomberglinea.com/latinoamerica/mexico/accion-de-fomento-economico-mexicano-cae-precio-y-cotizacion-en-bolsa-hoy-16-de-febrero-de-2024/
+https://www.bloomberglinea.com/latinoamerica/mexico/accion-de-fomento-economico-mexicano-cae-precio-y-cotizacion-en-bolsa-hoy-16-de-febrero-de-2024/#:~:text=M%C3%A9xico-,Acci%C3%B3n%20de%20Fomento%20Econ%C3%B3mico%20Mexicano%20cae%3A%20precio%20y%20cotizaci%C3%B3n%20en,16%20de%20febrero%20de%202024&text=La%20acci%C3%B3n%20de%20Fomento%20Econ%C3%B3mico,al%20valor%20del%20d%C3%ADa%20anterior.
+https://www.bloomberglinea.com/latinoamerica/mexico/accion-de-fomento-economico-mexicano-al-alza-precio-y-cotizacion-en-bolsa-hoy-15-de-febrero-de-2024/
+https://www.bloomberglinea.com/latinoamerica/mexico/accion-de-fomento-economico-mexicano-cae-precio-y-cotizacion-en-bolsa-hoy-26-de-enero-de-2024/
+forbes.com.mx/femsa-cae-en-bolsa-tras-anunciar-plan-de-inversiones-y-retornos-capital/
+
+
+
+## Bibliogrfía
+El Economista. (2023, 26 diciembre). Acciones de Femsa crecen más de 46% en el año y buscan superar a América Móvil. AméricaEconomía. https://www.americaeconomia.com/negocios-e-industrias/acciones-de-femsa-crecen-mas-de-46-en-el-ano-y-buscan-superar-america-movil
+Santiago, J. (2020, 24 julio). Ingresos de Femsa caen 10.7% impactados por la pandemia. El Economista. https://www.eleconomista.com.mx/mercados/Ingresos-de-Femsa-caen-10.7-impactados-por-la-pandemia-y-pago-al-SAT-20200724-0036.html
+Navarro, A. (2022, 5 julio). Acciones de Femsa caen a mínimo nivel desde 2020 tras acuerdo con Valora. Bloomberg Línea. https://www.bloomberglinea.com/2022/07/05/acciones-de-femsa-caen-a-minimo-nivel-desde-2020-tras-acuerdo-con-valora/
