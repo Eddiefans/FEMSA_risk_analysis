@@ -13,6 +13,31 @@ knitr::opts_chunk$set(echo = TRUE)
 ## Precio y rentabilidad a través del tiempo
 Realizar la gráfica del precio y rentabilidad desde el inicio de la salida a bolsa de la empresa hasta el año 2023 (fecha de corte según la fecha de presentación) para el caso de estudio en el que está trabajando el estudiante. Utilice este gráfico e identifique las causas de los cambios observados en el precio. Es decir, primero se debe analizar visualmente el comportamiento del activo e identificar periodos donde el precio ha cambiado significativamente, ya sea hacia arriba o hacia abajo. El siguiente paso es buscar noticias e información financiera, económica y/o política nacional y/o internacional, así como información de la empresa, que podría haber tenido un impacto en el comportamiento del precio, analizado anteriormente.
 
+```{r}
+library(rlang)
+library(quantmod)
+library(ggplot2)
+```
+
+```{r}
+symbol <- "FEMSAUBD.MX"
+start_date <- "1978-09-22"
+end_date <- Sys.Date()
+getSymbols(symbol, src = "yahoo", from = start_date, to = end_date)
+prices <- Ad(get(symbol))
+prices_df <- data.frame(Date = index(prices), Price = coredata(prices))
+prices_df
+```
+
+### Gráfica
+```{r}
+ggplot(prices_df, aes(x = Date, y = FEMSAUBD.MX.Adjusted)) +
+  geom_line() +
+  labs(title = paste("Precio de cierre de", symbol),
+       x = "Fecha",
+       y = "Precio de cierre") +
+  theme_minimal()
+```
 ### Gráfica
 
 ### Identificación y análisis de cambios en el comportamiento del precio 
