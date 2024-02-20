@@ -116,10 +116,10 @@ Realice una gráfica que muestre el comportamiento compuesto del precio de los a
 ## Elementos actuales que repercuten en el precio 
 Identificar elementos actuales (situaciones durante el último año) que han tenido algún tipo de impacto en el comportamiento del activo, por lo que se debe estar consciente de la situación económica, política y financiera nacional e internacional, para identificar cómo diversos eventos influyen en el comportamiento del activo
 
-https://www.bloomberglinea.com/latinoamerica/mexico/accion-de-femsa-cae-precio-y-cotizacion-en-bolsa-hoy-12-de-febrero-de-2024/
+En lo que va de 2024, la acción de FEMSA ha subido 9.71%, siendo la quinta acción de la Bolsa Mexicana de Valores con mejor desempeño (Bloomberg Línea, 2024). Sin embargo; el 15 de febrero de este año se anunció que se planea invertir aproximadamente  14,000 millones de dólares a lo largo de los próximos cinco años, principalmente en México, y que devolvería a los accionistas alrededor del 6% de su valor de mercado en los próximos 2-3 años a través de dividendos adicionales y recompras. Esta decisión se vio reflejada en una bajada del 4.11% (Forbes, 2024). 
+
 https://elceo.com/mercados/femsa-tropieza-en-la-bmv-tras-anuncio-de-inversion-millonaria-y-dividendos/
 https://www.bloomberglinea.com/latinoamerica/mexico/accion-de-fomento-economico-mexicano-cae-precio-y-cotizacion-en-bolsa-hoy-16-de-febrero-de-2024/
-https://www.bloomberglinea.com/latinoamerica/mexico/accion-de-fomento-economico-mexicano-cae-precio-y-cotizacion-en-bolsa-hoy-16-de-febrero-de-2024/#:~:text=M%C3%A9xico-,Acci%C3%B3n%20de%20Fomento%20Econ%C3%B3mico%20Mexicano%20cae%3A%20precio%20y%20cotizaci%C3%B3n%20en,16%20de%20febrero%20de%202024&text=La%20acci%C3%B3n%20de%20Fomento%20Econ%C3%B3mico,al%20valor%20del%20d%C3%ADa%20anterior.
 https://www.bloomberglinea.com/latinoamerica/mexico/accion-de-fomento-economico-mexicano-al-alza-precio-y-cotizacion-en-bolsa-hoy-15-de-febrero-de-2024/
 https://www.bloomberglinea.com/latinoamerica/mexico/accion-de-fomento-economico-mexicano-cae-precio-y-cotizacion-en-bolsa-hoy-26-de-enero-de-2024/
 forbes.com.mx/femsa-cae-en-bolsa-tras-anunciar-plan-de-inversiones-y-retornos-capital/
@@ -130,3 +130,5 @@ forbes.com.mx/femsa-cae-en-bolsa-tras-anunciar-plan-de-inversiones-y-retornos-ca
 El Economista. (2023, 26 diciembre). Acciones de Femsa crecen más de 46% en el año y buscan superar a América Móvil. AméricaEconomía. https://www.americaeconomia.com/negocios-e-industrias/acciones-de-femsa-crecen-mas-de-46-en-el-ano-y-buscan-superar-america-movil
 Santiago, J. (2020, 24 julio). Ingresos de Femsa caen 10.7% impactados por la pandemia. El Economista. https://www.eleconomista.com.mx/mercados/Ingresos-de-Femsa-caen-10.7-impactados-por-la-pandemia-y-pago-al-SAT-20200724-0036.html
 Navarro, A. (2022, 5 julio). Acciones de Femsa caen a mínimo nivel desde 2020 tras acuerdo con Valora. Bloomberg Línea. https://www.bloomberglinea.com/2022/07/05/acciones-de-femsa-caen-a-minimo-nivel-desde-2020-tras-acuerdo-con-valora/
+Bloomberg Línea. (2024, 12 febrero). Acción de Femsa cae: precio y cotización en bolsa hoy 12 de febrero de 2024. Bloomberg Línea. https://www.bloomberglinea.com/latinoamerica/mexico/accion-de-femsa-cae-precio-y-cotizacion-en-bolsa-hoy-12-de-febrero-de-2024/
+Forbes. (2024, 16 febrero). Femsa cae en Bolsa tras anunciar plan de inversiones y retornos capital. Forbes México. https://www.forbes.com.mx/femsa-cae-en-bolsa-tras-anunciar-plan-de-inversiones-y-retornos-capital/
