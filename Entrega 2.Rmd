@@ -10,6 +10,8 @@ knitr::opts_chunk$set(echo = TRUE)
 
 #Entrega 2
 
+## Introducción
+
 ## Precio y rentabilidad a través del tiempo
 Realizar la gráfica del precio y rentabilidad desde el inicio de la salida a bolsa de la empresa hasta el año 2023 (fecha de corte según la fecha de presentación) para el caso de estudio en el que está trabajando el estudiante.
 
