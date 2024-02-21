@@ -73,26 +73,38 @@ ggplot(data = as.data.frame(returns), aes(x = index(returns), y = returns)) +
 ```
 
 ### Identificación y análisis de cambios en el comportamiento del precio 
-Ligera caída en 2009
+**LIGERA CAÍDA EN 2009**
 
 
-Subida de 2010 a 2014
-https://www.femsa.com/es/sala-de-prensa/comunicado/femsa-crece-utilidad-de-operacion-en-todas-sus-operaciones-en-el-4t10-y-en-el-2010/
-https://t21.com.mx/general-2014-10-28-femsa-aumenta-ingresos-132-3t/
+**SUBIDA DE 2010 A 2014**
 
+Durante el año 2010 a pesar de un entorno complicado con baja demanda en el consumo, FEMSA registró un crecimiento del 5.9% en los ingresos totales consolidados comparables y un aumento del 6.6% en la utilidad de operación en comparación con 2009. Este crecimiento fue impulsado principalmente por FEMSA Comercio y la operación en Mercosur de Coca-Cola FEMSA. (FEMSA, 2011).
 
+Coca-Cola FEMSA experimentó un aumento del 7.9% en la utilidad de operación, impulsado por un fuerte crecimiento en Mercosur y Latincentro y FEMSA Comercio continuó su rápido crecimiento al abrir 1,092 tiendas netas en 2010, con un aumento del 16.7% en la utilidad de operación. (FEMSA, 2011).
 
-CAÍDA EN 2020
+En cuanto a los resultados financieros, los ingresos totales crecieron un 3.8% en el cuarto trimestre de 2010 en comparación con el mismo período en 2009, principalmente impulsados por FEMSA Comercio. La utilidad de operación creció en el cuarto trimestre de 2010 en comparación con el mismo período en 2009 y la utilidad neta por operaciones continuas aumentó significativamente, reflejando el crecimiento de las operaciones continuas de FEMSA.
+La inversión en activo fijo aumentó en el cuarto trimestre como en el año 2010, con un saldo de efectivo en aumento y una posición de caja neta sólida. (FEMSA, 2011).
+
+Esta tendencia continuó con los años, en el tercer trimestre de 2014 Femsa obtuvo un incremento de 13.2% en los ingresos comparado con el mismo periodo de 2013, así como un alza de las utilidades de operación de 15.8% en el mismo lapso, la empresa resaltó el crecimiento tanto de FEMSA Comercio y Coca-Cola FEMSA. (T21, 2014).
+
+Así, en comparación con 2013, Coca-Cola FEMSA logró aumentar sus ingresos totales 11.4%, mientras que la utilidad de operación creció en 15.1% y FEMSA Comercio logró un incremento en ingresos de 12.7% y la utilidad de operación marcó una subida de 17.6%, esto último impulsado por 1,185 aperturas netas de tiendas y un crecimiento de 3.1% en ventas de las mismas tiendas. (T21, 2014).
+
+Sin embargo, en los primeros nueve meses del 2014, la utilidad neta consolidada disminuyó 1.2% comparada con el mismo periodo del 2013, reflejando mayores gastos de financiamiento relacionados con la emisión de bonos por Coca-Cola FEMSA y FEMSA, que fueron parcialmente compensados por el crecimiento en los ingresos de operación. (T21, 2014).
+
+**CAÍDA EN 2020**
+
 Durante el 2020, los ingresos de FEMSA cayeron 10.7% en el segundo trimestre del año debido a la pandemia por COVID-19. Esto se tradujo como una pérdida neta de 10,775 millones de pesos. Esta pérdida también estuvo influenciada por el cierre de las operaciones de Specialty’s Café and Bakery, así como un impacto negativo de la participación de FEMSA en los resultados de Heineken. Tras reportar estas pérdidas a la BMV el precio de su acción cayó un 1.53%. 
 Las tiendas OXXO disminuyeron sus ventas debido a las restricciones de movilidad impuestas, haciendo que los consumidores disminuyeran sus compras. A esto se sumó la falta de cerveza y otras bebidas alcohólicas. En cuanto al sector de salud, este tuvo un mejor desempeño, lógico por el contexto que se vivió en ese año. La demanda de los productos se mantuvo elevada, aunque las ventas también se vieron afectadas por las restricciones y el aislamiento. La baja considerable en el uso de los vehículos fue la causa de que la división referente a las gasolineras fuese la más afectada (Santiago, 2020). 
 
-2021
+**2021**
 
 
-BAJADA EN 2022
+**BAJADA EN 2022**
+
 En julio de 2022, las acciones de FEMSA tuvieron su mayor caída desde el comienzo de la pandemia después de que acordó la compra de la compañía suiza Valora por 1,200 millones de dólares. Las acciones cayeron un 6.4%. Esta adquisición representó una prima del 52% sobre el precio de cierre del lunes, la cual fue tomada como excesiva por muchos de los inversionistas (Navarro, 2022. 
 
-SUBIDA EN 2023
+**SUBIDA EN 2023**
+
 Durante el año 2023, las acciones de FEMSA crecieron del 46%. Este aumento fue consecuencia del reacomodo de sus planes para enfocarse en sus negocios estratégicos. A principios de 2022, la compañía anunció una estrategia en la que se pretendía deshacerse de los negocios no estratégicos para enfocarse en Oxxo, farmacias, gasolineras y la división Coca-Cola. Roberto Solano, analista de Monex Casa de Bolsa, aseguró que FEMSA consiguió una cantidad de capital importante que será invertida en los próximos años en sus negocios de Coca-Cola FEMSA, Oxxo, farmacias, y gasolineras, así como en su área digital con Spin y Oxxo Premia.
 Además de esta estrategia, la empresa tuvo sólidos resultados financieros en 2023,impulsados por el crecimiento de las ventas y la utilidad de la división de Oxxo, lo que a su vez apoyó al crecimiento del precio de la acción dentro de la Bolsa Mexicana de Valores. De enero a septiembre de 2023, las ventas tuvieron un incremento del 19.4% con respecto al año anterior (El Economista, 2023). 
 
@@ -116,19 +128,24 @@ Realice una gráfica que muestre el comportamiento compuesto del precio de los a
 ## Elementos actuales que repercuten en el precio 
 Identificar elementos actuales (situaciones durante el último año) que han tenido algún tipo de impacto en el comportamiento del activo, por lo que se debe estar consciente de la situación económica, política y financiera nacional e internacional, para identificar cómo diversos eventos influyen en el comportamiento del activo
 
-En lo que va de 2024, la acción de FEMSA ha subido 9.71%, siendo la quinta acción de la Bolsa Mexicana de Valores con mejor desempeño (Bloomberg Línea, 2024). Sin embargo; el 15 de febrero de este año se anunció que se planea invertir aproximadamente  14,000 millones de dólares a lo largo de los próximos cinco años, principalmente en México, y que devolvería a los accionistas alrededor del 6% de su valor de mercado en los próximos 2-3 años a través de dividendos adicionales y recompras. Esta decisión se vio reflejada en una bajada del 4.11% (Forbes, 2024). 
+FEMSA anunció el 15 de febrero de este año que planea invertir aproximadamente 14,000 millones de dólares a lo largo de los próximos cinco años, principalmente en México, y que devolvería a los accionistas alrededor del 6% de su valor de mercado en los próximos 2-3 años a través de dividendos adicionales y recompras. (Forbes, 2024).
 
-https://elceo.com/mercados/femsa-tropieza-en-la-bmv-tras-anuncio-de-inversion-millonaria-y-dividendos/
-https://www.bloomberglinea.com/latinoamerica/mexico/accion-de-fomento-economico-mexicano-cae-precio-y-cotizacion-en-bolsa-hoy-16-de-febrero-de-2024/
-https://www.bloomberglinea.com/latinoamerica/mexico/accion-de-fomento-economico-mexicano-al-alza-precio-y-cotizacion-en-bolsa-hoy-15-de-febrero-de-2024/
-https://www.bloomberglinea.com/latinoamerica/mexico/accion-de-fomento-economico-mexicano-cae-precio-y-cotizacion-en-bolsa-hoy-26-de-enero-de-2024/
-forbes.com.mx/femsa-cae-en-bolsa-tras-anunciar-plan-de-inversiones-y-retornos-capital/
+Tras este anuncio, los títulos de la empresa cayeron 6.21%, la peor caída desde julio de 2022. Se posicionó como la emisora con más perdidas en la sesión del 16 de febrero de 2024. Roberto Solano, gerente de análisis económico, cambiario y bursátil en Monex, consideró que esto no son malas noticias ya que en sus palabras “Es importante evaluar que en lugar de pagar un dividendo por qué no reinvertir más los recursos para que genere un mayor crecimiento en las unidades de negocio”. Femsa explicó que va que va a priorizar las oportunidades naturales para invertir en los modelos de negocio que ya han funcionado bien para ellos y que las inversiones externas se enfocarán en alcanzar los objetivos importantes de sus principales áreas de negocio, como la creación de valor y generación de flujo de efectivo. (Rentería, 2024).
+
+El plan de gastos de FEMSA, con presencia en un total de 18 países, sigue a una serie de desinversiones, incluida la venta de acciones en la cervecera Heineken y en el mayorista estadounidense Jetro Restaurant Depot el año pasado. Está previsto que FEMSA presente sus resultados corporativos del cuarto trimestre el 23 de febrero. (Forbes, 2024).
+
+A 20 de febrero de 2024, la acción de FEMSA ha subido un 3.17%, siendo la décima acción de la Bolsa Mexicana de Valores con mejor desempeño (Bloomberg Línea, 2024).
 
 
 
-## Bibliogrfía
-El Economista. (2023, 26 diciembre). Acciones de Femsa crecen más de 46% en el año y buscan superar a América Móvil. AméricaEconomía. https://www.americaeconomia.com/negocios-e-industrias/acciones-de-femsa-crecen-mas-de-46-en-el-ano-y-buscan-superar-america-movil
+
+
+## Referencias
+- El Economista. (2023, 26 diciembre). Acciones de Femsa crecen más de 46% en el año y buscan superar a América Móvil. AméricaEconomía. https://www.americaeconomia.com/negocios-e-industrias/acciones-de-femsa-crecen-mas-de-46-en-el-ano-y-buscan-superar-america-movil
 Santiago, J. (2020, 24 julio). Ingresos de Femsa caen 10.7% impactados por la pandemia. El Economista. https://www.eleconomista.com.mx/mercados/Ingresos-de-Femsa-caen-10.7-impactados-por-la-pandemia-y-pago-al-SAT-20200724-0036.html
-Navarro, A. (2022, 5 julio). Acciones de Femsa caen a mínimo nivel desde 2020 tras acuerdo con Valora. Bloomberg Línea. https://www.bloomberglinea.com/2022/07/05/acciones-de-femsa-caen-a-minimo-nivel-desde-2020-tras-acuerdo-con-valora/
-Bloomberg Línea. (2024, 12 febrero). Acción de Femsa cae: precio y cotización en bolsa hoy 12 de febrero de 2024. Bloomberg Línea. https://www.bloomberglinea.com/latinoamerica/mexico/accion-de-femsa-cae-precio-y-cotizacion-en-bolsa-hoy-12-de-febrero-de-2024/
-Forbes. (2024, 16 febrero). Femsa cae en Bolsa tras anunciar plan de inversiones y retornos capital. Forbes México. https://www.forbes.com.mx/femsa-cae-en-bolsa-tras-anunciar-plan-de-inversiones-y-retornos-capital/
+- Navarro, A. (2022, 5 julio). Acciones de Femsa caen a mínimo nivel desde 2020 tras acuerdo con Valora. Bloomberg Línea. https://www.bloomberglinea.com/latinoamerica/mexico/accion-de-fomento-economico-mexicano-al-alza-precio-y-cotizacion-en-bolsa-hoy-20-de-febrero-de-2024/
+- Bloomberg Línea. (2024, 20 febrero). Acción de Fomento Económico Mexicano, al alza: precio y cotización en bolsa hoy 20 de febrero de 2024. Bloomberg Línea. https://www.bloomberglinea.com/latinoamerica/mexico/accion-de-femsa-cae-precio-y-cotizacion-en-bolsa-hoy-12-de-febrero-de-2024/
+- Forbes. (2024, 16 febrero). Femsa cae en Bolsa tras anunciar plan de inversiones y retornos capital. Forbes México. https://www.forbes.com.mx/femsa-cae-en-bolsa-tras-anunciar-plan-de-inversiones-y-retornos-capital/
+- Rentería, S. (2024, 16 febrero). Femsa ‘tropieza’ en la BMV tras anuncio de inversión millonaria y dividendos. EL CEO. https://elceo.com/mercados/femsa-tropieza-en-la-bmv-tras-anuncio-de-inversion-millonaria-y-dividendos/
+- FEMSA. (2011, 25 febrero). FEMSA Crece Utilidad de Operación en Todas sus Operaciones en el 4T10 y en el 2010. https://www.femsa.com/es/sala-de-prensa/comunicado/femsa-crece-utilidad-de-operacion-en-todas-sus-operaciones-en-el-4t10-y-en-el-2010/ 
+- T21. (2014, 29 octubre). FEMSA aumenta ingresos 13.2% en 3T. https://t21.com.mx/general-2014-10-28-femsa-aumenta-ingresos-132-3t/
