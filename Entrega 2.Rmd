@@ -1,11 +1,13 @@
 ---
 title: "Proyecto parte 2"
-output: html_document
+output: 
+  html_document:
+    code_folding: hide
 date: "2024-02-18"
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(echo = FALSE, eval = FALSE, results = 'hide')
 ```
 
 #Entrega 2
@@ -21,48 +23,58 @@ El siguiente paso es buscar noticias e información financiera, económica y/o p
 
 
 
-```{r}
+```{r importar, message=FALSE, warning=FALSE}
+library(knitr)
 library(rlang)
 library(quantmod)
 library(ggplot2)
 library(scales)
-```
-```{r}
-symbol <- "FEMSAUBD.MX"
-start_date <- "1978-09-22"
-end_date <- Sys.Date()
-getSymbols(symbol, src = "yahoo", from = start_date, to = end_date)
-```
-
-```{r}
-prices <- Ad(get(symbol))
-prices_df <- data.frame(Fecha = index(prices), Precio = coredata(prices))
-colnames(prices_df)[colnames(prices_df) == "FEMSAUBD.MX.Adjusted"] <- "Precio"
-prices_df
-```
-
-
-```{r}
-returns <- dailyReturn(prices)
-returns_df <- data.frame(Fecha = index(prices), Rendimiento = coredata(returns))
-colnames(returns_df)[colnames(returns_df) == "daily.returns"] <- "Rendimiento diario"
-returns_df
+library(fpp3)
+library(tsibble)
 ```
 
 
 ### Gráfica
 ```{r}
-ggplot(prices_df, aes(x = Fecha, y = Precio)) +
+library(fpp3)
+
+symbol = "FEMSAUBD.MX"
+prices <- tidyquant::tq_get(x=symbol, 
+                            get='stock.prices', 
+                            from='1978-09-22', to="2024-02-01")
+
+prices <- prices |> as_tsibble(index = date) |> select(c('date','adjusted'))
+prices
+
+ggplot(prices, aes(x = date, y = adjusted)) +
   geom_line() +
-  labs(title = paste("Precio de cierre de"),
+  labs(title = paste("Precio de cierre de", symbol),
        x = "Fecha",
        y = "Precio de cierre") +
+  geom_ribbon(data = subset(prices, date >= "2008-06-02" & date <= "2009-01-02"),
+              aes(x = date, ymin = 0, ymax = adjusted),
+              fill = "blue", alpha = 0.3) +
+  geom_ribbon(data = subset(prices, date >= "2013-04-15" & date <= "2014-01-02"),
+              aes(x = date, ymin = 0, ymax = adjusted),
+              fill = "blue", alpha = 0.3) +
+  geom_ribbon(data = subset(prices, date >= "2020-01-02" & date <= "2020-11-20"),
+              aes(x = date, ymin = 0, ymax = adjusted),
+              fill = "blue", alpha = 0.3) +
+  geom_ribbon(data = subset(prices, date >= "2022-06-25" & date <= "2023-06-02"),
+              aes(x = date, ymin = 0, ymax = adjusted),
+              fill = "blue", alpha = 0.3) +
   theme_minimal()
 ```
 
 
-```{r}
-ggplot(data = as.data.frame(returns), aes(x = index(returns), y = returns)) +
+```{r grafica2, echo=FALSE, eval=TRUE}
+library(fpp3)
+
+returns <- prices |> 
+  mutate(returns = diff(adjusted)/lag(adjusted)) |> 
+    na.omit() |> select(c("date","returns"))
+
+ggplot(data = returns, aes(x = date, y = returns)) +
   geom_line() +
   labs(title = "Rendimientos diarios",
        x = "Fecha",
@@ -121,6 +133,48 @@ https://www.eleconomista.com.mx/mercados/Bolsa-mexicana-opera-con-perdidas-perfi
 Realice una gráfica que muestre el comportamiento compuesto del precio de los activos y el Producto Interno Bruto. Esta gráfica debe realizarse considerando el rendimiento anual y la tasa de crecimiento anual de la economía de México. Crear un análisis del comportamiento del activo y del PIB.
 
 ### Gráfica
+
+```{r}
+library(fpp3)
+
+pib <- tidyquant::tq_get(x="NGDPRSAXDCMXQ", get="economic.data", from = "1999-10-01")
+
+pib <- pib |> mutate( date = as.Date(yearquarter(date))) |>
+              as_tsibble(index = date)
+
+pib <- pib |> 
+    mutate(pct_change = diff(price)/lag(price))|>
+      drop_na()
+
+rendimientos_anuales <- returns |>
+  group_by(year(date)) |>
+  mutate(anual_return = mean(returns) *252) |>
+  distinct(year(date), .keep_all = TRUE) |> 
+  ungroup() |> select(c(date,anual_return))
+
+pib_var <- pib |>
+  group_by(year(date)) |>
+  mutate(anual_return = sum(pct_change)) |>
+  distinct(year(date), .keep_all = TRUE) |> 
+  ungroup() |> select(c(date,anual_return))
+
+ggplot() +
+  geom_line(data = rendimientos_anuales, aes(x = date, y = anual_return, color = "Rendimiento del Activo")) +
+  geom_line(data = pib_var, aes(x = date, y = anual_return, color = "Crecimiento del PIB")) +
+  labs(title = "Rendimientos del Activo vs PIB de Mexico",
+       x = "Fecha",
+       y = "Rendimiento") +
+  theme_minimal() +
+  scale_x_date(labels = date_format("%Y-%m-%d"), breaks = date_breaks("1 year")) +
+  scale_y_continuous(labels = scales::percent_format()) +
+  scale_color_manual(values = c("blue", "red")) +
+  guides(color = guide_legend(title = "Leyenda"))
+
+```
+
+
+
+
 
 ### Análisis
 
