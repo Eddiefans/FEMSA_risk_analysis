@@ -72,9 +72,11 @@ returns <- prices |>
 
 ### Identificación y análisis de cambios en el comportamiento del precio 
 **LIGERA CAÍDA EN 2009**
-https://www.femsa.com/es/sala-de-prensa/comunicado/femsa-crece-utilidad-de-operacion-en-todas-sus-operaciones-en-el-4t10-y-en-el-2010/
-https://t21.com.mx/general-2014-10-28-femsa-aumenta-ingresos-132-3t/
-https://www.eleconomista.com.mx/empresas/Empresas-sortean-crisis-del-2009-20100413-0146.html
+
+La crisis del 2008-2009 afectó a múltiples empresas mexicanas, pero empresas líderes de sectores clave del mercado nacional, como telecomunicaciones, vivienda, alimentos y bebidas y ventas minoristas pudieron enfrentarla de muy buena manera, en el caso de FEMSA se reflejó en incrementos y beneficios netos de hasta 60%, según información del cierre del 2009 reportada por la BMV. Esto debido a que FEMSA participa en un mercado de poca sensibilidad a los cambios en el ingreso de los consumidores, lo que provoca incrementos en sus ventas y utilidades operativas. La empresa obtuvo buenos resultados debido a que el consumo básico cayó poco (Amador, 2010).
+
+Una de las medidas que apoyó a reducir la ligera caída de FEMSA en 2009 fue que la empresa reprogramó sus inversiones, en 2008 invirtió en la expansión de su negocio en cerveza, refrescos y tiendas de conveniencia en México y Latinoamérica, pero las inversiones que tenía planificadas para cerrar el 2008, las pasó para el año siguiente, lo que permitió que el impacto financiero se redujera (Martínez, 2008).
+
 
 **SUBIDA DE 2010 A 2014**
 
@@ -83,6 +85,7 @@ Durante el año 2010 a pesar de un entorno complicado con baja demanda en el con
 Coca-Cola FEMSA experimentó un aumento del 7.9% en la utilidad de operación, impulsado por un fuerte crecimiento en Mercosur y Latincentro y FEMSA Comercio continuó su rápido crecimiento al abrir 1,092 tiendas netas en 2010, con un aumento del 16.7% en la utilidad de operación. (FEMSA, 2011).
 
 En cuanto a los resultados financieros, los ingresos totales crecieron un 3.8% en el cuarto trimestre de 2010 en comparación con el mismo período en 2009, principalmente impulsados por FEMSA Comercio. La utilidad de operación creció en el cuarto trimestre de 2010 en comparación con el mismo período en 2009 y la utilidad neta por operaciones continuas aumentó significativamente, reflejando el crecimiento de las operaciones continuas de FEMSA.
+
 La inversión en activo fijo aumentó en el cuarto trimestre como en el año 2010, con un saldo de efectivo en aumento y una posición de caja neta sólida. (FEMSA, 2011).
 
 Esta tendencia continuó con los años, en el tercer trimestre de 2014 Femsa obtuvo un incremento de 13.2% en los ingresos comparado con el mismo periodo de 2013, así como un alza de las utilidades de operación de 15.8% en el mismo lapso, la empresa resaltó el crecimiento tanto de FEMSA Comercio y Coca-Cola FEMSA. (T21, 2014).
@@ -94,6 +97,7 @@ Sin embargo, en los primeros nueve meses del 2014, la utilidad neta consolidada 
 **CAÍDA EN 2020**
 
 Durante el 2020, los ingresos de FEMSA cayeron 10.7% en el segundo trimestre del año debido a la pandemia por COVID-19. Esto se tradujo como una pérdida neta de 10,775 millones de pesos. Esta pérdida también estuvo influenciada por el cierre de las operaciones de Specialty’s Café and Bakery, así como un impacto negativo de la participación de FEMSA en los resultados de Heineken. Tras reportar estas pérdidas a la BMV el precio de su acción cayó un 1.53%. 
+
 Las tiendas OXXO disminuyeron sus ventas debido a las restricciones de movilidad impuestas, haciendo que los consumidores disminuyeran sus compras. A esto se sumó la falta de cerveza y otras bebidas alcohólicas. En cuanto al sector de salud, este tuvo un mejor desempeño, lógico por el contexto que se vivió en ese año. La demanda de los productos se mantuvo elevada, aunque las ventas también se vieron afectadas por las restricciones y el aislamiento. La baja considerable en el uso de los vehículos fue la causa de que la división referente a las gasolineras fuese la más afectada (Santiago, 2020). 
 
 **2021**
@@ -101,7 +105,7 @@ Las tiendas OXXO disminuyeron sus ventas debido a las restricciones de movilidad
 
 **BAJADA EN 2022**
 
-En julio de 2022, las acciones de FEMSA tuvieron su mayor caída desde el comienzo de la pandemia después de que acordó la compra de la compañía suiza Valora por 1,200 millones de dólares. Las acciones cayeron un 6.4%. Esta adquisición representó una prima del 52% sobre el precio de cierre del lunes, la cual fue tomada como excesiva por muchos de los inversionistas (Navarro, 2022. 
+En julio de 2022, las acciones de FEMSA tuvieron su mayor caída desde el comienzo de la pandemia después de que acordó la compra de la compañía suiza Valora por 1,200 millones de dólares. Las acciones cayeron un 6.4%. Esta adquisición representó una prima del 52% sobre el precio de cierre del lunes, la cual fue tomada como excesiva por muchos de los inversionistas (Navarro, 2022). 
 
 **SUBIDA EN 2023**
 
@@ -191,3 +195,5 @@ Santiago, J. (2020, 24 julio). Ingresos de Femsa caen 10.7% impactados por la pa
 - Rentería, S. (2024, 16 febrero). Femsa ‘tropieza’ en la BMV tras anuncio de inversión millonaria y dividendos. EL CEO. https://elceo.com/mercados/femsa-tropieza-en-la-bmv-tras-anuncio-de-inversion-millonaria-y-dividendos/
 - FEMSA. (2011, 25 febrero). FEMSA Crece Utilidad de Operación en Todas sus Operaciones en el 4T10 y en el 2010. https://www.femsa.com/es/sala-de-prensa/comunicado/femsa-crece-utilidad-de-operacion-en-todas-sus-operaciones-en-el-4t10-y-en-el-2010/ 
 - T21. (2014, 29 octubre). FEMSA aumenta ingresos 13.2% en 3T. https://t21.com.mx/general-2014-10-28-femsa-aumenta-ingresos-132-3t/
+- Amador, O. (2010, 13 abril). Empresas sortean crisis del 2009. El Economista. https://www.eleconomista.com.mx/empresas/Empresas-sortean-crisis-del-2009-20100413-0146.html 
+- Martínez, J. (2008, 14 noviembre). FEMSA reprograma sus inversiones. Expansión. https://expansion.mx/negocios/2008/11/14/femsa-reprograma-sus-inversiones
