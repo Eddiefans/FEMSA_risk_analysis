@@ -13,6 +13,11 @@ knitr::opts_chunk$set(echo = FALSE, eval = FALSE, results = 'hide')
 #Entrega 2
 
 ## Introducción
+
+Tanto el precio como el rendimiento de las acciones de una empresa son factores fundamentales para los inversionistas. Sin embargo, estos elementos están influenciados por diversas situaciones externas que afectan la economía a diferentes niveles. En este proyecto, se visualizará y analizará el precio de la acción de FEMSA a lo largo del tiempo, centrándonos en el período desde el año 2000. FEMSA inició su participación en la Bolsa Mexicana de Valores en 1978, pero por limitaciones en la importación de datos, solo se considerará el período a partir del 2000. Se analizará el comportamiento histórico del precio de la acción para identificar tendencias y comportamientos atípicos. Se identificarán y señalarán los comportamientos atípicos en el precio de la acción de FEMSA durante el período analizado. Se realizará una breve investigación para entender las posibles causas de estas variaciones anormales.
+
+Dado que FEMSA es una empresa mexicana, se comparará el rendimiento anual de su acción con indicadores económicos relevantes a nivel nacional, en este caso el crecimeinto económico del país. Se proporcionará un análisis detallado de los resultados obtenidos.Es crucial dar seguimiento constante al precio de una acción para los inversionistas. En esta sección, se expondrán algunos de los elementos y situaciones actuales que pueden estar impactando el precio de la acción de FEMSA. Se realizará un análisis de cómo estos factores podrían influir en el rendimiento futuro de la acción. El análisis del precio de la acción de FEMSA proporcionará una visión integral de su comportamiento a lo largo del tiempo y cómo está influenciado por factores internos y externos. Esto ayudará a los inversionistas a tomar decisiones informadas y a comprender mejor el rendimiento de la empresa en el contexto económico actual.
+
 ## Precio y rentabilidad a través del tiempo
 
 ```{r importar, message=FALSE, warning=FALSE}
