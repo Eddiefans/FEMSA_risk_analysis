@@ -15,13 +15,6 @@ knitr::opts_chunk$set(echo = FALSE, eval = FALSE, results = 'hide')
 ## Introducción
 
 ## Precio y rentabilidad a través del tiempo
-Realizar la gráfica del precio y rentabilidad desde el inicio de la salida a bolsa de la empresa hasta el año 2023 (fecha de corte según la fecha de presentación) para el caso de estudio en el que está trabajando el estudiante.
-
-Utilice este gráfico e identifique las causas de los cambios observados en el precio. Es decir, primero se debe analizar visualmente el comportamiento del activo e identificar periodos donde el precio ha cambiado significativamente, ya sea hacia arriba o hacia abajo.
-
-El siguiente paso es buscar noticias e información financiera, económica y/o política nacional y/o internacional, así como información de la empresa, que podría haber tenido un impacto en el comportamiento del precio, analizado anteriormente.
-
-
 
 ```{r importar, message=FALSE, warning=FALSE}
 library(knitr)
@@ -43,7 +36,7 @@ prices <- tidyquant::tq_get(x=symbol,
                             get='stock.prices', 
                             from='1978-09-22', to="2024-02-01")
 
-prices <- prices |> as_tsibble(index = date) |> select(c('date','adjusted'))
+prices <- na.omit(prices) |> as_tsibble(index = date) |> select(c('date','adjusted'))
 prices
 
 ggplot(prices, aes(x = date, y = adjusted)) +
@@ -68,25 +61,16 @@ ggplot(prices, aes(x = date, y = adjusted)) +
 
 
 ```{r grafica2, echo=FALSE, eval=TRUE}
-library(fpp3)
-
 returns <- prices |> 
   mutate(returns = diff(adjusted)/lag(adjusted)) |> 
     na.omit() |> select(c("date","returns"))
-
-ggplot(data = returns, aes(x = date, y = returns)) +
-  geom_line() +
-  labs(title = "Rendimientos diarios",
-       x = "Fecha",
-       y = "Rendimiento") +
-  theme_minimal() +
-  scale_x_date(labels = date_format("%Y-%m-%d"), breaks = date_breaks("1 year")) +
-  scale_y_continuous(labels = percent_format())
 ```
 
 ### Identificación y análisis de cambios en el comportamiento del precio 
 **LIGERA CAÍDA EN 2009**
-
+https://www.femsa.com/es/sala-de-prensa/comunicado/femsa-crece-utilidad-de-operacion-en-todas-sus-operaciones-en-el-4t10-y-en-el-2010/
+https://t21.com.mx/general-2014-10-28-femsa-aumenta-ingresos-132-3t/
+https://www.eleconomista.com.mx/empresas/Empresas-sortean-crisis-del-2009-20100413-0146.html
 
 **SUBIDA DE 2010 A 2014**
 
