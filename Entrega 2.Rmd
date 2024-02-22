@@ -13,7 +13,6 @@ knitr::opts_chunk$set(echo = FALSE, eval = FALSE, results = 'hide')
 #Entrega 2
 
 ## Introducción
-
 ## Precio y rentabilidad a través del tiempo
 
 ```{r importar, message=FALSE, warning=FALSE}
