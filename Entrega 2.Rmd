@@ -121,7 +121,7 @@ En cuanto a los resultados financieros, los ingresos totales crecieron un 3.8% e
 
 La inversión en activo fijo aumentó en el cuarto trimestre como en el año 2010, con un saldo de efectivo en aumento y una posición de caja neta sólida (FEMSA, 2011).
 
-Esta tendencia continuó con los años, en el tercer trimestre de 2014 FEMSA obtuvo un incremento de 13.2% en los ingresos comparado con el mismo periodo de 2013, así como un alza de las utilidades de operación de 15.8% en el mismo lapso, la empresa resaltó el crecimiento tanto de FEMSA Comercio y Coca-Cola FEMSA. (T21, 2014).
+Esta tendencia continuó con los años, en el tercer trimestre de 2014 FEMSA obtuvo un incremento de 13.2% en los ingresos comparado con el mismo periodo de 2013, así como un alza de las utilidades de operación de 15.8% en el mismo lapso, la empresa resaltó el crecimiento tanto de FEMSA Comercio y Coca-Cola FEMSA.
 
 Así, en comparación con 2013, Coca-Cola FEMSA logró aumentar sus ingresos totales 11.4%, mientras que la utilidad de operación creció en 15.1% y FEMSA Comercio logró un incremento en ingresos de 12.7% y la utilidad de operación marcó una subida de 17.6%, esto último impulsado por 1,185 aperturas netas de tiendas y un crecimiento de 3.1% en ventas de las mismas tiendas.
 
@@ -140,6 +140,24 @@ Las tiendas OXXO disminuyeron sus ventas debido a las restricciones de movilidad
 <br>
 
 **2021**
+
+En 2021, México experimentó una recuperación gradual en su economía. Si bien todavía no llegaba a ser estable después de la recaída que sufrió por la pandemia en 2020, mostraba una tendencia al alza prometedora después del pico principal de la pandemia. 
+
+Según el Gobierno de México, el PIB del país reportó un crecimiento del 1.0% real en el cuarto trimestre de 2021 con respecto al cuarto trimestre de 2020. Esto debido a un 4.8% de crecimiento real anual sobre las actividades principales, mientras que en las actividades secundarias fue de 1.6% de crecimiento y las actividades terciarias solo un 0.1% de crecimiento (o incluso nula). Esto también refleja los efectos que tuvieron ciertas oleadas y replicas dentro de la pandemia debido a ciertas variantes de COVID-19, ya que, si bien sí afectaron a la economía, fueron solamente las actividades terciarias las que se vieron más detenidas, incluso llegando a tener un retroceso real trimestral de 0.7% de las actividades terciarias en el cuarto trimestre a comparación del trimestre inmediato anterior. 
+
+En cuanto a la bolsa y mercado de valores, el Grupo Bolsa Mexicana de Valores reportó una utilidad de $1,050 millones de pesos en el cuarto trimestre de 2021 a comparación del mismo trimestre del año anterior, lo cual se traduce en un 10% de utilidades. Al mismo tiempo, con el objetivo de disminuir las posibilidades de contagio, la pandemia dejó dinámicas que además disminuyeron gastos de la operación, lo cual también aportó a un mejor margen operativo. (Grupo BMV, 2021)
+
+De la misma forma, FEMSA no fue excepción a esta tendencia que la bolsa y la economía en general mexicana sufrió durante el año. Los ingresos totales consolidados de FEMSA incrementaron 12.8% en 2021 a comparación del año anterior. Justamente viendo el efecto que la pandemia tuvo en los gastos de las empresas, FEMSA tuvo un gasto de operación consolidado mayor en 9.2%; sin embargo, esto debido al incremento en sus ingresos y ventas totales, ya que, si vemos el gasto a nivel porcentual, nos damos cuenta de que los gatos se redujeron de un 30.1% a 29.1% en 2021. (FEMSA, 2021)
+
+A pesar de que la pandemia tuvo un fuerte impacto en las finanzas de la empresa, también hubo otros acontecimientos relevantes que empujaron las ventas e ingresos de esta, algunos de los más relevantes fueron:
+
+-	Coca-Cola FEMSA incluida en el Anuario de Sostenibilidad Global 2021.
+-	Coca-Cola FEMSA confirma adquisición de marca de cerveza Therezópolis.
+-	FEMSA expande su distribución en la costa este de Estados Unidos.
+-	Coca-Cola FEMSA anuncia acuerdo de distribución con Estrella Galicia en Brasil. 
+-	Sucesión en su Dirección General.
+
+
 
 <br>
 
@@ -164,8 +182,6 @@ https://www.eleconomista.com.mx/mercados/Bolsa-mexicana-opera-con-perdidas-perfi
 
 
 ## Precio contra Producto Interno Bruto
-
-Realice una gráfica que muestre el comportamiento compuesto del precio de los activos y el Producto Interno Bruto. Esta gráfica debe realizarse considerando el rendimiento anual y la tasa de crecimiento anual de la economía de México. Crear un análisis del comportamiento del activo y del PIB.
 
 <br>
 
@@ -229,7 +245,6 @@ En conclusión, en el análisis observamos la gran diferencia de volatilidad ent
 <br>
 
 ## Elementos actuales que repercuten en el precio 
-Identificar elementos actuales (situaciones durante el último año) que han tenido algún tipo de impacto en el comportamiento del activo, por lo que se debe estar consciente de la situación económica, política y financiera nacional e internacional, para identificar cómo diversos eventos influyen en el comportamiento del activo
 
 FEMSA anunció el 15 de febrero de este año que planea invertir aproximadamente 14,000 millones de dólares a lo largo de los próximos cinco años, principalmente en México, y que devolvería a los accionistas alrededor del 6% de su valor de mercado en los próximos 2-3 años a través de dividendos adicionales y recompras. (Forbes, 2024).
 
@@ -246,19 +261,23 @@ A nivel más amplio, las proyecciones sitúan el crecimiento mundial en 3,1% en 
 <br>
 
 ## Referencias
-- El Economista. (2023, 26 diciembre). Acciones de Femsa crecen más de 46% en el año y buscan superar a América Móvil. AméricaEconomía. https://www.americaeconomia.com/negocios-e-industrias/acciones-de-femsa-crecen-mas-de-46-en-el-ano-y-buscan-superar-america-movil
-
-- Santiago, J. (2020, 24 julio). Ingresos de Femsa caen 10.7% impactados por la pandemia. El Economista. https://www.eleconomista.com.mx/mercados/Ingresos-de-Femsa-caen-10.7-impactados-por-la-pandemia-y-pago-al-SAT-20200724-0036.html
-- Navarro, A. (2022, 5 julio). Acciones de Femsa caen a mínimo nivel desde 2020 tras acuerdo con Valora. Bloomberg Línea. https://www.bloomberglinea.com/latinoamerica/mexico/accion-de-fomento-economico-mexicano-al-alza-precio-y-cotizacion-en-bolsa-hoy-20-de-febrero-de-2024/
-- Bloomberg Línea. (2024, 20 febrero). Acción de Fomento Económico Mexicano, al alza: precio y cotización en bolsa hoy 20 de febrero de 2024. Bloomberg Línea. https://www.bloomberglinea.com/latinoamerica/mexico/accion-de-femsa-cae-precio-y-cotizacion-en-bolsa-hoy-12-de-febrero-de-2024/
-- Forbes. (2024, 16 febrero). Femsa cae en Bolsa tras anunciar plan de inversiones y retornos capital. Forbes México. https://www.forbes.com.mx/femsa-cae-en-bolsa-tras-anunciar-plan-de-inversiones-y-retornos-capital/
-- Rentería, S. (2024, 16 febrero). Femsa ‘tropieza’ en la BMV tras anuncio de inversión millonaria y dividendos. EL CEO. https://elceo.com/mercados/femsa-tropieza-en-la-bmv-tras-anuncio-de-inversion-millonaria-y-dividendos/
-- FEMSA. (2011, 25 febrero). FEMSA Crece Utilidad de Operación en Todas sus Operaciones en el 4T10 y en el 2010. https://www.femsa.com/es/sala-de-prensa/comunicado/femsa-crece-utilidad-de-operacion-en-todas-sus-operaciones-en-el-4t10-y-en-el-2010/ 
-- T21. (2014, 29 octubre). FEMSA aumenta ingresos 13.2% en 3T. https://t21.com.mx/general-2014-10-28-femsa-aumenta-ingresos-132-3t/
 - Amador, O. (2010, 13 abril). Empresas sortean crisis del 2009. El Economista. https://www.eleconomista.com.mx/empresas/Empresas-sortean-crisis-del-2009-20100413-0146.html 
-- Martínez, J. (2008, 14 noviembre). FEMSA reprograma sus inversiones. Expansión. https://expansion.mx/negocios/2008/11/14/femsa-reprograma-sus-inversiones
+
 - Banco Mundial. (2022, 14 enero). La COVID-19 (coronavirus) hunde a la economía mundial en la peor recesión desde la Segunda Guerra Mundial. World Bank. https://www.bancomundial.org/es/news/press-release/2020/06/08/covid-19-to-plunge-global-economy-into-worst-recession-since-world-war-ii#:~:text=A%20ra%C3%ADz%20de%20las%20graves,contraer%C3%A1%20un%207%20%25%20en%202020.
-- Cullell, J. M., Cullell, J. M., & Cullell, J. M. (2021, 29 enero). La pandemia hunde la economía mexicana un 8,5% en 2020, la mayor caída desde la Gran Depresión. El País México. https://elpais.com/mexico/economia/2021-01-29/la-pandemia-hunde-la-economia-mexicana-un-85-en-2020.html
-- Confederación Patronal de la República Mexicana. (2024, 3 enero). Perspectivas económicas 2024. Coparmex Nacional. https://coparmex.org.mx/perspectivas-economicas-2024/#:~:text=Se%20espera%20que%20la%20econom%C3%ADa,mercado%20a%20inicios%20del%20a%C3%B1o.
-- Fondo Monetario Internacional. (2024, 30 enero). Actualización de Perspectivas de la economía mundial, enero de 2024. IMF. https://www.imf.org/es/Publications/WEO/Issues/2024/01/30/world-economic-outlook-update-january-2024#:~:text=Las%20proyecciones%20sit%C3%BAan%20el%20crecimiento,de%20lo%20esperado%20en%20Estados
 - Blanco, P., & Cantero, G. (s.f.). Crisis económica de 2008-2010. Junta de Andalucía. https://www.juntadeandalucia.es/averroes/centros-tic/18700441/myscrapbook/index.php?section=16&page=9
+- Bloomberg Línea. (2024, 20 febrero). Acción de Fomento Económico Mexicano, al alza: precio y cotización en bolsa hoy 20 de febrero de 2024. Bloomberg Línea. https://www.bloomberglinea.com/latinoamerica/mexico/accion-de-femsa-cae-precio-y-cotizacion-en-bolsa-hoy-12-de-febrero-de-2024/
+- Confederación Patronal de la República Mexicana. (2024, 3 enero). Perspectivas económicas 2024. Coparmex Nacional. https://coparmex.org.mx/perspectivas-economicas-2024/#:~:text=Se%20espera%20que%20la%20econom%C3%ADa,mercado%20a%20inicios%20del%20a%C3%B1o.
+- Cullell, J. M., Cullell, J. M., & Cullell, J. M. (2021, 29 enero). La pandemia hunde la economía mexicana un 8,5% en 2020, la mayor caída desde la Gran Depresión. El País México. https://elpais.com/mexico/economia/2021-01-29/la-pandemia-hunde-la-economia-mexicana-un-85-en-2020.html
+- Económica, G. (s. f.). La economía mexicana creció 4.8% en 2021. gob.mx. https://www.gob.mx/shcp%7Cgacetaeconomica/articulos/la-economia-mexicana-crecio-4-8-en-2021 FEMSA. (2021).
+- El Economista. (2023, 26 diciembre). Acciones de Femsa crecen más de 46% en el año y buscan superar a América Móvil. AméricaEconomía. https://www.americaeconomia.com/negocios-e-industrias/acciones-de-femsa-crecen-mas-de-46-en-el-ano-y-buscan-superar-america-movil
+- FEMSA. (2011, 25 febrero). FEMSA Crece Utilidad de Operación en Todas sus Operaciones en el 4T10 y en el 2010. https://www.femsa.com/es/sala-de-prensa/comunicado/femsa-crece-utilidad-de-operacion-en-todas-sus-operaciones-en-el-4t10-y-en-el-2010/ 
+- FEMSA. (2021). FEMSA Informe anual 2021.https://femsa.gcs-web.com/static-files/fc042c9f-d952-478f-8267-988cca7755a5#:~:text=En%20FEMSA%20consideramos%20la%20sostenibilidad,podemos%20tener%20el%20mayor%20impacto. 
+- Fondo Monetario Internacional. (2024, 30 enero). Actualización de Perspectivas de la economía mundial, enero de 2024. IMF. https://www.imf.org/es/Publications/WEO/Issues/2024/01/30/world-economic-outlook-update-january-2024#:~:text=Las%20proyecciones%20sit%C3%BAan%20el%20crecimiento,de%20lo%20esperado%20en%20Estados
+- Forbes. (2024, 16 febrero). Femsa cae en Bolsa tras anunciar plan de inversiones y retornos capital. Forbes México. https://www.forbes.com.mx/femsa-cae-en-bolsa-tras-anunciar-plan-de-inversiones-y-retornos-capital/
+- Grupo BMV. (2022, 15 febrero). GRUPO BOLSA MEXICANA DE VALORES REPORTA RESULTADOS RÉCORD EN EL CUARTO TRIMESTRE DE 2021. bmv.com.mx. https://www.bmv.com.mx/docs-pub/SALA_PRENSA/CTEN_BOLE/Grupo%20BMV%20reporta%20resultados%20r%C3%A9cord%20al%204T21_150222.pdf
+- Martínez, J. (2008, 14 noviembre). FEMSA reprograma sus inversiones. Expansión. https://expansion.mx/negocios/2008/11/14/femsa-reprograma-sus-inversiones
+- Navarro, A. (2022, 5 julio). Acciones de Femsa caen a mínimo nivel desde 2020 tras acuerdo con Valora. Bloomberg Línea. https://www.bloomberglinea.com/latinoamerica/mexico/accion-de-fomento-economico-mexicano-al-alza-precio-y-cotizacion-en-bolsa-hoy-20-de-febrero-de-2024/
+- Rentería, S. (2024, 16 febrero). Femsa ‘tropieza’ en la BMV tras anuncio de inversión millonaria y dividendos. EL CEO. https://elceo.com/mercados/femsa-tropieza-en-la-bmv-tras-anuncio-de-inversion-millonaria-y-dividendos/
+- Santiago, J. (2020, 24 julio). Ingresos de Femsa caen 10.7% impactados por la pandemia. El Economista. https://www.eleconomista.com.mx/mercados/Ingresos-de-Femsa-caen-10.7-impactados-por-la-pandemia-y-pago-al-SAT-20200724-0036.html
+- T21. (2014, 29 octubre). FEMSA aumenta ingresos 13.2% en 3T. https://t21.com.mx/general-2014-10-28-femsa-aumenta-ingresos-132-3t/
+
