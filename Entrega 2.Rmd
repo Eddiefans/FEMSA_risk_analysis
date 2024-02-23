@@ -205,7 +205,7 @@ ggplot() +
 
 ### Análisis
 
-El PIB se mueve mucho menos que el activo, quiere decir que tiene menor volatilidad y menor valor esperado. Aunque la acción tiene rendimientos de hasta -18% en algunos años, el crecimiento del PIB se mantiene relativamente estable en los 20 años de análisis, estando en una banda del +- 2%.
+Lo primero que salta a la vista es que el PIB se "mueve" menos que el activo, por lo tanto tiene menor volatilidad y riesgo que la acción de FEMSA. Aunque la acción tiene rendimientos de hasta -18% en algunos años, el crecimiento del PIB se mantiene relativamente estable en los 20 años de análisis, estando en una banda del +- 2%.
 
 Tiene sentido que el PIB se mueva poco, ya que es un agregado de todo el comportamiento económico, mientras que el precio de una acción es influenciado por factores específicos para esa empresa, como los resultados de la empresa, el panorama de la industria, las expectativas del mercado y las tasas de interés.
 
