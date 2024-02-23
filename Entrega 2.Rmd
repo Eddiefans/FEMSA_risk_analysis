@@ -94,9 +94,18 @@ ggplot(data = returns, aes(x = date, y = returns)) +
 
 <br>
 
-**2009**
+**2008 A 2009**
 
-La crisis del 2008-2009 afectó a múltiples empresas mexicanas, pero empresas líderes de sectores clave del mercado nacional, como telecomunicaciones, vivienda, alimentos y bebidas y ventas minoristas pudieron enfrentarla de muy buena manera, en el caso de FEMSA se reflejó en incrementos y beneficios netos de hasta 60%, según información del cierre del 2009 reportada por la BMV. Esto debido a que FEMSA participa en un mercado de poca sensibilidad a los cambios en el ingreso de los consumidores, lo que provoca incrementos en sus ventas y utilidades operativas. La empresa obtuvo buenos resultados debido a que el consumo básico cayó poco (Amador, 2010).
+La crisis económica mundial comenzó en 2008, se originó en Estados Unidos. Entre los principales factores causantes de la crisis se encuentran los altos precios de las materias primas, la sobrevalorización del producto, una crisis alimentaria mundial, una elevada inflación en todo el mundo y la amenaza de una recesión en todo el mundo, a esto se le sumó una crisis crediticia, hipotecaria y de confianza en los mercados.
+
+Debido a la alta dependencia de la economía mexicana en su comercio exterior con los EEUU y a la caída en las remesas provenientes de los migrantes (segunda fuente de divisas después del petróleo), debido a todo lo que estaba ocurriendo en EEUU, México resintió los efectos de la crisis rápidamente, causando que el desempleo abierto en el país subiera a 4.06%. Diversos factores como la dependencia del precio del petróleo y su caída en la producción obligaron al país a elevar el IVA, el ISR e instaurar impuestos nuevos a las telecomunicaciones.
+
+El año 2009 fue especialmente difícil para la economía mexicana. Al iniciar el año, las expectativas oficiales pronosticaban un crecimiento a lo largo de 2009. Sin embargo, al pasar los meses las expectativas fueron tomando caminos más pesimistas y en ocasiones contradictorios, la epidemia de la gripe AH1N1 no ayudó a esto ya que el sector turístico se vio severamente afectado.
+
+Por otro lado, desde 2008 el peso mexicano entró en una serie de devaluaciones frente al dólar estadounidense que lo llevaron a perder alrededor del 25% de su valor hacia 2009. Entre las medidas que se tomaron para contener la devaluación del peso se aplicó la subasta de una parte de la reserva de divisas internacionales, lo que llevó al país a gastar más de 20 mil millones de dólares estadounidenses sin lograr los resultados esperados (Blanco & Cantero, s. f.).
+
+
+Si bien la crisis del 2008-2009 afectó a múltiples empresas mexicanas, algunas empresas líderes de sectores clave del mercado nacional, como telecomunicaciones, vivienda, alimentos y bebidas y ventas minoristas pudieron enfrentarla de muy buena manera, en el caso de FEMSA se reflejó en incrementos y beneficios netos de hasta 60%, según información del cierre del 2009 reportada por la BMV. Esto debido a que FEMSA participa en un mercado de poca sensibilidad a los cambios en el ingreso de los consumidores, lo que provoca incrementos en sus ventas y utilidades operativas. La empresa obtuvo buenos resultados debido a que el consumo básico cayó poco (Amador, 2010).
 
 Una de las medidas que apoyó a reducir la ligera caída de FEMSA en 2009 fue que la empresa reprogramó sus inversiones, en 2008 invirtió en la expansión de su negocio en cerveza, refrescos y tiendas de conveniencia en México y Latinoamérica, pero las inversiones que tenía planificadas para cerrar el 2008, las pasó para el año siguiente, lo que permitió que el impacto financiero se redujera (Martínez, 2008).
 
@@ -104,19 +113,19 @@ Una de las medidas que apoyó a reducir la ligera caída de FEMSA en 2009 fue qu
 
 **SUBIDA DE 2010 A 2014**
 
-Durante el año 2010 a pesar de un entorno complicado con baja demanda en el consumo, FEMSA registró un crecimiento del 5.9% en los ingresos totales consolidados comparables y un aumento del 6.6% en la utilidad de operación en comparación con 2009. Este crecimiento fue impulsado principalmente por FEMSA Comercio y la operación en Mercosur de Coca-Cola FEMSA. (FEMSA, 2011).
+Durante el año 2010 a pesar de un entorno complicado con baja demanda en el consumo, FEMSA registró un crecimiento del 5.9% en los ingresos totales consolidados comparables y un aumento del 6.6% en la utilidad de operación en comparación con 2009. Este crecimiento fue impulsado principalmente por FEMSA Comercio y la operación en Mercosur de Coca-Cola FEMSA.
 
-Coca-Cola FEMSA experimentó un aumento del 7.9% en la utilidad de operación, impulsado por un fuerte crecimiento en Mercosur y Latincentro y FEMSA Comercio continuó su rápido crecimiento al abrir 1,092 tiendas netas en 2010, con un aumento del 16.7% en la utilidad de operación. (FEMSA, 2011).
+Coca-Cola FEMSA experimentó un aumento del 7.9% en la utilidad de operación, impulsado por un fuerte crecimiento en Mercosur y Latincentro y FEMSA Comercio continuó su rápido crecimiento al abrir 1,092 tiendas netas en 2010, con un aumento del 16.7% en la utilidad de operación. 
 
 En cuanto a los resultados financieros, los ingresos totales crecieron un 3.8% en el cuarto trimestre de 2010 en comparación con el mismo período en 2009, principalmente impulsados por FEMSA Comercio. La utilidad de operación creció en el cuarto trimestre de 2010 en comparación con el mismo período en 2009 y la utilidad neta por operaciones continuas aumentó significativamente, reflejando el crecimiento de las operaciones continuas de FEMSA.
 
-La inversión en activo fijo aumentó en el cuarto trimestre como en el año 2010, con un saldo de efectivo en aumento y una posición de caja neta sólida. (FEMSA, 2011).
+La inversión en activo fijo aumentó en el cuarto trimestre como en el año 2010, con un saldo de efectivo en aumento y una posición de caja neta sólida (FEMSA, 2011).
 
-Esta tendencia continuó con los años, en el tercer trimestre de 2014 Femsa obtuvo un incremento de 13.2% en los ingresos comparado con el mismo periodo de 2013, así como un alza de las utilidades de operación de 15.8% en el mismo lapso, la empresa resaltó el crecimiento tanto de FEMSA Comercio y Coca-Cola FEMSA. (T21, 2014).
+Esta tendencia continuó con los años, en el tercer trimestre de 2014 Femsa obtuvo un incremento de 13.2% en los ingresos comparado con el mismo periodo de 2013, así como un alza de las utilidades de operación de 15.8% en el mismo lapso, la empresa resaltó el crecimiento tanto de FEMSA Comercio y Coca-Cola FEMSA. 
 
-Así, en comparación con 2013, Coca-Cola FEMSA logró aumentar sus ingresos totales 11.4%, mientras que la utilidad de operación creció en 15.1% y FEMSA Comercio logró un incremento en ingresos de 12.7% y la utilidad de operación marcó una subida de 17.6%, esto último impulsado por 1,185 aperturas netas de tiendas y un crecimiento de 3.1% en ventas de las mismas tiendas. (T21, 2014).
+Así, en comparación con 2013, Coca-Cola FEMSA logró aumentar sus ingresos totales 11.4%, mientras que la utilidad de operación creció en 15.1% y FEMSA Comercio logró un incremento en ingresos de 12.7% y la utilidad de operación marcó una subida de 17.6%, esto último impulsado por 1,185 aperturas netas de tiendas y un crecimiento de 3.1% en ventas de las mismas tiendas.
 
-Sin embargo, en los primeros nueve meses del 2014, la utilidad neta consolidada disminuyó 1.2% comparada con el mismo periodo del 2013, reflejando mayores gastos de financiamiento relacionados con la emisión de bonos por Coca-Cola FEMSA y FEMSA, que fueron parcialmente compensados por el crecimiento en los ingresos de operación. (T21, 2014).
+Sin embargo, en los primeros nueve meses del 2014, la utilidad neta consolidada disminuyó 1.2% comparada con el mismo periodo del 2013, reflejando mayores gastos de financiamiento relacionados con la emisión de bonos por Coca-Cola FEMSA y FEMSA, que fueron parcialmente compensados por el crecimiento en los ingresos de operación (T21, 2014).
 
 <br>
 
@@ -252,3 +261,4 @@ A nivel más amplio, las proyecciones sitúan el crecimiento mundial en 3,1% en 
 - Cullell, J. M., Cullell, J. M., & Cullell, J. M. (2021, 29 enero). La pandemia hunde la economía mexicana un 8,5% en 2020, la mayor caída desde la Gran Depresión. El País México. https://elpais.com/mexico/economia/2021-01-29/la-pandemia-hunde-la-economia-mexicana-un-85-en-2020.html
 - Confederación Patronal de la República Mexicana. (2024, 3 enero). Perspectivas económicas 2024. Coparmex Nacional. https://coparmex.org.mx/perspectivas-economicas-2024/#:~:text=Se%20espera%20que%20la%20econom%C3%ADa,mercado%20a%20inicios%20del%20a%C3%B1o.
 - Fondo Monetario Internacional. (2024, 30 enero). Actualización de Perspectivas de la economía mundial, enero de 2024. IMF. https://www.imf.org/es/Publications/WEO/Issues/2024/01/30/world-economic-outlook-update-january-2024#:~:text=Las%20proyecciones%20sit%C3%BAan%20el%20crecimiento,de%20lo%20esperado%20en%20Estados
+- Blanco, P., & Cantero, G. (s.f.). Crisis económica de 2008-2010. Junta de Andalucía. https://www.juntadeandalucia.es/averroes/centros-tic/18700441/myscrapbook/index.php?section=16&page=9
