@@ -183,6 +183,9 @@ El plan de gastos de FEMSA, con presencia en un total de 18 países, sigue a una
 
 A 20 de febrero de 2024, la acción de FEMSA ha subido un 3.17%, siendo la décima acción de la Bolsa Mexicana de Valores con mejor desempeño (Bloomberg Línea, 2024).
 
+Centrándonos en la economía mexicana en 2023 se cerró con un desempeño económico mejor de lo esperado, superando  los pronósticos que tenía el mercado a inicios del año. Esto se debe al consumo dinámico, un aumento significativo de la inversión, y una actividad económica estadounidense mayor a la pronosticada. Para este 2024 la expectativa de que el país crezca va entre 2% y 2.5%. Este menor crecimiento con respecto a 2023 es causa de la desaceleración que se espera para Estados Unidos como resultado de altas tasas de interés y un agotamiento de los ahorros que tenían los hogares por los apoyos que se otorgaron durante la pandemia. El 2024 será un año con mayor incertidumbre por los procesos políticos que tendrán lugar (Confederación Patronal de la República Mexicana, 2024). 
+
+A nivel más amplio, las proyecciones sitúan el crecimiento mundial en 3,1% en 2024 dibido a una resiliencia mayor de lo esperado en varias economías emergentes y en desarrollo importantes, así como al estímulo fiscal en China.  La inflación está disminuyendo más rápidamente de lo previsto en la mayoría de las regiones. Se prevé que el nivel general de inflación a escala mundial descienda a 5,8% en 2024 (Fondo Monetario Internacional, 2024). 
 
 
 
@@ -200,3 +203,5 @@ Santiago, J. (2020, 24 julio). Ingresos de Femsa caen 10.7% impactados por la pa
 - Martínez, J. (2008, 14 noviembre). FEMSA reprograma sus inversiones. Expansión. https://expansion.mx/negocios/2008/11/14/femsa-reprograma-sus-inversiones
 - Banco Mundial. (2022, 14 enero). La COVID-19 (coronavirus) hunde a la economía mundial en la peor recesión desde la Segunda Guerra Mundial. World Bank. https://www.bancomundial.org/es/news/press-release/2020/06/08/covid-19-to-plunge-global-economy-into-worst-recession-since-world-war-ii#:~:text=A%20ra%C3%ADz%20de%20las%20graves,contraer%C3%A1%20un%207%20%25%20en%202020.
 - Cullell, J. M., Cullell, J. M., & Cullell, J. M. (2021, 29 enero). La pandemia hunde la economía mexicana un 8,5% en 2020, la mayor caída desde la Gran Depresión. El País México. https://elpais.com/mexico/economia/2021-01-29/la-pandemia-hunde-la-economia-mexicana-un-85-en-2020.html
+- Confederación Patronal de la República Mexicana. (2024, 3 enero). Perspectivas económicas 2024. Coparmex Nacional. https://coparmex.org.mx/perspectivas-economicas-2024/#:~:text=Se%20espera%20que%20la%20econom%C3%ADa,mercado%20a%20inicios%20del%20a%C3%B1o.
+- Fondo Monetario Internacional. (2024, 30 enero). Actualización de Perspectivas de la economía mundial, enero de 2024. IMF. https://www.imf.org/es/Publications/WEO/Issues/2024/01/30/world-economic-outlook-update-january-2024#:~:text=Las%20proyecciones%20sit%C3%BAan%20el%20crecimiento,de%20lo%20esperado%20en%20Estados
