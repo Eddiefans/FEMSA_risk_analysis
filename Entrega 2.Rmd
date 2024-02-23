@@ -3,7 +3,7 @@ title: "Proyecto entrega 2"
 output: 
   html_document:
     code_folding: hide
-date: <font size="2">2024-02-07</font> 
+date: <font size="2">2024-02-22</font> 
 author:
    <font size="2"> - Antonio Lomelí Ureña<br></font>
    <font size="2"> - Carolina Martínez<br></font> 
@@ -79,13 +79,6 @@ returns <- prices |>
    mutate(adjusted = na.omit(adjusted)) |> 
   mutate(returns = c(NA, diff(log(adjusted)))) |> na.omit()
     
-ggplot(data = returns, aes(x = date, y = returns)) +
-  geom_line() +
-  labs(title = "Rendimientos diarios",
-       x = "Fecha",
-       y = "Rendimiento") +
-  theme_minimal() +
-  scale_y_continuous(labels = percent_format())
 ```
 
 <br>
@@ -173,8 +166,6 @@ Durante el año 2023, las acciones de FEMSA crecieron del 46%. Este aumento fue 
 Además de esta estrategia, la empresa tuvo sólidos resultados financieros en 2023,impulsados por el crecimiento de las ventas y la utilidad de la división de Oxxo, lo que a su vez apoyó al crecimiento del precio de la acción dentro de la Bolsa Mexicana de Valores. De enero a septiembre de 2023, las ventas tuvieron un incremento del 19.4% con respecto al año anterior (El Economista, 2023). 
 
 
-https://www.eleconomista.com.mx/mercados/BMV-opera-con-perdidas-destaca-caida-de-acciones-de-FEMSA-20231124-0015.html
-https://www.eleconomista.com.mx/mercados/Bolsa-mexicana-opera-con-perdidas-perfila-fuerte-caida-semanal-20231013-0041.html
 
 
 
