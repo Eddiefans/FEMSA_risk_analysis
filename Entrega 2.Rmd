@@ -1,22 +1,28 @@
 ---
-title: "Proyecto parte 2"
+title: "Proyecto entrega 2"
 output: 
   html_document:
     code_folding: hide
-date: "2024-02-18"
+date: <font size="2">2024-02-07</font> 
+author:
+   <font size="2"> - Antonio Lomelí Ureña<br></font>
+   <font size="2"> - Carolina Martínez<br></font> 
+   <font size="2"> - Enrique Tonatiuh Pérez Cortés<br></font> 
+   <font size="2"> - Eddie Aguilar</font> 
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = FALSE, eval = FALSE, results = 'hide')
+knitr::opts_chunk$set(echo = FALSE, results = 'hide')
 ```
 
-#Entrega 2
 
 ## Introducción
 
 Tanto el precio como el rendimiento de las acciones de una empresa son factores fundamentales para los inversionistas. Sin embargo, estos elementos están influenciados por diversas situaciones externas que afectan la economía a diferentes niveles. En este proyecto, se visualizará y analizará el precio de la acción de FEMSA a lo largo del tiempo, centrándonos en el período desde el año 2000. FEMSA inició su participación en la Bolsa Mexicana de Valores en 1978, pero por limitaciones en la importación de datos, solo se considerará el período a partir del 2000. Se analizará el comportamiento histórico del precio de la acción para identificar tendencias y comportamientos atípicos. Se identificarán y señalarán los comportamientos atípicos en el precio de la acción de FEMSA durante el período analizado. Se realizará una breve investigación para entender las posibles causas de estas variaciones anormales.
 
 Dado que FEMSA es una empresa mexicana, se comparará el rendimiento anual de su acción con indicadores económicos relevantes a nivel nacional, en este caso el crecimeinto económico del país. Se proporcionará un análisis detallado de los resultados obtenidos.Es crucial dar seguimiento constante al precio de una acción para los inversionistas. En esta sección, se expondrán algunos de los elementos y situaciones actuales que pueden estar impactando el precio de la acción de FEMSA. Se realizará un análisis de cómo estos factores podrían influir en el rendimiento futuro de la acción. El análisis del precio de la acción de FEMSA proporcionará una visión integral de su comportamiento a lo largo del tiempo y cómo está influenciado por factores internos y externos. Esto ayudará a los inversionistas a tomar decisiones informadas y a comprender mejor el rendimiento de la empresa en el contexto económico actual.
+
+<br>
 
 ## Precio y rentabilidad a través del tiempo
 
@@ -30,6 +36,7 @@ library(fpp3)
 library(tsibble)
 ```
 
+<br>
 
 ### Gráfica
 ```{r}
@@ -63,6 +70,7 @@ ggplot(prices, aes(x = date, y = adjusted)) +
   theme_minimal()
 ```
 
+<br>
 
 ```{r grafica2, echo=FALSE, eval=TRUE}
 library(fpp3)
@@ -80,13 +88,19 @@ ggplot(data = returns, aes(x = date, y = returns)) +
   scale_y_continuous(labels = percent_format())
 ```
 
+<br>
+
 ### Identificación y análisis de cambios en el comportamiento del precio 
+
+<br>
+
 **2009**
 
 La crisis del 2008-2009 afectó a múltiples empresas mexicanas, pero empresas líderes de sectores clave del mercado nacional, como telecomunicaciones, vivienda, alimentos y bebidas y ventas minoristas pudieron enfrentarla de muy buena manera, en el caso de FEMSA se reflejó en incrementos y beneficios netos de hasta 60%, según información del cierre del 2009 reportada por la BMV. Esto debido a que FEMSA participa en un mercado de poca sensibilidad a los cambios en el ingreso de los consumidores, lo que provoca incrementos en sus ventas y utilidades operativas. La empresa obtuvo buenos resultados debido a que el consumo básico cayó poco (Amador, 2010).
 
 Una de las medidas que apoyó a reducir la ligera caída de FEMSA en 2009 fue que la empresa reprogramó sus inversiones, en 2008 invirtió en la expansión de su negocio en cerveza, refrescos y tiendas de conveniencia en México y Latinoamérica, pero las inversiones que tenía planificadas para cerrar el 2008, las pasó para el año siguiente, lo que permitió que el impacto financiero se redujera (Martínez, 2008).
 
+<br>
 
 **SUBIDA DE 2010 A 2014**
 
@@ -104,19 +118,27 @@ Así, en comparación con 2013, Coca-Cola FEMSA logró aumentar sus ingresos tot
 
 Sin embargo, en los primeros nueve meses del 2014, la utilidad neta consolidada disminuyó 1.2% comparada con el mismo periodo del 2013, reflejando mayores gastos de financiamiento relacionados con la emisión de bonos por Coca-Cola FEMSA y FEMSA, que fueron parcialmente compensados por el crecimiento en los ingresos de operación. (T21, 2014).
 
+<br>
+
 **CAÍDA EN 2020**
+
 La economía mundial se hundió en 2020 debido a la pandemia por COVID-19 que se originó a finales de 2019. El desempleo y la pobreza se elevaron y muchas empresas pequeñas tuvieron que cerrar. A mediados de este año, el Banco Mundial estimó que la economía mundial se reduciría un 5.2% En su informe "Perspectivas económicas mundiales" planteó que esta sería la peor recesión desde la Segunda Guerra Mundial (Banco Mundial, 2022). 
 
 Como los demás, México fue un país que se vio afectado por este suceso y tuvo consecuencias notorias en su economía. En tan solo un año, la eocnomía mexicana bajó un 8.5%, siendo la mayor caída desde la Gran Depresión (Cullell et.al., 2021). Durante el 2020, los ingresos de FEMSA cayeron 10.7% en el segundo trimestre del año debido a la pandemia por COVID-19. Esto se tradujo como una pérdida neta de 10,775 millones de pesos. Esta pérdida también estuvo influenciada por el cierre de las operaciones de Specialty’s Café and Bakery, así como un impacto negativo de la participación de FEMSA en los resultados de Heineken. Tras reportar estas pérdidas a la BMV el precio de su acción cayó un 1.53%. 
 
 Las tiendas OXXO disminuyeron sus ventas debido a las restricciones de movilidad impuestas, haciendo que los consumidores disminuyeran sus compras. A esto se sumó la falta de cerveza y otras bebidas alcohólicas. En cuanto al sector de salud, este tuvo un mejor desempeño, lógico por el contexto que se vivió en ese año. La demanda de los productos se mantuvo elevada, aunque las ventas también se vieron afectadas por las restricciones y el aislamiento. La baja considerable en el uso de los vehículos fue la causa de que la división referente a las gasolineras fuese la más afectada (Santiago, 2020). 
 
+<br>
+
 **2021**
 
+<br>
 
 **BAJADA EN 2022**
 
 En julio de 2022, las acciones de FEMSA tuvieron su mayor caída desde el comienzo de la pandemia después de que acordó la compra de la compañía suiza Valora por 1,200 millones de dólares. Las acciones cayeron un 6.4%. Esta adquisición representó una prima del 52% sobre el precio de cierre del lunes, la cual fue tomada como excesiva por muchos de los inversionistas (Navarro, 2022). 
+
+<br>
 
 **SUBIDA EN 2023**
 
@@ -129,11 +151,14 @@ https://www.eleconomista.com.mx/mercados/Bolsa-mexicana-opera-con-perdidas-perfi
 
 
 
-
+<br>
 
 
 ## Precio contra Producto Interno Bruto
+
 Realice una gráfica que muestre el comportamiento compuesto del precio de los activos y el Producto Interno Bruto. Esta gráfica debe realizarse considerando el rendimiento anual y la tasa de crecimiento anual de la economía de México. Crear un análisis del comportamiento del activo y del PIB.
+
+<br>
 
 ### Gráfica
 
@@ -176,14 +201,13 @@ ggplot() +
 
 ```
 
-
-
-
+<br>
 
 ### Análisis
 
 El PIB se mueve en menor medida que el 
 
+<br>
 
 ## Elementos actuales que repercuten en el precio 
 Identificar elementos actuales (situaciones durante el último año) que han tenido algún tipo de impacto en el comportamiento del activo, por lo que se debe estar consciente de la situación económica, política y financiera nacional e internacional, para identificar cómo diversos eventos influyen en el comportamiento del activo
@@ -200,12 +224,12 @@ Centrándonos en la economía mexicana en 2023 se cerró con un desempeño econ�
 
 A nivel más amplio, las proyecciones sitúan el crecimiento mundial en 3,1% en 2024 dibido a una resiliencia mayor de lo esperado en varias economías emergentes y en desarrollo importantes, así como al estímulo fiscal en China.  La inflación está disminuyendo más rápidamente de lo previsto en la mayoría de las regiones. Se prevé que el nivel general de inflación a escala mundial descienda a 5,8% en 2024 (Fondo Monetario Internacional, 2024). 
 
-
-
+<br>
 
 ## Referencias
 - El Economista. (2023, 26 diciembre). Acciones de Femsa crecen más de 46% en el año y buscan superar a América Móvil. AméricaEconomía. https://www.americaeconomia.com/negocios-e-industrias/acciones-de-femsa-crecen-mas-de-46-en-el-ano-y-buscan-superar-america-movil
-Santiago, J. (2020, 24 julio). Ingresos de Femsa caen 10.7% impactados por la pandemia. El Economista. https://www.eleconomista.com.mx/mercados/Ingresos-de-Femsa-caen-10.7-impactados-por-la-pandemia-y-pago-al-SAT-20200724-0036.html
+
+- Santiago, J. (2020, 24 julio). Ingresos de Femsa caen 10.7% impactados por la pandemia. El Economista. https://www.eleconomista.com.mx/mercados/Ingresos-de-Femsa-caen-10.7-impactados-por-la-pandemia-y-pago-al-SAT-20200724-0036.html
 - Navarro, A. (2022, 5 julio). Acciones de Femsa caen a mínimo nivel desde 2020 tras acuerdo con Valora. Bloomberg Línea. https://www.bloomberglinea.com/latinoamerica/mexico/accion-de-fomento-economico-mexicano-al-alza-precio-y-cotizacion-en-bolsa-hoy-20-de-febrero-de-2024/
 - Bloomberg Línea. (2024, 20 febrero). Acción de Fomento Económico Mexicano, al alza: precio y cotización en bolsa hoy 20 de febrero de 2024. Bloomberg Línea. https://www.bloomberglinea.com/latinoamerica/mexico/accion-de-femsa-cae-precio-y-cotizacion-en-bolsa-hoy-12-de-febrero-de-2024/
 - Forbes. (2024, 16 febrero). Femsa cae en Bolsa tras anunciar plan de inversiones y retornos capital. Forbes México. https://www.forbes.com.mx/femsa-cae-en-bolsa-tras-anunciar-plan-de-inversiones-y-retornos-capital/
