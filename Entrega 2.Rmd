@@ -40,8 +40,8 @@ prices <- tidyquant::tq_get(x=symbol,
                             get='stock.prices', 
                             from='1978-09-22', to="2024-02-01")
 
-prices <- na.omit(prices) |> as_tsibble(index = date) |> select(c('date','adjusted'))
-prices
+prices <- prices |> as_tsibble(index = date) |>
+  na.omit() |> select(c('date','adjusted')) 
 
 ggplot(prices, aes(x = date, y = adjusted)) +
   geom_line() +
@@ -65,9 +65,19 @@ ggplot(prices, aes(x = date, y = adjusted)) +
 
 
 ```{r grafica2, echo=FALSE, eval=TRUE}
-returns <- prices |> 
-  mutate(returns = diff(adjusted)/lag(adjusted)) |> 
-    na.omit() |> select(c("date","returns"))
+library(fpp3)
+
+returns <- prices |>
+   mutate(adjusted = na.omit(adjusted)) |> 
+  mutate(returns = c(NA, diff(log(adjusted)))) |> na.omit()
+    
+ggplot(data = returns, aes(x = date, y = returns)) +
+  geom_line() +
+  labs(title = "Rendimientos diarios",
+       x = "Fecha",
+       y = "Rendimiento") +
+  theme_minimal() +
+  scale_y_continuous(labels = percent_format())
 ```
 
 ### Identificación y análisis de cambios en el comportamiento del precio 
@@ -136,7 +146,8 @@ pib <- pib |> mutate( date = as.Date(yearquarter(date))) |>
               as_tsibble(index = date)
 
 pib <- pib |> 
-    mutate(pct_change = diff(price)/lag(price))|>
+    mutate(price = na.omit(price)) |> 
+    mutate(pct_change = c(NA, diff(log(price)))) |> 
       drop_na()
 
 rendimientos_anuales <- returns |>
@@ -170,6 +181,8 @@ ggplot() +
 
 
 ### Análisis
+
+El PIB se mueve en menor medida que el 
 
 
 ## Elementos actuales que repercuten en el precio 
