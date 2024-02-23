@@ -209,11 +209,11 @@ El PIB se mueve mucho menos que el activo, quiere decir que tiene menor volatili
 
 Tiene sentido que el PIB se mueva poco, ya que es un agregado de todo el comportamiento económico, mientras que el precio de una acción es influenciado por factores específicos para esa empresa, como los resultados de la empresa, el panorama de la industria, las expectativas del mercado y las tasas de interés.
 
-En la gráfica también se observa que se mueven "juntos" en la mayoría de los periodos. Cuando el PIB tiene una ligera tendencia a la baja, la acción también baja, pero mucho más agresivamente, aunque no siempre se cumple. Ese comportamiento de seguir al PIB pero con mayor volatilidad puiede ser explicado por la volatilidad de un solo agente económico vs la volatilidad de todo el agregado de una economía.
+En la gráfica también se observa que se mueven "juntos" en la mayoría de los periodos. Cuando el PIB tiene una ligera tendencia a la baja, la acción también baja, pero de forma más agresiva, aunque no siempre se cumple. Ese comportamiento de seguir al PIB pero con mayor volatilidad puiede ser explicado por la volatilidad de un solo agente económico vs la volatilidad de todo el agregado de una economía.
 
 Un factor posiblemente relacionado con el comportamiento del PIB y del precio de un activo es el costo de capital. Una tasa de interés mayor tiende a desincentivar el consumo y desacelerar la economía, afectando negativamente el crecimiento del PIB y el rendimiento de la acción, en tanto que los periodos de tasas bajas tienen el efecto opuesto.
 
-Otro factor que permite relacionar ambos comportamientos (PIB y precio de un activo) es el "ciclo económico", si el agregado de una economía está en crecimiento es muy probable que las empresas reporten mejor y crezcan el valor de sus acciones.
+Otro factor que permite relacionar ambos comportamientos (PIB y precio de un activo) es el "ciclo económico", si el agregado de una economía está en crecimiento es probable que las empresas, en general, reporten mejor y crezcan el valor de sus acciones.
 
 En conclusión, en el análisis observamos la gran diferencia de volatilidad entre un activo de tasa variable y un indicador que describe un agregado económico. Probablemente, podríamos extrapolar esto al rendimiento histórico de los CETES vs cualquier otra acción y encontraríamos una gráfica similar, en la que el activo de renta variable muestra mucho mayor volatilidad al de renta fija.
 
