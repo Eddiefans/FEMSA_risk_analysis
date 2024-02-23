@@ -71,7 +71,7 @@ returns <- prices |>
 ```
 
 ### Identificación y análisis de cambios en el comportamiento del precio 
-**LIGERA CAÍDA EN 2009**
+**2009**
 
 La crisis del 2008-2009 afectó a múltiples empresas mexicanas, pero empresas líderes de sectores clave del mercado nacional, como telecomunicaciones, vivienda, alimentos y bebidas y ventas minoristas pudieron enfrentarla de muy buena manera, en el caso de FEMSA se reflejó en incrementos y beneficios netos de hasta 60%, según información del cierre del 2009 reportada por la BMV. Esto debido a que FEMSA participa en un mercado de poca sensibilidad a los cambios en el ingreso de los consumidores, lo que provoca incrementos en sus ventas y utilidades operativas. La empresa obtuvo buenos resultados debido a que el consumo básico cayó poco (Amador, 2010).
 
