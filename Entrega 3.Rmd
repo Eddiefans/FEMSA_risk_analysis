@@ -1,0 +1,39 @@
+---
+title: "Proyecto parte 3"
+output: html_document
+date: "2024-03-04"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Entrega 3
+
+## Introducción 
+
+## Estimación del rendimiento 
+### Anual 
+### Diario
+
+## Estimación de la volatilidad
+### Anual 
+### Diaria
+
+##  Prueba de normalidad
+### Rendimiento 
+### Precio
+### Logaritmo del precio 
+
+## Ecuación ds
+### Estimado del precio en 10 días (95% de confianza)
+### Estimado del precio en 20 días (95% de confianza)
+### Estimado del precio en 40 días (95% de confianza)
+
+##  Ecuación ln(St)
+### Estimado del precio en 3 meses (95% de confianza)
+### Estimado del precio en 6 meses (95% de confianza)
+### Estimado del precio en 9 meses (95% de confianza)
+### Estimado del precio en 12 meses  (95% de confianza)
+
+## Discusión sobre el teorema 
