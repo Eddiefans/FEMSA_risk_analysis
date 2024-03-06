@@ -13,17 +13,73 @@ knitr::opts_chunk$set(echo = TRUE)
 ## Introducción 
 
 ## Estimación del rendimiento 
+```{r}
+library(quantmod)
+library(PerformanceAnalytics)
+library(lubridate)
+library(tidyverse)
+library(moments)
+```
+```{r}
+clave <- "FEMSAUBD.MX"
+datos <- new.env()
+getSymbols(clave,from = "2000-01-03",env=datos)
+precio <- na.omit(datos[[clave]][,6])
+```
 ### Anual 
+```{r}
+rend <- na.omit(diff(log(precio)))
+(mu_anual <- mean(rend)*252)
+```
 ### Diario
+```{r}
+(mu_diaria <- mean(rend))
+```
+
 
 ## Estimación de la volatilidad
 ### Anual 
+```{r}
+(sigma_anual <- sd(rend)*sqrt(252))
+```
 ### Diaria
+```{r}
+(sigma_diaria <- sd(rend))
+```
+## Datos por año
+
+```{r}
+año <- year(rend)
+names(rend) <- "rendimiento"
+tabla_est <- rend |> 
+  as_tibble() |> 
+  mutate(year=año) |>
+  group_by(year) |> 
+  summarise(rend_d = mean(rendimiento),
+           vol_d = sd(rendimiento), 
+           rend_a = mean(rendimiento)*252,
+           vol_a = sd(rendimiento)*sqrt(252))
+           
+tabla_est
+
+```
 
 ##  Prueba de normalidad
 ### Rendimiento 
+```{r}
+jarque.test(as.numeric(rend))
+```
+
 ### Precio
+```{r}
+jarque.test(as.numeric(precio))
+```
+
 ### Logaritmo del precio 
+```{r}
+jarque.test(as.numeric(log(precio)))
+```
+
 
 ## Ecuación ds
 ### Estimado del precio en 10 días (95% de confianza)
