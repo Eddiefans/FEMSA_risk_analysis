@@ -8,4 +8,95 @@ date: "2024-03-07"
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
+```{r}
+library(quantmod)
+library(PerformanceAnalytics)
+library(lubridate)
+library(tidyverse)
+library(moments)
+library(TTR)
+```
+
+```{r}
+clave <- "FEMSAUBD.MX"
+datos <- new.env()
+getSymbols(clave,from = "2000-01-03",env=datos)
+precio <- na.omit(datos[[clave]][,6])
+rend <- na.omit(diff(log(precio)))
+rend_c <- rend^2 
+```
+
+
+
+## PROMEDIO MÓVIL CON PONDERACIONES CONSTANTES
+```{r}
+Var_5 <- SMA(rend_c,n=5)
+Var_10 <- SMA(rend_c,n=10)
+Var_20 <- SMA(rend_c,n=20)
+Var_40 <- SMA(rend_c,n=40)
+```
+
+```{r}
+layout(matrix(c(2,1)))
+plot(rend_c, type="l")
+plot(Var_5, type="l")
+```
+```{r}
+layout(matrix(c(2,1)))
+plot(rend_c, type="l")
+plot(Var_10, type="l")
+```
+```{r}
+layout(matrix(c(2,1)))
+plot(rend_c, type="l")
+plot(Var_20, type="l")
+```
+
+```{r}
+layout(matrix(c(2,1)))
+plot(rend_c, type="l")
+plot(Var_40, type="l")
+```
+
+### RMSE 
+```{r}
+Dif <-  merge.xts((rend_c-Var_5)^2, 
+                    (rend_c-Var_10)^2,
+                    (rend_c-Var_20)^2,
+                    (rend_c-Var_40)^2)
+
+names(Dif) <- c("m=5", "m=10","m=20", "m=40")
+RMSE <- sqrt(colMeans(Dif, na.rm = TRUE))
+RMSE
+```
+
+### EAMP
+```{r}
+Dif_2 <-  merge.xts(abs(rend_c-Var_5), 
+                    abs(rend_c-Var_10),
+                    abs(rend_c-Var_20),
+                    abs(rend_c-Var_40))
+names(Dif_2) <- c("m=5", "m=10","m=20", "m=40")
+EAMP <- (colMeans(Dif_2, na.rm = TRUE))
+EAMP
+```
+### ECPP
+
+```{r}
+Dif_3 <-  merge.xts(((rend_c-Var_5)/rend_c)^2, 
+                    ((rend_c-Var_10)/rend_c)^2,
+                    ((rend_c-Var_20)/rend_c)^2,
+                    ((rend_c-Var_40)/rend_c)^2)
+names(Dif_3) <- c("m=5", "m=10","m=20", "m=40")
+Dif_3 <- subset(Dif_3, Dif_3$`m=5`!=Inf)
+ECPP <- sqrt(colMeans(Dif_3, na.rm = TRUE))
+ECPP
+```
+```{r}
+m_optimo <- 5
+Vol_Futura <- sqrt(mean(tail(rend_c, m_optimo)))*100
+Vol_Futura
+```
+
+
 
