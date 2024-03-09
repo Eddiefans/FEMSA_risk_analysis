@@ -12,6 +12,12 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ## Introducción 
 
+Sin duda, el precio y el rendimiento de un activo al invertir resultan fundamentales para decidir si una inversión será buena o mala. Pero ¿cómo saber qué rendimiento se tendrá en el plazo deseado o qué precio tendrá el activo al final del tiempo de la inversión? Saberlo con exactitud es completamente imposible, ya que estos dependen de muchos factores que no pueden ser controlados; sin embargo, es posible realizar estimaciones tanto del precio como del rendimiento de una acción, basándose en los datos históricos de esta misma. 
+
+Para esta parte del proyecto, se mostrarán diversas estimaciones tanto del precio como del rendimiento de la acción de la empresa FEMSA dentro de la Bolsa Mexicana de Valores para distintas temporalidades. Para lograrlo, se calculará el rendimiento promedio del activo, así como la volatilidad de este, además de utilizar distintos métodos, dependiendo de la temporalidad. Para asegurarse de que las estimaciones serán útiles y aportarán información valiosa sobre la inversión en este activo, se trabajará con intervalos de confianza en busca de que estas estimaciones tengan el mínimo error posible. 
+
+Se expondrá cada resultado obtenido de manera ordenada y al final se hará un breve análisis sobre el teorema utilizado en este proyecto.
+
 ## Estimación del rendimiento 
 ```{r}
 library(quantmod)
