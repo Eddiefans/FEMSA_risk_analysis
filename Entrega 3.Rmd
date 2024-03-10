@@ -19,19 +19,21 @@ Para esta parte del proyecto, se mostrarán diversas estimaciones tanto del prec
 Se expondrá cada resultado obtenido de manera ordenada y al final se hará un breve análisis sobre el teorema utilizado en este proyecto.
 
 ## Estimación del rendimiento 
-```{r}
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
 library(quantmod)
 library(PerformanceAnalytics)
 library(lubridate)
 library(tidyverse)
 library(moments)
 ```
-```{r}
+
+```{r,echo=FALSE, message=FALSE, warning=FALSE}
 clave <- "FEMSAUBD.MX"
 datos <- new.env()
-getSymbols(clave,from = "2000-01-03",env=datos)
+invisible(getSymbols(clave,from = "2000-01-03",env=datos))
 precio <- na.omit(datos[[clave]][,6])
 ```
+
 ### Anual 
 ```{r}
 rend <- na.omit(diff(log(precio)))
@@ -86,12 +88,15 @@ jarque.test(as.numeric(precio))
 jarque.test(as.numeric(log(precio)))
 ```
 ## Ecuación ds
+
+$$ds = s\mu dt+s\sigma dW$$
+
 ### Estimado del precio en 10 días (95% de confianza)
 ```{r}
 Ren_d_2023 <- as.numeric(tabla_est[24,2])
 Vol_d_2023<- as.numeric(tabla_est[24,3])
 s0 <-as.numeric(xts::last(precio))
-dt <- 5
+dt <- 10
 epsilon <- rnorm(n=500000,mean=0,sd=1)
 ds <- s0*Ren_d_2023*dt + s0*Vol_d_2023*epsilon*sqrt(dt)
 ```
@@ -102,16 +107,16 @@ Cambio esperado
 mean(ds)
 ```
 
-Precio esperado para 5 días
+Precio esperado para 10 días
 ```{r}
-Precio_Esperado_5d <- s0+mean(ds)
-Precio_Esperado_5d
+Precio_Esperado_10d <- s0+mean(ds)
+Precio_Esperado_10d
 ```
 Intervalo de confianza a 95%
 ```{r}
 z <- qnorm((1-.95)/2)
-Precio_Esperado_5d-z*sd(ds)
-Precio_Esperado_5d+z*sd(ds)
+cat("(",Precio_Esperado_10d+z*sd(ds),",",Precio_Esperado_10d-z*sd(ds),")")
+
 ```
 
 ### Estimado del precio en 20 días (95% de confianza)
@@ -134,8 +139,7 @@ Precio_Esperado_20d
 Intervalo de confianza a 95%
 ```{r}
 z <- qnorm((1-.95)/2)
-Precio_Esperado_20d-z*sd(ds)
-Precio_Esperado_20d+z*sd(ds)
+cat("(",Precio_Esperado_20d+z*sd(ds),",",Precio_Esperado_20d-z*sd(ds),")")
 ```
 
 ### Estimado del precio en 40 días (95% de confianza)
@@ -158,15 +162,93 @@ Precio_Esperado_40d
 Intervalo de confianza a 95%
 ```{r}
 z <- qnorm((1-.95)/2)
-Precio_Esperado_40d-z*sd(ds)
-Precio_Esperado_40d+z*sd(ds)
+cat("(",Precio_Esperado_40d+z*sd(ds),",",Precio_Esperado_40d-z*sd(ds),")")
+
 ```
 
 
 ##  Ecuación ln(St)
+
+Si bien, la siguiente ecuación se utiliza para estimar los cambios en el precio:
+
+$$ln(S_t) = ln(S_0)+(\mu-\frac{1}{2}\sigma^2)dt+\sigma dW$$
+
+Para trabajar directamente con el precio y realizar sus estimaciones se utiliza: 
+
+$$S_t=S_0e^{(\mu-0.5\sigma^2)dt+\sigma dW}$$
+
 ### Estimado del precio en 3 meses (95% de confianza)
+
+```{r}
+dt <- 252/4 # Para obtener el valor de un trimestre en días
+St <- s0*exp((Ren_d_2023-0.5*Vol_d_2023^2)*dt+Vol_d_2023*epsilon*sqrt(dt))
+```
+
+Precio esperado en 3 meses
+
+```{r}
+mean(St)
+```
+Intervalo de confianza al 95%
+
+```{r}
+cat("(",mean(St)+z*sd(St),",",mean(St)-z*sd(St),")")
+```
+
+
 ### Estimado del precio en 6 meses (95% de confianza)
+
+```{r}
+dt <- 252/2 # Para obtener el valor de medio año en días
+St <- s0*exp((Ren_d_2023-0.5*Vol_d_2023^2)*dt+Vol_d_2023*epsilon*sqrt(dt))
+```
+
+Precio esperado en 6 meses
+
+```{r}
+mean(St)
+```
+Intervalo de confianza al 95%
+
+```{r}
+cat("(",mean(St)+z*sd(St),",",mean(St)-z*sd(St),")")
+```
+
 ### Estimado del precio en 9 meses (95% de confianza)
+
+```{r}
+dt <- 252*0.75 # Para obtener el valor de 9 meses en días
+St <- s0*exp((Ren_d_2023-0.5*Vol_d_2023^2)*dt+Vol_d_2023*epsilon*sqrt(dt))
+```
+
+Precio estimado en 9 meses
+
+```{r}
+mean(St)
+```
+Intervalo de confianza al 95%
+
+```{r}
+cat("(",mean(St)+z*sd(St),",",mean(St)-z*sd(St),")")
+```
+
+
 ### Estimado del precio en 12 meses  (95% de confianza)
+
+```{r}
+dt <- 252 # Valor de un año en días
+St <- s0*exp((Ren_d_2023-0.5*Vol_d_2023^2)*dt+Vol_d_2023*epsilon*sqrt(dt))
+```
+
+Precio estimado en 12 meses
+
+```{r}
+mean(St)
+```
+Intervalo de confianza al 95%
+
+```{r}
+cat("(",mean(St)+z*sd(St),",",mean(St)-z*sd(St),")")
+```
 
 ## Discusión sobre el teorema 
