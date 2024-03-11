@@ -25,6 +25,7 @@ library(PerformanceAnalytics)
 library(lubridate)
 library(tidyverse)
 library(moments)
+library(rcompanion)
 ```
 
 ```{r,echo=FALSE, message=FALSE, warning=FALSE}
@@ -87,6 +88,34 @@ jarque.test(as.numeric(precio))
 ```{r}
 jarque.test(as.numeric(log(precio)))
 ```
+
+Se aplica la prueba de Jarque-Bera a las distribuciones del rendimiento, precio y el logaritmo del precio. 
+
+La hipótesis nula ($H_0$) de la prueba es que los datos se distribuyen normalmente.También es importante recordar que la prueba de Jarque-Bera utiliza la `curtosis` y `asimetría` de la distribución para determinar si es normal o no.
+
+Como el `p-value` de todas las pruebas fue menor a 5% (el nivel de significancia escogido), **se rechaza la hipótesis nula**, los datos no siguen una distribución normal.
+
+Es esperable encontrar estos resultados, sobretodo considerando que el test utiliza la curtosis y asimetría de la distribución. 
+
+La variable que, en teoría, más se asemeja a una distribución normal es la del rendimiento. Los hechos estilizados suponen que el rendimiento tiene una forma aproximadamente acampanada, pero son leptocúrticas y tienen colas largas y pesadas, lo que ocasiona una "desviación" considerable de la curva normal, como se observa en la siguiente gráfica:
+
+
+```{r}
+x <- coredata(rend)
+len <- length(rend)
+
+plotNormalHistogram( x, prob = FALSE,
+                    main = "Rendimientos Diarios de FEMSA y la Curva de la Distribución Normal",
+                    xlab = "Rendimiento Diario",
+                    ylab = "Frecuencia",
+                    length = len,
+                    breaks = 80,
+                    col = "lightblue",  # Cambiar el color de las barras a azul
+                    border = "blue")  # Cambiar el color de la línea a rojo
+```
+
+Hay muchísimos valores muy cercanos a la media de los rendimientos, la frecuencia se sale de la curva normal, ese es el efecto de la curtosis. Las colas tienen frecuencias importantes, algo que no contempla la forma normal, donde la probabilidad de ocurrencia en eventos extremos es prácticamente inexistente.
+
 ## Ecuación ds
 
 $$ds = s\mu dt+s\sigma dW$$
