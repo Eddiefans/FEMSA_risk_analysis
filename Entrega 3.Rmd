@@ -131,17 +131,17 @@ ds <- s0*Ren_d_2023*dt + s0*Vol_d_2023*epsilon*sqrt(dt)
 ```
 
 
-Cambio esperado
+***Cambio esperado***
 ```{r}
 mean(ds)
 ```
 
-Precio esperado para 10 días
+***Precio esperado para 10 días***
 ```{r}
 Precio_Esperado_10d <- s0+mean(ds)
 Precio_Esperado_10d
 ```
-Intervalo de confianza a 95%
+***Intervalo de confianza a 95%***
 ```{r}
 z <- qnorm((1-.95)/2)
 cat("(",Precio_Esperado_10d+z*sd(ds),",",Precio_Esperado_10d-z*sd(ds),")")
@@ -155,17 +155,17 @@ dt <- 20
 ds <- s0*Ren_d_2023*dt + s0*Vol_d_2023*epsilon*sqrt(dt)
 ```
 
-Cambio esperado
+***Cambio esperado***
 ```{r}
 mean(ds)
 ```
 
-Precio esperado para 20 días
+***Precio esperado para 20 días***
 ```{r}
 Precio_Esperado_20d <- s0+mean(ds)
 Precio_Esperado_20d
 ```
-Intervalo de confianza a 95%
+***Intervalo de confianza a 95%***
 ```{r}
 z <- qnorm((1-.95)/2)
 cat("(",Precio_Esperado_20d+z*sd(ds),",",Precio_Esperado_20d-z*sd(ds),")")
@@ -178,17 +178,17 @@ dt <- 40
 ds <- s0*Ren_d_2023*dt + s0*Vol_d_2023*epsilon*sqrt(dt)
 ```
 
-Cambio esperado
+***Cambio esperado***
 ```{r}
 mean(ds)
 ```
 
-Precio esperado para 40 días
+***Precio esperado para 40 días***
 ```{r}
 Precio_Esperado_40d <- s0+mean(ds)
 Precio_Esperado_40d
 ```
-Intervalo de confianza a 95%
+***Intervalo de confianza a 95%***
 ```{r}
 z <- qnorm((1-.95)/2)
 cat("(",Precio_Esperado_40d+z*sd(ds),",",Precio_Esperado_40d-z*sd(ds),")")
@@ -198,86 +198,141 @@ cat("(",Precio_Esperado_40d+z*sd(ds),",",Precio_Esperado_40d-z*sd(ds),")")
 
 ##  Ecuación ln(St)
 
-Si bien, la siguiente ecuación se utiliza para estimar los cambios en el precio:
-
 $$ln(S_t) = ln(S_0)+(\mu-\frac{1}{2}\sigma^2)dt+\sigma dW$$
-
-Para trabajar directamente con el precio y realizar sus estimaciones se utiliza: 
-
-$$S_t=S_0e^{(\mu-0.5\sigma^2)dt+\sigma dW}$$
 
 ### Estimado del precio en 3 meses (95% de confianza)
 
 ```{r}
 dt <- 252/4 # Para obtener el valor de un trimestre en días
-St <- s0*exp((Ren_d_2023-0.5*Vol_d_2023^2)*dt+Vol_d_2023*epsilon*sqrt(dt))
+ln_St <- log(s0)+(Ren_d_2023-0.5*Vol_d_2023^2)*dt+Vol_d_2023*epsilon*sqrt(dt)
 ```
 
-Precio esperado en 3 meses
+***Precio esperado en 3 meses***
 
 ```{r}
-mean(St)
+precio_3m <- exp(mean(ln_St))
+precio_3m
 ```
-Intervalo de confianza al 95%
+
+***Intervalo de confianza a 95%***
+
 
 ```{r}
-cat("(",mean(St)+z*sd(St),",",mean(St)-z*sd(St),")")
+intervalo1 <- exp(mean(ln_St)+z*sd(ln_St))
+intervalo2 <- exp(mean(ln_St)-z*sd(ln_St))
+cat("(",intervalo1,",",intervalo2,")")
+
 ```
-
-
 ### Estimado del precio en 6 meses (95% de confianza)
 
 ```{r}
 dt <- 252/2 # Para obtener el valor de medio año en días
-St <- s0*exp((Ren_d_2023-0.5*Vol_d_2023^2)*dt+Vol_d_2023*epsilon*sqrt(dt))
+ln_St <- log(s0)+(Ren_d_2023-0.5*Vol_d_2023^2)*dt+Vol_d_2023*epsilon*sqrt(dt)
 ```
 
-Precio esperado en 6 meses
+***Precio esperado en 6 meses***
 
 ```{r}
-mean(St)
+precio_6m <- exp(mean(ln_St))
+precio_6m
 ```
-Intervalo de confianza al 95%
+
+***Intervalo de confianza a 95%***
+
 
 ```{r}
-cat("(",mean(St)+z*sd(St),",",mean(St)-z*sd(St),")")
-```
+intervalo1 <- exp(mean(ln_St)+z*sd(ln_St))
+intervalo2 <- exp(mean(ln_St)-z*sd(ln_St))
+cat("(",intervalo1,",",intervalo2,")")
 
+```
 ### Estimado del precio en 9 meses (95% de confianza)
 
 ```{r}
 dt <- 252*0.75 # Para obtener el valor de 9 meses en días
-St <- s0*exp((Ren_d_2023-0.5*Vol_d_2023^2)*dt+Vol_d_2023*epsilon*sqrt(dt))
+ln_St <- log(s0)+(Ren_d_2023-0.5*Vol_d_2023^2)*dt+Vol_d_2023*epsilon*sqrt(dt)
 ```
 
-Precio estimado en 9 meses
+***Precio esperado en 9 meses***
 
 ```{r}
+precio_9m <- exp(mean(ln_St))
+precio_9m
+```
+
+***Intervalo de confianza a 95%***
+
+
+```{r}
+intervalo1 <- exp(mean(ln_St)+z*sd(ln_St))
+intervalo2 <- exp(mean(ln_St)-z*sd(ln_St))
+cat("(",intervalo1,",",intervalo2,")")
+
+```
+
+### Estimado del precio en 12 meses (95% de confianza)
+
+```{r}
+dt <- 252 # Valor de un año en días
+ln_St <- log(s0)+(Ren_d_2023-0.5*Vol_d_2023^2)*dt+Vol_d_2023*epsilon*sqrt(dt)
+```
+
+***Precio esperado en 12 meses***
+
+```{r}
+precio_12m <- exp(mean(ln_St))
+precio_12m
+```
+
+***Intervalo de confianza a 95%***
+
+
+```{r}
+intervalo1 <- exp(mean(ln_St)+z*sd(ln_St))
+intervalo2 <- exp(mean(ln_St)-z*sd(ln_St))
+cat("(",intervalo1,",",intervalo2,")")
+
+```
+
+##  Ecuación St
+
+Para hacer una comprobación de los valores que se obtuvieron con ln(St), se va a simular el precio utilizando la ecuación: 
+
+$$S_t=S_0e^{(\mu-0.5\sigma^2)dt+\sigma dW}$$
+
+### Estimado del precio en 3 meses
+
+```{r}
+dt <- 252/4 # Para obtener el valor de un trimestre en días
+St <- s0*exp((Ren_d_2023-0.5*Vol_d_2023^2)*dt+Vol_d_2023*epsilon*sqrt(dt))
 mean(St)
 ```
-Intervalo de confianza al 95%
+
+### Estimado del precio en 6 meses 
 
 ```{r}
-cat("(",mean(St)+z*sd(St),",",mean(St)-z*sd(St),")")
+dt <- 252/2 # Para obtener el valor de medio año en días
+St <- s0*exp((Ren_d_2023-0.5*Vol_d_2023^2)*dt+Vol_d_2023*epsilon*sqrt(dt))
+mean(St)
+```
+
+### Estimado del precio en 9 meses 
+
+```{r}
+dt <- 252*0.75 # Para obtener el valor de 9 meses en días
+St <- s0*exp((Ren_d_2023-0.5*Vol_d_2023^2)*dt+Vol_d_2023*epsilon*sqrt(dt))
+mean(St)
 ```
 
 
-### Estimado del precio en 12 meses  (95% de confianza)
+### Estimado del precio en 12 meses 
 
 ```{r}
 dt <- 252 # Valor de un año en días
 St <- s0*exp((Ren_d_2023-0.5*Vol_d_2023^2)*dt+Vol_d_2023*epsilon*sqrt(dt))
-```
-
-Precio estimado en 12 meses
-
-```{r}
 mean(St)
 ```
-Intervalo de confianza al 95%
 
-```{r}
-cat("(",mean(St)+z*sd(St),",",mean(St)-z*sd(St),")")
-```
+Se puede ver que los valores obtenidos con la ecuación de $S_t$ son muy parecidos a los que se obtuvieron con la ecuación de $ln(St)$
 
 ## Discusión sobre el teorema 
