@@ -40,10 +40,13 @@ precio <- na.omit(datos[[clave]][,6])
 rend <- na.omit(diff(log(precio)))
 (mu_anual <- mean(rend)*252)
 ```
+El rendimiento anual calculado es del 12.73%
+
 ### Diario
 ```{r}
 (mu_diaria <- mean(rend))
 ```
+El rendimiento diario calculado es del .05%
 
 
 ## Estimación de la volatilidad
@@ -51,12 +54,16 @@ rend <- na.omit(diff(log(precio)))
 ```{r}
 (sigma_anual <- sd(rend)*sqrt(252))
 ```
+La volatilidad anual calculada es del 27.24%
+
 ### Diaria
 ```{r}
 (sigma_diaria <- sd(rend))
 ```
-## Datos por año
+La volatilidad diaria calculada es del 1.72%
 
+## Datos por año
+A continuación, se presenta una tabla que recopila los datos previamente calculados de manera ordenada.
 ```{r}
 año <- year(rend)
 names(rend) <- "rendimiento"
