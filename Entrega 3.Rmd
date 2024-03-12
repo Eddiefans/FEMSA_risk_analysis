@@ -1,14 +1,20 @@
 ---
-title: "Proyecto parte 3"
-output: html_document
-date: "2024-03-04"
+title: "Proyecto entrega 3"
+output: 
+  html_document:
+    code_folding: hide
+date: <font size="2">2024-03-12</font> 
+author:
+   <font size="2"> - Antonio Lomelí Ureña<br></font>
+   <font size="2"> - Carolina Martínez<br></font> 
+   <font size="2"> - Enrique Tonatiuh Pérez Cortés<br></font> 
+   <font size="2"> - Eddie Aguilar</font> 
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-# Entrega 3
 
 ## Introducción 
 
@@ -17,6 +23,8 @@ Sin duda, el precio y el rendimiento de un activo al invertir resultan fundament
 Para esta parte del proyecto, se mostrarán diversas estimaciones tanto del precio como del rendimiento de la acción de la empresa FEMSA dentro de la Bolsa Mexicana de Valores para distintas temporalidades. Para lograrlo, se calculará el rendimiento promedio del activo, así como la volatilidad de este, además de utilizar distintos métodos, dependiendo de la temporalidad. Para asegurarse de que las estimaciones serán útiles y aportarán información valiosa sobre la inversión en este activo, se trabajará con intervalos de confianza en busca de que estas estimaciones tengan el mínimo error posible. 
 
 Se expondrá cada resultado obtenido de manera ordenada y al final se hará un breve análisis sobre el teorema utilizado en este proyecto.
+
+<br>
 
 ## Estimación del rendimiento 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
@@ -35,36 +43,49 @@ invisible(getSymbols(clave,from = "2000-01-03",env=datos))
 precio <- na.omit(datos[[clave]][,6])
 ```
 
+
+
 ### Anual 
-```{r}
+```{r,echo=FALSE, message=FALSE, warning=FALSE}
 rend <- na.omit(diff(log(precio)))
 (mu_anual <- mean(rend)*252)
 ```
 El rendimiento anual calculado es del 12.73%
 
+<br>
+
 ### Diario
-```{r}
+```{r,echo=FALSE, message=FALSE, warning=FALSE}
 (mu_diaria <- mean(rend))
 ```
 El rendimiento diario calculado es del .05%
 
+<br><br>
 
 ## Estimación de la volatilidad
+
+
 ### Anual 
-```{r}
+```{r,echo=FALSE, message=FALSE, warning=FALSE}
 (sigma_anual <- sd(rend)*sqrt(252))
 ```
 La volatilidad anual calculada es del 27.24%
 
+<br>
+
 ### Diaria
-```{r}
+```{r,echo=FALSE, message=FALSE, warning=FALSE}
 (sigma_diaria <- sd(rend))
 ```
 La volatilidad diaria calculada es del 1.72%
 
+<br>
+<br>
+
 ## Datos por año
+
 A continuación, se presenta una tabla que recopila los datos previamente calculados de manera ordenada.
-```{r}
+```{r, echo=FALSE}
 año <- year(rend)
 names(rend) <- "rendimiento"
 tabla_est <- rend |> 
@@ -80,21 +101,30 @@ tabla_est
 
 ```
 
+<br>
+
 ##  Prueba de normalidad
+
+
 ### Rendimiento 
 ```{r}
 jarque.test(as.numeric(rend))
 ```
+
+<br>
 
 ### Precio
 ```{r}
 jarque.test(as.numeric(precio))
 ```
 
+<br>
+
 ### Logaritmo del precio 
 ```{r}
 jarque.test(as.numeric(log(precio)))
 ```
+<br>
 
 Se aplica la prueba de Jarque-Bera a las distribuciones del rendimiento, precio y el logaritmo del precio. 
 
@@ -117,15 +147,18 @@ plotNormalHistogram( x, prob = FALSE,
                     ylab = "Frecuencia",
                     length = len,
                     breaks = 80,
-                    col = "lightblue",  # Cambiar el color de las barras a azul
-                    border = "blue")  # Cambiar el color de la línea a rojo
+                    col = "lightblue", 
+                    border = "blue")  
 ```
 
 Hay muchísimos valores muy cercanos a la media de los rendimientos, la frecuencia se sale de la curva normal, ese es el efecto de la curtosis. Las colas tienen frecuencias importantes, algo que no contempla la forma normal, donde la probabilidad de ocurrencia en eventos extremos es prácticamente inexistente.
 
+<br>
+
 ## Ecuación ds
 
 $$ds = s\mu dt+s\sigma dW$$
+<br>
 
 ### Estimado del precio en 10 días (95% de confianza)
 ```{r}
@@ -142,18 +175,22 @@ ds <- s0*Ren_d_2023*dt + s0*Vol_d_2023*epsilon*sqrt(dt)
 ```{r}
 mean(ds)
 ```
+<br>
 
 ***Precio esperado para 10 días***
 ```{r}
 Precio_Esperado_10d <- s0+mean(ds)
 Precio_Esperado_10d
 ```
+<br>
+
 ***Intervalo de confianza a 95%***
 ```{r}
 z <- qnorm((1-.95)/2)
 cat("(",Precio_Esperado_10d+z*sd(ds),",",Precio_Esperado_10d-z*sd(ds),")")
 
 ```
+<br>
 
 ### Estimado del precio en 20 días (95% de confianza)
 
@@ -166,17 +203,21 @@ ds <- s0*Ren_d_2023*dt + s0*Vol_d_2023*epsilon*sqrt(dt)
 ```{r}
 mean(ds)
 ```
+<br>
 
 ***Precio esperado para 20 días***
 ```{r}
 Precio_Esperado_20d <- s0+mean(ds)
 Precio_Esperado_20d
 ```
+<br>
+
 ***Intervalo de confianza a 95%***
 ```{r}
 z <- qnorm((1-.95)/2)
 cat("(",Precio_Esperado_20d+z*sd(ds),",",Precio_Esperado_20d-z*sd(ds),")")
 ```
+<br>
 
 ### Estimado del precio en 40 días (95% de confianza)
 
@@ -185,16 +226,20 @@ dt <- 40
 ds <- s0*Ren_d_2023*dt + s0*Vol_d_2023*epsilon*sqrt(dt)
 ```
 
+
 ***Cambio esperado***
 ```{r}
 mean(ds)
 ```
+<br>
 
 ***Precio esperado para 40 días***
 ```{r}
 Precio_Esperado_40d <- s0+mean(ds)
 Precio_Esperado_40d
 ```
+<br>
+
 ***Intervalo de confianza a 95%***
 ```{r}
 z <- qnorm((1-.95)/2)
@@ -202,10 +247,13 @@ cat("(",Precio_Esperado_40d+z*sd(ds),",",Precio_Esperado_40d-z*sd(ds),")")
 
 ```
 
+<br>
 
 ##  Ecuación ln(St)
 
 $$ln(S_t) = ln(S_0)+(\mu-\frac{1}{2}\sigma^2)dt+\sigma dW$$
+
+<br>
 
 ### Estimado del precio en 3 meses (95% de confianza)
 
@@ -220,6 +268,7 @@ ln_St <- log(s0)+(Ren_d_2023-0.5*Vol_d_2023^2)*dt+Vol_d_2023*epsilon*sqrt(dt)
 precio_3m <- exp(mean(ln_St))
 precio_3m
 ```
+<br>
 
 ***Intervalo de confianza a 95%***
 
@@ -230,6 +279,8 @@ intervalo2 <- exp(mean(ln_St)-z*sd(ln_St))
 cat("(",intervalo1,",",intervalo2,")")
 
 ```
+<br>
+
 ### Estimado del precio en 6 meses (95% de confianza)
 
 ```{r}
@@ -243,6 +294,7 @@ ln_St <- log(s0)+(Ren_d_2023-0.5*Vol_d_2023^2)*dt+Vol_d_2023*epsilon*sqrt(dt)
 precio_6m <- exp(mean(ln_St))
 precio_6m
 ```
+<br>
 
 ***Intervalo de confianza a 95%***
 
@@ -253,6 +305,8 @@ intervalo2 <- exp(mean(ln_St)-z*sd(ln_St))
 cat("(",intervalo1,",",intervalo2,")")
 
 ```
+<br>
+
 ### Estimado del precio en 9 meses (95% de confianza)
 
 ```{r}
@@ -266,6 +320,7 @@ ln_St <- log(s0)+(Ren_d_2023-0.5*Vol_d_2023^2)*dt+Vol_d_2023*epsilon*sqrt(dt)
 precio_9m <- exp(mean(ln_St))
 precio_9m
 ```
+<br>
 
 ***Intervalo de confianza a 95%***
 
@@ -276,6 +331,7 @@ intervalo2 <- exp(mean(ln_St)-z*sd(ln_St))
 cat("(",intervalo1,",",intervalo2,")")
 
 ```
+<br>
 
 ### Estimado del precio en 12 meses (95% de confianza)
 
@@ -290,6 +346,7 @@ ln_St <- log(s0)+(Ren_d_2023-0.5*Vol_d_2023^2)*dt+Vol_d_2023*epsilon*sqrt(dt)
 precio_12m <- exp(mean(ln_St))
 precio_12m
 ```
+<br>
 
 ***Intervalo de confianza a 95%***
 
@@ -300,12 +357,15 @@ intervalo2 <- exp(mean(ln_St)-z*sd(ln_St))
 cat("(",intervalo1,",",intervalo2,")")
 
 ```
+<br>
 
 ##  Ecuación St
 
 Para hacer una comprobación de los valores que se obtuvieron con ln(St), se va a simular el precio utilizando la ecuación: 
 
 $$S_t=S_0e^{(\mu-0.5\sigma^2)dt+\sigma dW}$$
+
+<br>
 
 ### Estimado del precio en 3 meses
 
@@ -315,6 +375,8 @@ St <- s0*exp((Ren_d_2023-0.5*Vol_d_2023^2)*dt+Vol_d_2023*epsilon*sqrt(dt))
 mean(St)
 ```
 
+<br>
+
 ### Estimado del precio en 6 meses 
 
 ```{r}
@@ -322,6 +384,8 @@ dt <- 252/2 # Para obtener el valor de medio año en días
 St <- s0*exp((Ren_d_2023-0.5*Vol_d_2023^2)*dt+Vol_d_2023*epsilon*sqrt(dt))
 mean(St)
 ```
+
+<br>
 
 ### Estimado del precio en 9 meses 
 
@@ -331,6 +395,7 @@ St <- s0*exp((Ren_d_2023-0.5*Vol_d_2023^2)*dt+Vol_d_2023*epsilon*sqrt(dt))
 mean(St)
 ```
 
+<br>
 
 ### Estimado del precio en 12 meses 
 
@@ -342,4 +407,12 @@ mean(St)
 
 Se puede ver que los valores obtenidos con la ecuación de $S_t$ son muy parecidos a los que se obtuvieron con la ecuación de $ln(St)$
 
+<br>
+
 ## Discusión sobre el teorema 
+
+<br>
+
+Retomando los rendimientos diarios graficados en comparación a la distribución normal, podemos ver como este tipo de modelos no estiman completamente bien los rendimientos y precios del activo. Esto debido a que los datos nos dejan ver que no están en realidad distribuidos normalmente y puede llegar a tener valores externos, cosa que no sucede en una distribución normal. Sin embargo, para el modelo teórico suponemos eso para llevarlo a cabo. Podemos ver en la gráfica como hay varios datos que se agrupan bastante en la media de la distribución normal siendo incluso más altos, y de la misma forma no se distribuye a lo largo de la gráfica perfectamente. 
+
+<br><br><br>
