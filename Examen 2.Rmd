@@ -97,6 +97,72 @@ m_optimo <- 5
 Vol_Futura <- sqrt(mean(tail(rend_c, m_optimo)))*100
 Vol_Futura
 ```
+## EWMA
 
+$$\sigma^2_t = (1-\lambda)R^2_{t-1}+\lambda \sigma^2_{t-1}$$
+
+$$\sigma^2_t = (1-\lambda)R^2_{t-1}+\lambda \sigma^2_{t-1}$$
+
+```{r}
+n <- nrow(precio)
+l <- seq(.0,.99, by=.01)
+Var_Est <- matrix(0,nrow = (n-1) , ncol=1)
+Func_Ver <- matrix(0,nrow = (n-1) , ncol=1)
+Res <- matrix(0,ncol = 2, nrow = length(l))
+Var_Est[1,1] <- rend_c[1,1]
+j <- 0
+for (L in l) {
+  for(t in 2:(n-1)){
+  Var_Est[t,1] <- (1-L)*rend_c[t-1,1]+L*Var_Est[t-1,1]
+  Func_Ver[t,1] <- -log(Var_Est[t,1])-rend_c[t,1]/Var_Est[t,1]
+  }
+  j <- j+1
+  Res[j,1] <- L
+  Res[j,2] <- sum(Func_Ver)
+}
+```
+
+
+AJUSTE 
+```{r}
+n <- nrow(precio)
+l <- seq(.95,.97, by=.001)
+Var_Est <- matrix(0,nrow = (n-1) , ncol=1)
+Func_Ver <- matrix(0,nrow = (n-1) , ncol=1)
+Res <- matrix(0,ncol = 2, nrow = length(l))
+Var_Est[1,1] <- rend_c[1,1]
+j <- 0
+for (L in l) {
+  for(t in 2:(n-1)){
+  Var_Est[t,1] <- (1-L)*rend_c[t-1,1]+L*Var_Est[t-1,1]
+  Func_Ver[t,1] <- -log(Var_Est[t,1])-rend_c[t,1]/Var_Est[t,1]
+  }
+  j <- j+1
+  Res[j,1] <- L
+  Res[j,2] <- sum(Func_Ver)
+}
+```
+
+
+```{r}
+Loptimo <- Res[order(Res[,2],decreasing = TRUE),][1,1]
+Loptimo
+```
+
+$$\sigma^2_t = (1-.954)R^2_{t-1}+.954\sigma^2_{t-1}$$
+
+```{r}
+library(fTrading)
+Var_Esta_EWMA <- xts(emaTA(rend_c, lambda = Loptimo),order.by = date(rend))
+```
+```{r}
+Vol_futura <- as.numeric(sqrt((1-Loptimo)*rend_c[n-1,1] + Loptimo*Var_Esta_EWMA[n-1,1]))
+Vol_futura
+```
+```{r}
+layout(matrix(c(2,1)))
+plot(rend_c,type="l")
+plot(Var_Esta_EWMA, TYPE="L")
+```
 
 
