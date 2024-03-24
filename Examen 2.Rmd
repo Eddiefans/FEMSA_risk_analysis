@@ -17,10 +17,11 @@ library(moments)
 library(TTR)
 ```
 
+
 ```{r}
 clave <- "FEMSAUBD.MX"
 datos <- new.env()
-getSymbols(clave,from = "2000-01-03",env=datos)
+getSymbols(clave,from = "2000-01-03", to = "2024-03-14", env = datos)
 precio <- na.omit(datos[[clave]][,6])
 rend <- na.omit(diff(log(precio)))
 rend_c <- rend^2 
@@ -29,6 +30,9 @@ rend_c <- rend^2
 
 
 ## PROMEDIO MÓVIL CON PONDERACIONES CONSTANTES
+
+$$\sigma^2(t,m) = \frac{1}{n}\sum_{i=1}^m[R^2_{t-i}]$$
+
 ```{r}
 Var_5 <- SMA(rend_c,n=5)
 Var_10 <- SMA(rend_c,n=10)
@@ -36,29 +40,25 @@ Var_20 <- SMA(rend_c,n=20)
 Var_40 <- SMA(rend_c,n=40)
 ```
 
+
+
 ```{r}
 layout(matrix(c(2,1)))
 plot(rend_c, type="l")
 plot(Var_5, type="l")
 ```
 ```{r}
-layout(matrix(c(2,1)))
-plot(rend_c, type="l")
-plot(Var_10, type="l")
-```
-```{r}
-layout(matrix(c(2,1)))
-plot(rend_c, type="l")
-plot(Var_20, type="l")
+# Trazar la primera gráfica
+plot(rend_c, type="l", col="#040b5c", ylim=range(c(rend_c, Var_Esta_EWMA)), main="Gráficas juntas", ylab="Valor")
+# Agregar la segunda gráfica al mismo eje y
+lines(Var_5, type="l", col="blue")
 ```
 
-```{r}
-layout(matrix(c(2,1)))
-plot(rend_c, type="l")
-plot(Var_40, type="l")
-```
 
 ### RMSE 
+
+$$ RMSE = \sqrt{\frac{1}{H}\sum_{i=1}^m(R^2_{i} - \sigma^2_{I} )^2}$$
+
 ```{r}
 Dif <-  merge.xts((rend_c-Var_5)^2, 
                     (rend_c-Var_10)^2,
@@ -71,6 +71,10 @@ RMSE
 ```
 
 ### EAMP
+
+$$EAMP= \frac{1}{H}\sum_{i=1}^m|R^2_{i} - \sigma^2_{I}|$$
+
+
 ```{r}
 Dif_2 <-  merge.xts(abs(rend_c-Var_5), 
                     abs(rend_c-Var_10),
@@ -81,6 +85,9 @@ EAMP <- (colMeans(Dif_2, na.rm = TRUE))
 EAMP
 ```
 ### ECPP
+
+$$ ECPP = \sqrt{\frac{1}{H}\sum_{i=1}^m\left(\frac{R^2_{i} - \sigma^2_{I}}{R^2_{i}}\right)^2\right} $$
+  
 
 ```{r}
 Dif_3 <-  merge.xts(((rend_c-Var_5)/rend_c)^2, 
@@ -97,6 +104,7 @@ m_optimo <- 5
 Vol_Futura <- sqrt(mean(tail(rend_c, m_optimo)))*100
 Vol_Futura
 ```
+
 ## EWMA
 
 $$\sigma^2_t = (1-\lambda)R^2_{t-1}+\lambda \sigma^2_{t-1}$$
@@ -122,11 +130,9 @@ for (L in l) {
 }
 ```
 
-
-AJUSTE 
 ```{r}
 n <- nrow(precio)
-l <- seq(.95,.97, by=.001)
+l <- seq(.94,.96, by=.001)
 Var_Est <- matrix(0,nrow = (n-1) , ncol=1)
 Func_Ver <- matrix(0,nrow = (n-1) , ncol=1)
 Res <- matrix(0,ncol = 2, nrow = length(l))
@@ -142,6 +148,7 @@ for (L in l) {
   Res[j,2] <- sum(Func_Ver)
 }
 ```
+
 
 
 ```{r}
@@ -161,8 +168,13 @@ Vol_futura
 ```
 ```{r}
 layout(matrix(c(2,1)))
-plot(rend_c,type="l")
-plot(Var_Esta_EWMA, TYPE="L")
+plot(rend_c,type="l", color = "#024f13")
+plot(Var_Esta_EWMA, TYPE="L", color = "#48cc27")
 ```
 
-
+```{r}
+# Trazar la primera gráfica
+plot(rend_c, type="l", col="#48cc27", ylim=range(c(rend_c, Var_Esta_EWMA)), main="Gráficas juntas", ylab="Valor")
+# Agregar la segunda gráfica al mismo eje y
+lines(Var_Esta_EWMA, type="l", col="#032b11")
+```
