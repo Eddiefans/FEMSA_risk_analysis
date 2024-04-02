@@ -267,3 +267,12 @@ sqrt(4.420e-06 /(1-7.368e-02 - 9.131e-01))
 ```{r}
 auto.arima(rend)
 ```
+```{r}
+especificaciones <- ugarchspec(mean.model = list(armaOrder=c(2,2)),
+                               variance.model = list(model="sGARCH", garchOrder=c(1,1)))
+```
+
+```{r}
+modelo <- ugarchfit(spec=especificaciones, data=rend)
+modelo
+```
