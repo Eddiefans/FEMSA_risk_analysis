@@ -15,6 +15,8 @@ library(lubridate)
 library(tidyverse)
 library(moments)
 library(TTR)
+library(fGarch)
+library(rugarch)
 ```
 
 
@@ -282,14 +284,14 @@ modelo@fit[["coef"]]
 
 
 $$\sigma^2_t = w+\alpha_1R^2_{t-1}+\beta_1\sigma^2_{t-1}$$
-$$\sigma^2_t = 0.00000440509+0.073679R^2_{t-1}+0.913154 \sigma^2_{t-1}$$
+$$\sigma^2_t = 0.00000437527+0.0735349R^2_{t-1}+0.913435 \sigma^2_{t-1}$$
 
 $$\mu_t = \alpha_0 + \alpha_1R_{t-1}+\alpha_2R_{t-2}+q_1a_{t-1}$$
-$$\mu_t = 0.000724 + 0.930281R_{t-1}-0.035530R_{t-2}-0.916064\alpha_{t-1}$$
+$$\mu_t = 0.000724 + 0.929420R_{t-1}-0.035547R_{t-2}-0.915212\alpha_{t-1}$$
 
 ```{r}
-gamma <- 1 - 0.073679 - 0.913154 
-VL <- 0.000004405095/gamma
+gamma <- 1 - 0.0735349 - 0.913435 
+VL <- 0.00000437527/gamma
 VL
 ```
 
