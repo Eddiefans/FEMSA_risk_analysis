@@ -280,8 +280,11 @@ modelo
 modelo@fit[["coef"]]
 ```
 
+
+$$\sigma^2_t = w+\alpha_1R^2_{t-1}+\beta_1\sigma^2_{t-1}$$
 $$\sigma^2_t = 0.00000440509+0.073679R^2_{t-1}+0.913154 \sigma^2_{t-1}$$
 
+$$\mu_t = \alpha_0 + \alpha_1R_{t-1}+\alpha_2R_{t-2}+q_1a_{t-1}$$
 $$\mu_t = 0.000724 + 0.930281R_{t-1}-0.035530R_{t-2}-0.916064\alpha_{t-1}$$
 
 ```{r}
