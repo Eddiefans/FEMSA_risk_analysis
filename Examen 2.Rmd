@@ -47,12 +47,7 @@ layout(matrix(c(2,1)))
 plot(rend_c, type="l")
 plot(Var_5, type="l")
 ```
-```{r}
-# Trazar la primera gráfica
-plot(rend_c, type="l", col="#040b5c", ylim=range(c(rend_c, Var_Esta_EWMA)), main="Gráficas juntas", ylab="Valor")
-# Agregar la segunda gráfica al mismo eje y
-lines(Var_5, type="l", col="blue")
-```
+
 
 
 ### RMSE 
@@ -267,7 +262,7 @@ sqrt(4.420e-06 /(1-7.368e-02 - 9.131e-01))
 auto.arima(rend)
 ```
 
-*Aunque el arima recomendado es (2,0,2), ugarchfit tiene problemas para realizar el modelo, por lo que se utiliza (2,0,1) ya que los valores de AIC y de verosimilitud son casi iguales.
+*Aunque el arima recomendado es (2,0,2), ugarchfit tiene problemas para realizar el modelo, por lo que se utiliza (2,0,1) ya que los valores de AIC y de verosimilitud son casi iguales.*
 
 ```{r}
 especificaciones <- ugarchspec(mean.model = list(armaOrder=c(2,1)),
