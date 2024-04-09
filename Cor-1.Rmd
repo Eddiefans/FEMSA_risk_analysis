@@ -1,0 +1,83 @@
+---
+title: "Correlación"
+output: html_document
+date: '2022-06-08'
+---
+
+En este ejercicio analizaremos la correlación (variación conjunta de un activo con otros activos)
+
+Primero necesiamos los datos, que contienen los tickets de los activos que nos interesa 
+
+```{r}
+Emisoras <- read.csv("Emisoras_Completo2.csv")
+```
+
+Objetivo de esta actividad es: 
+
+Analizar la correlación que un grupo de activos tienen entre si
+
+Lo primero que necesitamos es un activo de comparación, es decir un activo que nos interese analizar con relación al mercado y al resto de activos
+
+```{r}
+library(PerformanceAnalytics)
+library(quantmod)
+clave <- "FEMSAUBD.MX"
+datos <- new.env()
+getSymbols(clave, warnings = FALSE, env=datos)
+precio <- datos[[clave]][,6]
+Rend <- na.omit(diff(log(na.omit(precio))))
+```
+
+Antes de nada vamos a comparar nuestro activo con el mercado. 
+
+```{r}
+getSymbols("^MXX")
+rend_mercado <- na.omit(diff(log(na.omit(MXX$MXX.Adjusted))))
+
+datos <- na.omit(merge.xts(Rend, rend_mercado))
+```
+
+```{r}
+cor(datos)
+cov(datos)
+```
+
+
+```{r}
+chart.Correlation(datos)
+```
+
+
+Haremos un ciclo for para comparar la correlación de todos los activos de nuestra base de datos de nombre Emisoras.
+
+```{r, message=FALSE, warning=FALSE}
+lista <- as.matrix(Emisoras)
+n <- length(lista)
+mat_cor_a <- matrix(nrow=n, ncol=2)
+datos_cor <- new.env()
+for (i in 1:n) {
+  clave <- lista[i]
+  getSymbols(clave, env=datos_cor, warnings = FALSE)
+  precio2 <- datos_cor[[clave]][,6]
+  rendimiento2 <- na.omit(diff(log(na.omit(precio2))))
+  datos_cor2 <- na.omit(merge.xts(Rend, rendimiento2))
+  ro <- as.numeric(cor(datos_cor2)[1,2])
+  mat_cor_a[i,2] <- ro
+  mat_cor_a[i,1] <- clave
+}
+```
+
+
+Para ordenar la matriz
+
+```{r}
+library(tidyverse)
+mat_cor_a <- as.data.frame(mat_cor_a)
+names(mat_cor_a) <- c("Activo", "Ro")
+arrange(mat_cor_a, Ro)
+
+```
+
+
+
+
