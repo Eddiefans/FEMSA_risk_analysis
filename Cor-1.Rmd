@@ -17,19 +17,15 @@ knitr::opts_chunk$set(echo = TRUE)
 
 
 ## Introducción
-En este ejercicio analizaremos la correlación (variación conjunta de un activo con otros activos)
 
-Primero necesiamos los datos, que contienen los tickets de los activos que nos interesa 
 
+
+
+
+## Cálculo de correlación 
 ```{r}
 Emisoras <- read.csv("Emisoras_Completo2.csv")
 ```
-
-Objetivo de esta actividad es: 
-
-Analizar la correlación que un grupo de activos tienen entre si
-
-Lo primero que necesitamos es un activo de comparación, es decir un activo que nos interese analizar con relación al mercado y al resto de activos
 
 ```{r}
 library(PerformanceAnalytics)
@@ -40,9 +36,7 @@ getSymbols(clave, warnings = FALSE, env=datos)
 precio <- datos[[clave]][,6]
 Rend <- na.omit(diff(log(na.omit(precio))))
 ```
-
-Antes de nada vamos a comparar nuestro activo con el mercado. 
-
+### Comparación con el mercado
 ```{r}
 getSymbols("^MXX")
 rend_mercado <- na.omit(diff(log(na.omit(MXX$MXX.Adjusted))))
@@ -60,9 +54,7 @@ cov(datos)
 chart.Correlation(datos)
 ```
 
-
-Haremos un ciclo for para comparar la correlación de todos los activos de nuestra base de datos de nombre Emisoras.
-
+### Correlación
 ```{r, message=FALSE, warning=FALSE}
 lista <- as.matrix(Emisoras)
 n <- length(lista)
@@ -81,7 +73,6 @@ for (i in 1:n) {
 ```
 
 
-Para ordenar la matriz
 
 ```{r}
 library(tidyverse)
