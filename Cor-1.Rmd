@@ -1,9 +1,22 @@
 ---
-title: "Correlación"
-output: html_document
-date: '2022-06-08'
+title: "Proyecto entrega 3"
+output: 
+  html_document:
+    code_folding: hide
+date: <font size="2">2024-03-12</font> 
+author:
+   <font size="2"> - Antonio Lomelí Ureña<br></font>
+   <font size="2"> - Carolina Martínez<br></font> 
+   <font size="2"> - Enrique Tonatiuh Pérez Cortés<br></font> 
+   <font size="2"> - Eddie Aguilar</font> 
 ---
 
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+## Introducción
 En este ejercicio analizaremos la correlación (variación conjunta de un activo con otros activos)
 
 Primero necesiamos los datos, que contienen los tickets de los activos que nos interesa 
