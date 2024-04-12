@@ -30,6 +30,7 @@ Emisoras <- read.csv("Emisoras_Completo2.csv")
 ```{r}
 library(PerformanceAnalytics)
 library(quantmod)
+library(tidyverse)
 clave <- "FEMSAUBD.MX"
 datos <- new.env()
 getSymbols(clave, warnings = FALSE, env=datos)
@@ -73,25 +74,32 @@ for (i in 1:n) {
 ```
 
 
-
+Primero calculamos la correlación con todos los activos.
 ```{r}
-library(tidyverse)
 mat_cor_a <- as.data.frame(mat_cor_a)
 names(mat_cor_a) <- c("Activo", "Ro")
 arrange(mat_cor_a, Ro)
-
 ```
 
+Se destacan los 5 activos con mayor correlación con la acción base de este proyecto. 
 
+------ AGREGAR EL MERCADO ------------------------------------------------------------
 ```{r}
 mat_cor_a$Ro <- as.numeric(mat_cor_a$Ro)
 mat_cor_a_sorted <- mat_cor_a %>%
   arrange(desc(Ro))
-top_6_correlated <- head(mat_cor_a_sorted, 6)
-top_5_correlated <- top_6_correlated %>%
+correlated <- head(mat_cor_a_sorted, 6)
+top_5_correlated <- correlated %>%
   filter(Activo != "MEDICAB.MX" & Activo != "FEMSAUBD.MX")
 print(top_5_correlated)
 ```
+## Gráfico de rendimientos activos correlacionados 
+
+```{r}
+
+```
+
+
 
 
 
