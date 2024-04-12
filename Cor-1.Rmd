@@ -83,5 +83,15 @@ arrange(mat_cor_a, Ro)
 ```
 
 
+```{r}
+mat_cor_a$Ro <- as.numeric(mat_cor_a$Ro)
+mat_cor_a_sorted <- mat_cor_a %>%
+  arrange(desc(Ro))
+top_6_correlated <- head(mat_cor_a_sorted, 6)
+top_5_correlated <- top_6_correlated %>%
+  filter(Activo != "MEDICAB.MX" & Activo != "FEMSAUBD.MX")
+print(top_5_correlated)
+```
+
 
 
