@@ -96,8 +96,29 @@ print(top_5_correlated)
 ## Gráfico de rendimientos activos correlacionados 
 
 ```{r}
-
+claves_top5 <- as.character(top_5_correlated[[1]])
+claves_top5
 ```
+
+```{r}
+data <- new.env()
+getSymbols(claves_top5, warnings = FALSE, env=data)
+for (nombre_activo in nombres_activos) {
+  # Obtener los datos del activo
+  datos_activo <- data[[nombre_activo]]
+  
+  # Obtener los precios de cierre del activo
+  precios_cierre[[nombre_activo]] <- Cl(datos_activo)
+}
+
+
+precio <- data[[claves_top5]][,6]
+Rend <- na.omit(diff(log(na.omit(precio))))
+```
+```{r}
+data[[claves_top5]][,1]
+```
+
 
 
 
