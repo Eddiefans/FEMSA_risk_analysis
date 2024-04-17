@@ -103,20 +103,35 @@ claves_top5
 ```{r}
 data <- new.env()
 getSymbols(claves_top5, warnings = FALSE, env=data)
-for (nombre_activo in nombres_activos) {
-  # Obtener los datos del activo
-  datos_activo <- data[[nombre_activo]]
-  
-  # Obtener los precios de cierre del activo
-  precios_cierre[[nombre_activo]] <- Cl(datos_activo)
-}
 
+precio1 <- data[[claves_top5[[1]]]][,6]
+Rend1 <- na.omit(diff(log(na.omit(precio1))))
 
-precio <- data[[claves_top5]][,6]
-Rend <- na.omit(diff(log(na.omit(precio))))
+precio2 <- data[[claves_top5[[2]]]][,6]
+Rend2 <- na.omit(diff(log(na.omit(precio2))))
+
+df_rend <- as.data.frame(Rend1)
+df_rend
+
+# Crear un dataframe inicial
+df <- data.frame(
+  Categorias = c("A", "B", "C", "D"),
+  Valores = c(10, 20, 15, 25)
+)
+
+# Crear nuevas columnas
+nuevas_columnas <- data.frame(NuevaColumna1 = c(1, 2, 3, 4),
+                              NuevaColumna2 = c("X", "Y", "Z", "W"))
+
+# Agregar las nuevas columnas al dataframe existente usando cbind()
+df <- cbind(df, nuevas_columnas)
+
+# Mostrar el dataframe actualizado
+print(df)
+
 ```
 ```{r}
-data[[claves_top5]][,1]
+data[[claves_top5[[1]]]][,6]
 ```
 
 
