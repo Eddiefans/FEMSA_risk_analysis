@@ -43,6 +43,7 @@ getSymbols("^MXX")
 rend_mercado <- na.omit(diff(log(na.omit(MXX$MXX.Adjusted))))
 
 datos <- na.omit(merge.xts(Rend, rend_mercado))
+datos
 ```
 
 ```{r}
@@ -90,7 +91,7 @@ mat_cor_a_sorted <- mat_cor_a %>%
   arrange(desc(Ro))
 correlated <- head(mat_cor_a_sorted, 6)
 top_5_correlated <- correlated %>%
-  filter(Activo != "MEDICAB.MX" & Activo != "FEMSAUBD.MX")
+  filter(Activo != "MEDICAB.MX")
 print(top_5_correlated)
 ```
 ## Gráfico de rendimientos activos correlacionados 
@@ -103,39 +104,34 @@ claves_top5
 ```{r}
 data <- new.env()
 getSymbols(claves_top5, warnings = FALSE, env=data)
+lista_rend <- list()
 
-precio1 <- data[[claves_top5[[1]]]][,6]
-Rend1 <- na.omit(diff(log(na.omit(precio1))))
+for (i in claves_top5){
+  precio <- data[[i]][,6]
+  Rend <- na.omit(diff(log(na.omit(precio))))
+  lista_rend[[i]] <- Rend
+}
 
-precio2 <- data[[claves_top5[[2]]]][,6]
-Rend2 <- na.omit(diff(log(na.omit(precio2))))
-
-df_rend <- as.data.frame(Rend1)
-df_rend
-
-# Crear un dataframe inicial
-df <- data.frame(
-  Categorias = c("A", "B", "C", "D"),
-  Valores = c(10, 20, 15, 25)
-)
-
-# Crear nuevas columnas
-nuevas_columnas <- data.frame(NuevaColumna1 = c(1, 2, 3, 4),
-                              NuevaColumna2 = c("X", "Y", "Z", "W"))
-
-# Agregar las nuevas columnas al dataframe existente usando cbind()
-df <- cbind(df, nuevas_columnas)
-
-# Mostrar el dataframe actualizado
-print(df)
-
+datos2 <- na.omit(merge.xts(rend_mercado, lista_rend[[1]], lista_rend[[2]], lista_rend[[3]], lista_rend[[4]], lista_rend[[5]], lista_rend[[6]]))
+datos2
 ```
+
 ```{r}
-data[[claves_top5[[1]]]][,6]
+plot(datos2)
 ```
 
 
 
+```{r}
+print(typeof(df[[claves_top5[1]]]))
 
+plot(df[[claves_top5[1]]])
+
+for (i in claves_top5) {
+  
+}
+
+f[["TLEVISACPO.MX"]]
+```
 
 
