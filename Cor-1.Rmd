@@ -81,6 +81,10 @@ Estas asumciones se deben analizar más adelante, al compararlos contra otros ac
 
 ### Correlación
 
+Ahora pasamos a encontrar la correlación entre nuestro activo y cada uno de los activos de la lista de emisoras, cargados desde excel en la primera sección del proyecto.
+
+Primero descargamos los datos históricos individualmente, usando getSymbols dentro de un ciclo for, que itera sobre cada activos de la lista de emisoras. Después, todavía dentro del ciclo, calculamos la correlación entre ese activo y nuestro activo de interés. El nombre del activo y el valor de $\rho$ se cargan a una matriz, que usaremos para encontrar los 5 activos más correlacionados al nuestro.
+
 ```{r, message=FALSE, warning=FALSE}
 lista <- as.matrix(Emisoras)[,1]
 n <- length(lista)
@@ -98,8 +102,8 @@ for (i in 1:n) {
 }
 ```
 
+Damos forma y ordenamos la matriz de correlación.
 
-Primero calculamos la correlación con todos los activos.
 ```{r}
 mat_cor_a <- as.data.frame(mat_cor_a)
 names(mat_cor_a) <- c("Activo", "Ro")
@@ -108,7 +112,6 @@ arrange(mat_cor_a, Ro)
 
 Se destacan los 5 activos con mayor correlación con la acción base de este proyecto. 
 
------- AGREGAR EL MERCADO ------------------------------------------------------------
 ```{r}
 mat_cor_a$Ro <- as.numeric(mat_cor_a$Ro)
 mat_cor_a_sorted <- mat_cor_a %>%
@@ -116,8 +119,14 @@ mat_cor_a_sorted <- mat_cor_a %>%
 correlated <- head(mat_cor_a_sorted, 6)
 top_5_correlated <- correlated %>%
   filter(Activo != "MEDICAB.MX")
+mercado <- data.frame(Activo = "MXX.Adjusted", Ro = 0.6072045)
+top_5_correlated <- bind_rows(top_5_correlated, mercado) |> arrange(desc(Ro))
 print(top_5_correlated)
 ```
+
+> Los resultados indican que
+
+
 ## Gráfico de rendimientos activos correlacionados 
 
 ```{r}
@@ -144,14 +153,14 @@ datos2[1:3,]
 datos_df <- fortify(datos2)
 
 ggplot(data = datos_df, aes(x = Index)) +
-  geom_line(aes(y = `MXX.Adjusted`, color = "MXX.Adjusted")) +
-  geom_line(aes(y = `FEMSAUBD.MX.Adjusted`, color = "FEMSAUBD.MX.Adjusted")) +
-  geom_line(aes(y = `KOFUBL.MX.Adjusted`, color = "KOFUBL.MX.Adjusted")) +
-  geom_line(aes(y = `AMX.Adjusted`, color = "AMX.Adjusted")) +
-  geom_line(aes(y = `GFNORTEO.MX.Adjusted`, color = "GFNORTEO.MX.Adjusted")) +
-  geom_line(aes(y = `TLEVISACPO.MX.Adjusted`, color = "TLEVISACPO.MX.Adjusted")) +
-  geom_line(aes(y = `CEMEXCPO.MX.Adjusted`, color = "CEMEXCPO.MX.Adjusted")) +
-  labs(x = "Fecha", y = "Rendimiento", title = "Datos de ejemplo") +
+  geom_line(aes(y = `MXX.Adjusted`, color = "MXX")) +
+  geom_line(aes(y = `FEMSAUBD.MX.Adjusted`, color = "FEMSAUBD")) +
+  geom_line(aes(y = `KOFUBL.MX.Adjusted`, color = "KOFUBL")) +
+  geom_line(aes(y = `AMX.Adjusted`, color = "AMX")) +
+  geom_line(aes(y = `GFNORTEO.MX.Adjusted`, color = "GFNORTEO")) +
+  geom_line(aes(y = `TLEVISACPO.MX.Adjusted`, color = "TLEVISACPO")) +
+  geom_line(aes(y = `CEMEXCPO.MX.Adjusted`, color = "CEMEXCPO")) +
+  labs(x = "Fecha", y = "Rendimiento", title = "Rendimiento de los Activos Más Correlacionados") +
   labs(color = "Stock") +
   theme(legend.position = "right")
 
