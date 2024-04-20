@@ -5,10 +5,10 @@ output:
     code_folding: hide
 date: <font size="2">2024-03-12</font> 
 author:
-   <font size="2"> - Antonio Lomelí Ureña<br></font>
    <font size="2"> - Carolina Martínez<br></font> 
    <font size="2"> - Enrique Tonatiuh Pérez Cortés<br></font> 
-   <font size="2"> - Eddie Aguilar</font> 
+   <font size="2"> - Eddie Aguilar<br></font>
+   <font size="2"> - Antonio Lomelí Ureña</font>
 ---
 
 ```{r setup, include=FALSE}
@@ -23,9 +23,16 @@ knitr::opts_chunk$set(echo = TRUE)
 
 
 ## Cálculo de correlación 
+
+Vamos a encontrar la correlación entre una lista de activos que cotizan en el mercado mexicano y nuestro activo de interés, la acción de ***Fomento Económico Mexicano*** (FEMSAUBD). También se incluye el IPC, que es representativo al comportamiento del mercado mexicano de capitales. 
+
+Primero cargamos la lista de acciones a utilizar para la comparativa.
+
 ```{r}
 Emisoras <- read.csv("Emisoras_Completo2.csv")
 ```
+
+En esta parte cargamos los precios históricos de nuestro activo de interés (FEMSAUBD).
 
 ```{r}
 library(PerformanceAnalytics)
@@ -38,27 +45,44 @@ precio <- datos[[clave]][,6]
 Rend <- na.omit(diff(log(na.omit(precio))))
 ```
 ### Comparación con el mercado
+
+Aquí comparamos con el mercado mexicano de valores (IPC). Juntamos los dataframes de los rendimientos de FEMSA con los rendimientos del IPC e ignoramos datos vacíos, con el fin de no alterar el cálculo de correlación.
+
 ```{r}
 getSymbols("^MXX")
 rend_mercado <- na.omit(diff(log(na.omit(MXX$MXX.Adjusted))))
 
 datos <- na.omit(merge.xts(Rend, rend_mercado))
-datos
+datos[1:5,]
 ```
+
+La covarianza y correlación las calculamos con funciones base de R, ya que al ser una matriz de dos activos es más simple usar este método. Después graficamos la correlación.
 
 ```{r}
 cor(datos)
 cov(datos)
 ```
 
-
 ```{r}
 chart.Correlation(datos)
 ```
 
+> Encontramos que:
+
+El mercado mexicano y la acción de FEMSA se relacionan en un 60.7%. Al ser una correlación positiva y moderadamente fuerte podemos decir que los movimientos de FEMSA y el mercado mexicano se "siguen". Esto significa que cuando al mercado le va bien, y tiene un rendimiento positivo, a la acción de FEMSA le va tambén bien y tiene un rendimiento positivo (y viceversa).
+
+Una correlación de 0.607 es moderadamente fuerte, es probable que en cualquier día sus movimientos se sigan. Si la correlación fuera mayor a 0.9 podríamos decir que los activos están fuertemente correlacionados y sería prácticamente seguro decir que en cualquier día, si uno tiene rendimientos positivos el otro también tendrá rendimientos positivos.
+
+Es importante conocer primero la correlación con el mercado ya que podemos comparar cómo se comporta el activo contra un agregado de valores. Una buena diversificación, es decir, si fueramos a crear un portafolio a partir de varios activos, permitiría tener una correlación más baja con el mercado, algo que sería positivo desde la perspectiva del inversionista. Para nuestro fin de analizar la acción de FEMSA es útil y positivo no tener una correlación tan alta, ya que hablamos de un activo "resistente" y posiblemente con menor riesgo sistémico.
+
+También hay que recordar que el activo de FEMSA es más volatil que el mercado (1.65% > 1.16% en volatilidad diaria). Esto puede ser útil para tener mayores ganancias, es decir, hay una prima de riesgo por tener este activo y entendiendo que tiene una correlación con el mercado de 0.61 y una beta de 0.85 (0.00011/0.0013) podría significar que el activo por sí solo ya está lo suficientemente "diversificado", ya que es un activo que no sigue tanto los movimientos del mercado (resistente) pero atractivo para los inversionistas y con oportunidades de generar ganancias (por su volatilidad).
+
+Estas asumciones se deben analizar más adelante, al compararlos contra otros activos.
+
 ### Correlación
+
 ```{r, message=FALSE, warning=FALSE}
-lista <- as.matrix(Emisoras)
+lista <- as.matrix(Emisoras)[,1]
 n <- length(lista)
 mat_cor_a <- matrix(nrow=n, ncol=2)
 datos_cor <- new.env()
@@ -113,25 +137,25 @@ for (i in claves_top5){
 }
 
 datos2 <- na.omit(merge.xts(rend_mercado, lista_rend[[1]], lista_rend[[2]], lista_rend[[3]], lista_rend[[4]], lista_rend[[5]], lista_rend[[6]]))
-datos2
+datos2[1:3,]
 ```
 
 ```{r}
-plot(datos2)
+datos_df <- fortify(datos2)
+
+ggplot(data = datos_df, aes(x = Index)) +
+  geom_line(aes(y = `MXX.Adjusted`, color = "MXX.Adjusted")) +
+  geom_line(aes(y = `FEMSAUBD.MX.Adjusted`, color = "FEMSAUBD.MX.Adjusted")) +
+  geom_line(aes(y = `KOFUBL.MX.Adjusted`, color = "KOFUBL.MX.Adjusted")) +
+  geom_line(aes(y = `AMX.Adjusted`, color = "AMX.Adjusted")) +
+  geom_line(aes(y = `GFNORTEO.MX.Adjusted`, color = "GFNORTEO.MX.Adjusted")) +
+  geom_line(aes(y = `TLEVISACPO.MX.Adjusted`, color = "TLEVISACPO.MX.Adjusted")) +
+  geom_line(aes(y = `CEMEXCPO.MX.Adjusted`, color = "CEMEXCPO.MX.Adjusted")) +
+  labs(x = "Fecha", y = "Rendimiento", title = "Datos de ejemplo") +
+  labs(color = "Stock") +
+  theme(legend.position = "right")
+
 ```
 
-
-
-```{r}
-print(typeof(df[[claves_top5[1]]]))
-
-plot(df[[claves_top5[1]]])
-
-for (i in claves_top5) {
-  
-}
-
-f[["TLEVISACPO.MX"]]
-```
 
 
