@@ -17,10 +17,9 @@ knitr::opts_chunk$set(echo = TRUE)
 
 
 ## Introducción
-
-
-
-
+El análisis de correlación entre activos financieros y el mercado es un factor fundamental cuando se habla de inversiones y las decisiones en mercados financieros. La correlación describe la relación estadística entre los movimientos de precios de diferentes activos, lo que permite comprender cómo se comportan estos activos en relación con el mercado en general.
+En este proyecto, se comenzará calculando la correlación del activo que se ha estado desarrollando a lo largo del semestre (FEMSA) con el mercado. Para ello, se utilizarán las técnicas estudiadas en las sesiones y se tomará el IPC como índice en representación del mercado mexicano. Posteriormente, se calculará la correlación del activo de estudio con un listado de varios activos que también cotizan en la BMV. Esto permitirá ver la relación que tiene el activo de interés con respecto de otros activos del mismo mercado y se elegirán los 5 con mayor correlación. 
+Más adelante, se graficarán los rendimientos de FEMSA, el mercado mexicano y los 5 activos más correlacionados, para concluir con un análisis al respecto.  
 
 ## Cálculo de correlación 
 
