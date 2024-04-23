@@ -12,4 +12,25 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ## Introducción 
 
-## 
+## Construcción del portafolio
+Select an asset in addition to your own, and with both, build a portfolio containing 100 shares of each asset
+
+## VaR paramétrico
+1,5,10 and 20 days
+In the case of parametric estimation, you must use the value of the average daily volatility of the last six months and the value of “So”, will be the one to which the methodology is applied in class.
+
+### Back testing
+Do the Back testing for one day VaR with both methodology 
+
+## VaR no paramétrico
+1,5,10 and 20 days.
+In the case of the non-parametric methodology, the student must use historical simulation (with all possible data and the So value of the day the methodology is applied in class).
+
+### Gráfica
+At the case of non-parametric estimation, the corresponding graph must be presented where the one-day VaR can be seen at the three estimated confidence levels 
+
+### Back testing
+Do the Back testing for one day VaR with both methodology 
+
+## Composición óptima del portafolio
+Find the optimal composition of the portfolio that minimizes the Value at Risk.
