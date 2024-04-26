@@ -13,11 +13,37 @@ knitr::opts_chunk$set(echo = TRUE)
 ## Introducción 
 
 ## Construcción del portafolio
-Select an asset in addition to your own, and with both, build a portfolio containing 100 shares of each asset
+Para fines de esta entrega, se trabajará con un portafolio conformado únicamente de 2 acciones: FEMSA, al ser el activo principal del proyecto completo, y CEMEX, al ser una acción que también cotiza en la BMV. En este caso, el portafolio estará conformado por 200 acciones, divididas en partes iguales entre ambos activos. 
+```{r}
+library(PerformanceAnalytics)
+library(quantmod)
+library(tidyverse)
+clave1 <- "FEMSAUBD.MX"
+clave2 <- "CEMEXCPO.MX"
+datos <- new.env()
+getSymbols(c(clave1, clave2), from="2000-01-03",to = "2024-04-25", env=datos)
+p1 <-datos[[clave1]][,6]
+p2 <-datos[[clave2]][,6]
+precios <- na.omit(merge.xts(p1,p2))
+```
 
+Para poder realizar los cálculos necesarios posteriores, se calcula el valor inicial del portafolio. 
+```{r}
+v0<-as.numeric(100*last(precios[,1]) + 100*last(precios[,2]))
+v0
+```
+
+Tomando como apoyo la fórmula, se calcula la volatilidad del portafolio. 
+$$\sigma=\sqrt{wCw^T}$$
+
+```{r}
+w <- c(100*as.numeric(last(precios[,1]))/v0,100*as.numeric(last(precios[,2]))/v0)
+w
+```
 ## VaR paramétrico
 1,5,10 and 20 days
 In the case of parametric estimation, you must use the value of the average daily volatility of the last six months and the value of “So”, will be the one to which the methodology is applied in class.
+
 
 ### Back testing
 Do the Back testing for one day VaR with both methodology 
