@@ -40,6 +40,11 @@ $$\sigma=\sqrt{wCw^T}$$
 w <- c(100*as.numeric(last(precios[,1]))/v0,100*as.numeric(last(precios[,2]))/v0)
 w
 ```
+```{r}
+rend <- na.omit(diff(log(precios)))
+C <- cov(rend)
+C
+```
 ## VaR paramétrico
 1,5,10 and 20 days
 In the case of parametric estimation, you must use the value of the average daily volatility of the last six months and the value of “So”, will be the one to which the methodology is applied in class.
