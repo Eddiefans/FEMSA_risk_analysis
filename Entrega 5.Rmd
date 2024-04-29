@@ -12,6 +12,9 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ## Introducción 
 
+
+
+
 ## Construcción del portafolio
 Para fines de esta entrega, se trabajará con un portafolio conformado únicamente de 2 acciones: FEMSA, al ser el activo principal del proyecto completo, y CEMEX, al ser una acción que también cotiza en la BMV. En este caso, el portafolio estará conformado por 200 acciones, divididas en partes iguales entre ambos activos. 
 ```{r}
@@ -45,11 +48,58 @@ rend <- na.omit(diff(log(precios)))
 C <- cov(rend)
 C
 ```
+Se calcula la volatilidad
+```{r}
+sigma <- sqrt(w%*%C%*%w)
+sigma
+```
+```{r}
+z90 <- qnorm(.1)
+z95 <- qnorm(.05)
+z99 <- qnorm(.01)
+```
 ## VaR paramétrico
 1,5,10 and 20 days
 In the case of parametric estimation, you must use the value of the average daily volatility of the last six months and the value of “So”, will be the one to which the methodology is applied in class.
+VaR
+Apoyados de los valores de z correspondientes, se calcula el VaR en las distintas temporalidades que se solicitan. 
 
-
+VaR a un día con 90% ,95% y 99% de confianza
+```{r}
+VaR90 <- sigma*v0*z90
+VaR95 <- sigma*v0*z95
+VaR99 <- sigma*v0*z99
+VaR90
+VaR95
+VaR99
+```
+5 días 
+```{r}
+VaR90_5 <- sigma*v0*z90*sqrt(5)
+VaR95_5 <- sigma*v0*z95*sqrt(5)
+VaR99_5 <- sigma*v0*z99*sqrt(5)
+VaR90_5
+VaR95_5
+VaR99_5
+```
+10 días 
+```{r}
+VaR90_10 <- sigma*v0*z90*sqrt(10)
+VaR95_10 <- sigma*v0*z95*sqrt(10)
+VaR99_10 <- sigma*v0*z99*sqrt(10)
+VaR90_10
+VaR95_10
+VaR99_10
+```
+20 días 
+```{r}
+VaR90_5 <- sigma*v0*z90*sqrt(20)
+VaR95_5 <- sigma*v0*z95*sqrt(20)
+VaR99_5 <- sigma*v0*z99*sqrt(20)
+VaR90_5
+VaR95_5
+VaR99_5
+```
 ### Back testing
 Do the Back testing for one day VaR with both methodology 
 
