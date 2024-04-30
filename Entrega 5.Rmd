@@ -15,7 +15,7 @@ knitr::opts_chunk$set(echo = TRUE)
 El Value at Risk representa la pérdida máxima esperada en un periodo de tiempo. Para calcularlo, exiten distintos métodos que serñan expuestos y explicados en este entregable.
 A lo largo del proyecto, se trabajará con el activo de refrencia de este proyecto (FEMSA) y se agregará un segundo activo perteniciente a la Bolsa Mexicana de Valores con la finalidad de armar un portafolio y trabajar sobre él. 
 Se calculará el VaR con la metodología paramétrica y no paramétrica para 4 distintos periodos de tiempo y con distintos niveles de confianza y se aplicará una prueba para determinar si el valor obtenido se encuentra subestiamdo, sobreestimado o correcto. 
-
+También se presentará una gráfica para visualizar los rendimientos obtenidos y se propondrá un portafolio óptimo, explicando su composición. 
 
 ## Construcción del portafolio
 Para fines de esta entrega, se trabajará con un portafolio conformado únicamente de 2 acciones: FEMSA, al ser el activo principal del proyecto completo, y CEMEX, al ser una acción que también cotiza en la BMV. En este caso, el portafolio estará conformado por 200 acciones, divididas en partes iguales entre ambos activos. 
