@@ -18,7 +18,7 @@ Se calculará el VaR con la metodología paramétrica y no paramétrica para 4 d
 También se presentará una gráfica para visualizar los rendimientos obtenidos y se propondrá un portafolio óptimo, explicando su composición. 
 
 ## Construcción del portafolio
-Para fines de esta entrega, se trabajará con un portafolio conformado únicamente de 2 acciones: FEMSA, al ser el activo principal del proyecto completo, y CEMEX, al ser una acción que también cotiza en la BMV. En este caso, el portafolio estará conformado por 200 acciones, divididas en partes iguales entre ambos activos. 
+Para fines de esta entrega, se trabajará con un portafolio conformado únicamente de 2 acciones: FEMSA, al ser el activo principal del proyecto, y CEMEX, al ser una acción que también cotiza en la BMV. En este caso, el portafolio estará conformado por 200 acciones, divididas en partes iguales entre ambos activos. 
 ```{r}
 library(PerformanceAnalytics)
 library(quantmod)
@@ -31,15 +31,19 @@ p1 <-datos[[clave1]][,6]
 p2 <-datos[[clave2]][,6]
 precios <- na.omit(merge.xts(p1,p2))
 ```
+$$VaR = V_o \sigma Z_\alpha$$
 
-Para poder realizar los cálculos necesarios posteriores, se calcula el valor inicial del portafolio. 
+Sabemos que el VaR se calcula utilizando el precio inicial del portafolio, la volatilidad de este y un valor de z que dependerá del nivel de confianza deseado. 
+
+
+Para poder realizar los cálculos necesarios posteriores, se calcula el valor inicial del portafolio multiplicando el precio de cada activo por la cantidad de activos correspondiente. 
 ```{r}
 v0<-as.numeric(100*last(precios[,1]) + 100*last(precios[,2]))
 v0
 ```
 
-Tomando como apoyo la fórmula, se calcula la volatilidad del portafolio. 
-$$\sigma=\sqrt{wCw^T}$$
+Posteriormente, se calculará la volatilidad del portafolio. Para ello se calcula el vector de pesos y la matriz de varianza - corvarianza. 
+
 
 ```{r}
 w <- c(100*as.numeric(last(precios[,1]))/v0,100*as.numeric(last(precios[,2]))/v0)
@@ -50,7 +54,8 @@ rend <- na.omit(diff(log(precios)))
 C <- cov(rend)
 C
 ```
-Se calcula la volatilidad
+Se calcula la volatilidad utilizando la siguiente fórmula: 
+$$\sigma=\sqrt{wCw^T}$$
 ```{r}
 sigma <- sqrt(w%*%C%*%w)
 sigma
@@ -62,48 +67,53 @@ z99 <- qnorm(.01)
 ```
 ## VaR paramétrico
 1,5,10 and 20 days
-In the case of parametric estimation, you must use the value of the average daily volatility of the last six months and the value of “So”, will be the one to which the methodology is applied in class.
+Apoyados de los valores de z correspondientes, se calcula el VaR en las distintas temporalidades que se solicitan y con 3 niveles de confianza: 90% ,95% y 99%.
 
-Apoyados de los valores de z correspondientes, se calcula el VaR en las distintas temporalidades que se solicitan. 
+```{r}
+VaRs <- c(sigma * v0 * z90 * sqrt(c(1, 5, 10, 20)), 
+          sigma * v0 * z95 * sqrt(c(1, 5, 10, 20)), 
+          sigma * v0 * z99 * sqrt(c(1, 5, 10, 20)))
+matriz <- matrix(VaRs, nrow = 3, byrow = TRUE)
+rownames(matriz) <- c("90%", "95%", "99%")
+colnames(matriz) <- c("1 día", "5 días", "10 días", "20 días")
+print(matriz)
+```
 
-VaR a un día con 90% ,95% y 99% de confianza
+
+### Back testing
+A continuación, se aplicará la prueba "Back Testing" con la finalidad de evaluar los resultados obtenidos. Para este caso, solo se utilizará el VaR a un día en los tres niveles de confianza propuestos. 
+
 ```{r}
 VaR90 <- sigma*v0*z90
 VaR95 <- sigma*v0*z95
 VaR99 <- sigma*v0*z99
-VaR90
-VaR95
-VaR99
 ```
-5 días 
+
+Se realiza la función de pérdidas y ganacias.
+
 ```{r}
-VaR90_5 <- sigma*v0*z90*sqrt(5)
-VaR95_5 <- sigma*v0*z95*sqrt(5)
-VaR99_5 <- sigma*v0*z99*sqrt(5)
-VaR90_5
-VaR95_5
-VaR99_5
+val_real_port_pasado <- 100*precios[,1]+100*precios[,2]
+p_g_real <- na.omit(diff(val_real_port_pasado))
 ```
-10 días 
+
+Después, se realiza la prueba con los valores obtenidos para el VaR a un día con los distintos niveles de confianza. 
 ```{r}
-VaR90_10 <- sigma*v0*z90*sqrt(10)
-VaR95_10 <- sigma*v0*z95*sqrt(10)
-VaR99_10 <- sigma*v0*z99*sqrt(10)
-VaR90_10
-VaR95_10
-VaR99_10
+back_test_90 <- ifelse(p_g_real<as.numeric(VaR90),1,0)
 ```
-20 días 
 ```{r}
-VaR90_5 <- sigma*v0*z90*sqrt(20)
-VaR95_5 <- sigma*v0*z95*sqrt(20)
-VaR99_5 <- sigma*v0*z99*sqrt(20)
-VaR90_5
-VaR95_5
-VaR99_5
+back_test_95 <- ifelse(p_g_real<as.numeric(VaR95),1,0)
 ```
-### Back testing
-Do the Back testing for one day VaR with both methodology 
+
+```{r}
+back_test_99 <- ifelse(p_g_real<as.numeric(VaR99),1,0)
+```
+```{r}
+test <- c(sum(back_test_90)/length(back_test_90),sum(back_test_95)/length(back_test_95),sum(back_test_99)/length(back_test_99))
+matriz_t <- matrix(test, nrow = 1, byrow = TRUE)
+colnames(matriz_t) <- c("90%", "95%", "99%")
+rownames(matriz_t) <- c("")
+print(matriz_t)
+```
 
 ## VaR no paramétrico
 1,5,10 and 20 days.
