@@ -114,6 +114,12 @@ colnames(matriz_t) <- c("90%", "95%", "99%")
 rownames(matriz_t) <- c("")
 print(matriz_t)
 ```
+Se observa que en el caso del 90% y 95% el cálculo del VaR resulta exitoso al no salirse del nivel de confianza establecido. Sin embargo, en el caso del 99% de confianza se puede decir que está ligeramente subestimado, ya que excede 0.7 el nivel de confianza. Para ello, se utilizará el percentil correspondiente en la función de pérdidas y ganancias para poder establecer un valor que se ajuste de mejor manera.
+
+```{r}
+quantile(p_g_real,0.01)
+```
+Se obtiene un VaR al 99% de confianza a un día de -$1216.59, una cantidad mayor a la previamente calculada, ya que como se mencionó anteriormente, esta se encontraba subestimada.
 
 ## VaR no paramétrico
 1,5,10 and 20 days.
