@@ -123,10 +123,72 @@ Se obtiene un VaR al 99% de confianza a un día de -$1216.59, una cantidad mayor
 
 ## VaR no paramétrico
 1,5,10 and 20 days.
+
+```{r}
+rend_1 <- na.omit(diff(log(precios)))
+# Obtener el precio en St+1 del activo 1
+pe1 <- as.numeric(last(precios[,1])) * (1+rend_1[,1])
+# Obtener el precio en St+1 del activo 2
+pe2 <- as.numeric(last(precios[,2])) * (1+rend_1[,2])
+# Calcular el valor futuro del portafolio
+VF_1 <- pe1*100 + pe2*100
+```
+
+
+```{r}
+rend_5 <- na.omit(diff(log(precios), lag=5))
+# Obtener el precio en St+1 del activo 1
+pe1 <- as.numeric(last(precios[,1])) * (1+rend_5[,1])
+# Obtener el precio en St+1 del activo 2
+pe2 <- as.numeric(last(precios[,2])) * (1+rend_5[,2])
+# Calcular el valor futuro del portafolio
+VF_5 <- pe1*100 + pe2*100
+```
+
+
+```{r}
+rend_10 <- na.omit(diff(log(precios), lag=10))
+# Obtener el precio en St+1 del activo 1
+pe1 <- as.numeric(last(precios[,1])) * (1+rend_10[,1])
+# Obtener el precio en St+1 del activo 2
+pe2 <- as.numeric(last(precios[,2])) * (1+rend_10[,2])
+# Calcular el valor futuro del portafolio
+VF_10 <- pe1*100 + pe2*100
+```
+
+```{r}
+rend_20 <- na.omit(diff(log(precios), lag=20))
+# Obtener el precio en St+1 del activo 1
+pe1 <- as.numeric(last(precios[,1])) * (1+rend_20[,1])
+# Obtener el precio en St+1 del activo 2
+pe2 <- as.numeric(last(precios[,2])) * (1+rend_20[,2])
+# Calcular el valor futuro del portafolio
+VF_20 <- pe1*100 + pe2*100
+```
+
+```{r}
+mean(VF_1)
+mean(VF_5)
+mean(VF_10)
+mean(VF_20)
+```
+```{r}
+hist(VF_1, n=100)
+hist(VF_20, n=100)
+```
+
+
+
 In the case of the non-parametric methodology, the student must use historical simulation (with all possible data and the So value of the day the methodology is applied in class).
 
 ### Gráfica
 At the case of non-parametric estimation, the corresponding graph must be presented where the one-day VaR can be seen at the three estimated confidence levels 
+
+```{r}
+hist(g_1, n=100, main="Funcion de perdidas y ganancias")
+abline(v = VaR_1, col = c("red", "purple", "blue"), lw = 2, lty=2, xlab="Ganancia/Pérdida")
+```
+
 
 ### Back testing
 Do the Back testing for one day VaR with both methodology 
