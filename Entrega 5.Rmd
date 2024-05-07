@@ -1,14 +1,19 @@
 ---
-title: "Entrega 5"
-output: html_document
-date: "2024-04-23"
+title: "Proyecto entrega 5"
+output: 
+  html_document:
+    code_folding: hide
+date: <font size="2">2024-05-06</font> 
+author:
+   <font size="2"> - Antonio Lomelí Ureña<br></font>
+   <font size="2"> - Carolina Martínez<br></font> 
+   <font size="2"> - Enrique Tonatiuh Pérez Cortés<br></font> 
+   <font size="2"> - Eddie Aguilar</font> 
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
-
-# Entrega 5
 
 ## Introducción 
 
@@ -17,9 +22,12 @@ A lo largo del proyecto, se trabajará con el activo de refrencia de este proyec
 Se calculará el VaR con la metodología paramétrica y no paramétrica para 4 distintos periodos de tiempo y con distintos niveles de confianza y se aplicará una prueba para determinar si el valor obtenido se encuentra subestiamdo, sobreestimado o correcto. 
 También se presentará una gráfica para visualizar los rendimientos obtenidos y se propondrá un portafolio óptimo, explicando su composición. 
 
+<br>
+
 ## Construcción del portafolio
+
 Para fines de esta entrega, se trabajará con un portafolio conformado únicamente de 2 acciones: FEMSA, al ser el activo principal del proyecto, y CEMEX, al ser una acción que también cotiza en la BMV. En este caso, el portafolio estará conformado por 200 acciones, divididas en partes iguales entre ambos activos. 
-```{r}
+```{r, echo=FALSE, message=FALSE, warning=FALSE, results = "hide"}
 library(PerformanceAnalytics)
 library(quantmod)
 library(tidyverse)
@@ -31,45 +39,78 @@ p1 <-datos[[clave1]][,6]
 p2 <-datos[[clave2]][,6]
 precios <- na.omit(merge.xts(p1,p2))
 ```
-$$VaR = V_o \sigma Z_\alpha$$
+<br>
 
 Sabemos que el VaR se calcula utilizando el precio inicial del portafolio, la volatilidad de este y un valor de z que dependerá del nivel de confianza deseado. 
 
+$$VaR = V_o \sigma Z_\alpha$$
+
+**Valor inicial**
 
 Para poder realizar los cálculos necesarios posteriores, se calcula el valor inicial del portafolio multiplicando el precio de cada activo por la cantidad de activos correspondiente. 
-```{r}
+
+```{r,echo=FALSE, message=FALSE, warning=FALSE}
 v0<-as.numeric(100*last(precios[,1]) + 100*last(precios[,2]))
 v0
 ```
 
+El valor inicial del portafolio es $21,272.00
+
+<br>
+
 Posteriormente, se calculará la volatilidad del portafolio. Para ello se calcula el vector de pesos y la matriz de varianza - corvarianza. 
 
+<br>
 
-```{r}
+**Vector de pesos**
+
+```{r,echo=FALSE, message=FALSE, warning=FALSE}
 w <- c(100*as.numeric(last(precios[,1]))/v0,100*as.numeric(last(precios[,2]))/v0)
 w
 ```
-```{r}
+Por lo tanto, 93.48% para FEMSA y 6.51% para CEMEX
+
+<br>
+
+**Matriz de varianzas y covarianzas**
+
+Viendo ahora la matriz de varianzas y covarianzas:
+```{r,echo=FALSE, message=FALSE, warning=FALSE}
 rend <- na.omit(diff(log(precios)))
 C <- cov(rend)
 C
 ```
-Se calcula la volatilidad utilizando la siguiente fórmula: 
+
+<br>
+
+**Volatilidad de portafolio**
+
+Se calcula la volatilidad del portafolio utilizando la siguiente fórmula: 
 $$\sigma=\sqrt{wCw^T}$$
-```{r}
+```{r,echo=FALSE, message=FALSE, warning=FALSE}
 sigma <- sqrt(w%*%C%*%w)
 sigma
 ```
-```{r}
+Tenemos que la volatilidad del portafolio es de 0.0172
+
+
+```{r,echo=FALSE, message=FALSE, warning=FALSE}
 z90 <- qnorm(.1)
 z95 <- qnorm(.05)
 z99 <- qnorm(.01)
 ```
+
+<br>
+
 ## VaR paramétrico
-1,5,10 and 20 days
+
+<br>
+
+Para 1, 5, 10 y 20 días. 
+
 Apoyados de los valores de z correspondientes, se calcula el VaR en las distintas temporalidades que se solicitan y con 3 niveles de confianza: 90% ,95% y 99%.
 
-```{r}
+```{r,echo=FALSE, message=FALSE, warning=FALSE}
 VaRs <- c(sigma * v0 * z90 * sqrt(c(1, 5, 10, 20)), 
           sigma * v0 * z95 * sqrt(c(1, 5, 10, 20)), 
           sigma * v0 * z99 * sqrt(c(1, 5, 10, 20)))
@@ -79,53 +120,71 @@ colnames(matriz) <- c("1 día", "5 días", "10 días", "20 días")
 print(matriz)
 ```
 
+<br>
 
-### Back testing
+## Back testing
+
+<br>
+
 A continuación, se aplicará la prueba "Back Testing" con la finalidad de evaluar los resultados obtenidos. Para este caso, solo se utilizará el VaR a un día en los tres niveles de confianza propuestos. 
 
-```{r}
+```{r,echo=FALSE, message=FALSE, warning=FALSE}
 VaR90 <- sigma*v0*z90
 VaR95 <- sigma*v0*z95
 VaR99 <- sigma*v0*z99
 ```
 
-Se realiza la función de pérdidas y ganacias.
+- Primero, se realiza la función de pérdidas y ganacias.
 
-```{r}
+```{r,echo=FALSE, message=FALSE, warning=FALSE}
 val_real_port_pasado <- 100*precios[,1]+100*precios[,2]
 p_g_real <- na.omit(diff(val_real_port_pasado))
 ```
 
-Después, se realiza la prueba con los valores obtenidos para el VaR a un día con los distintos niveles de confianza. 
-```{r}
+- Después, se realiza la prueba con los valores obtenidos para el VaR a un día con los distintos niveles de confianza. 
+```{r,echo=FALSE, message=FALSE, warning=FALSE}
 back_test_90 <- ifelse(p_g_real<as.numeric(VaR90),1,0)
 ```
-```{r}
+
+
+```{r,echo=FALSE, message=FALSE, warning=FALSE}
 back_test_95 <- ifelse(p_g_real<as.numeric(VaR95),1,0)
 ```
 
-```{r}
+```{r,echo=FALSE, message=FALSE, warning=FALSE}
 back_test_99 <- ifelse(p_g_real<as.numeric(VaR99),1,0)
 ```
-```{r}
+
+- Finalmente tenemos los valores de nuestro back test: 
+
+```{r,echo=FALSE, message=FALSE, warning=FALSE}
 test <- c(sum(back_test_90)/length(back_test_90),sum(back_test_95)/length(back_test_95),sum(back_test_99)/length(back_test_99))
 matriz_t <- matrix(test, nrow = 1, byrow = TRUE)
 colnames(matriz_t) <- c("90%", "95%", "99%")
 rownames(matriz_t) <- c("")
 print(matriz_t)
 ```
+
+<br>
+
 Se observa que en el caso del 90% y 95% el cálculo del VaR resulta exitoso al no salirse del nivel de confianza establecido. Sin embargo, en el caso del 99% de confianza se puede decir que está ligeramente subestimado, ya que excede 0.7 el nivel de confianza. Para ello, se utilizará el percentil correspondiente en la función de pérdidas y ganancias para poder establecer un valor que se ajuste de mejor manera.
 
-```{r}
+```{r,echo=FALSE, message=FALSE, warning=FALSE}
 quantile(p_g_real,0.01)
 ```
 Se obtiene un VaR al 99% de confianza a un día de -$1216.59, una cantidad mayor a la previamente calculada, ya que como se mencionó anteriormente, esta se encontraba subestimada.
 
+<br>
+
 ## VaR no paramétrico
 
-Vf para 1 día.
+<br>
 
-```{r}
+Calculamos: 
+
+- Vf para 1 día.
+
+```{r,echo=FALSE, message=FALSE, warning=FALSE}
 rend_1 <- na.omit(diff(log(precios)))
 # Obtener el precio en St+1 del activo 1
 pe1 <- as.numeric(last(precios[,1])) * (1+rend_1[,1])
@@ -135,9 +194,9 @@ pe2 <- as.numeric(last(precios[,2])) * (1+rend_1[,2])
 VF_1 <- pe1*100 + pe2*100
 ```
 
-Vf para 5 días.
+- Vf para 5 días.
 
-```{r}
+```{r,echo=FALSE, message=FALSE, warning=FALSE}
 rend_5 <- na.omit(diff(log(precios), lag=5))
 # Obtener el precio en St+1 del activo 1
 pe1 <- as.numeric(last(precios[,1])) * (1+rend_5[,1])
@@ -147,9 +206,9 @@ pe2 <- as.numeric(last(precios[,2])) * (1+rend_5[,2])
 VF_5 <- pe1*100 + pe2*100
 ```
 
-Vf para 10 días.
+- Vf para 10 días.
 
-```{r}
+```{r,echo=FALSE, message=FALSE, warning=FALSE}
 rend_10 <- na.omit(diff(log(precios), lag=10))
 # Obtener el precio en St+1 del activo 1
 pe1 <- as.numeric(last(precios[,1])) * (1+rend_10[,1])
@@ -159,9 +218,9 @@ pe2 <- as.numeric(last(precios[,2])) * (1+rend_10[,2])
 VF_10 <- pe1*100 + pe2*100
 ```
 
-Vf para 20 días.
+- Vf para 20 días.
 
-```{r}
+```{r,echo=FALSE, message=FALSE, warning=FALSE}
 rend_20 <- na.omit(diff(log(precios), lag=20))
 # Obtener el precio en St+1 del activo 1
 pe1 <- as.numeric(last(precios[,1])) * (1+rend_20[,1])
@@ -171,7 +230,12 @@ pe2 <- as.numeric(last(precios[,2])) * (1+rend_20[,2])
 VF_20 <- pe1*100 + pe2*100
 ```
 
-Funciones de pérdidas y ganancias
+<br>
+
+### Funciones de pérdidas y ganancias
+
+
+Posteriormente, vemos las funciones de pérdidas y ganancias para cada temporalidad:
 
 ```{r}
 W_1 <- VF_1-v0
@@ -186,7 +250,9 @@ hist(W_20, n=100, main="Funcion de perdidas y ganancias para 20 días")
 
 ```
 
-```{r}
+Y por último, tenemos nuestros VaRs mediante los percentiles adecuados: 
+
+```{r,echo=FALSE, message=FALSE, warning=FALSE}
 VaR_NP_90_1 <- quantile(W_1, .1)
 VaR_NP_95_1 <- quantile(W_1, .05)
 VaR_NP_99_1 <- quantile(W_1, .01)
@@ -211,31 +277,34 @@ print(matriz2)
 
 ```
 
-In the case of the non-parametric methodology, the student must use historical simulation (with all possible data and the So value of the day the methodology is applied in class).
+<br>
 
-### Gráfica
-At the case of non-parametric estimation, the corresponding graph must be presented where the one-day VaR can be seen at the three estimated confidence levels 
+### Gráfica de VaRs
+
+Gráfica de funciones de pérdidas y ganancias, y sus VaRs adecuados para 1 día: 
 
 ```{r}
-hist(W, 100, main="Función de pérdidas/ganancias", xlab="Ganancia/Pérdida")
+hist(W_1, 100, main="Función de pérdidas/ganancias", xlab="Ganancia/Pérdida")
 abline(v = VaR_NP_90_1, lwd=2, col="red", lty=2)
 abline(v = VaR_NP_95_1, lwd=2, col="blue", lty=2)
 abline(v = VaR_NP_99_1, lwd=2, col="purple", lty=2)
 
 ```
 
+<br>
 
 ### Back testing
 
 Ahora aplicará la prueba "Back Testing" para la metodología no paramétrica. Al igual que en el caso anterior, solo se utilizará el VaR a un día en los tres niveles de confianza propuestos. 
 
 La funcion de perdidas y ganancias es la misma asi que se utilizara la que ya se habia realizado, lo que sigue es hacer la prueba con los valores obtenidos para el VaR a un día con los distintos niveles de confianza. 
-```{r}
+
+```{r,echo=FALSE, message=FALSE, warning=FALSE}
 back_test_90_NP <- ifelse(p_g_real<as.numeric(VaR_NP_90_1),1,0)
 back_test_95_NP <- ifelse(p_g_real<as.numeric(VaR_NP_95_1),1,0)
 back_test_99_NP <- ifelse(p_g_real<as.numeric(VaR_NP_99_1),1,0)
 ```
-```{r}
+```{r,echo=FALSE, message=FALSE, warning=FALSE}
 test2 <- c(sum(back_test_90_NP)/length(back_test_90_NP),sum(back_test_95_NP)/length(back_test_95_NP),sum(back_test_99_NP)/length(back_test_99_NP))
 matriz_t_np <- matrix(test2, nrow = 1, byrow = TRUE)
 colnames(matriz_t_np) <- c("90%", "95%", "99%")
@@ -252,5 +321,46 @@ quantile(p_g_real,0.01)
 
 ```
 
+<br> 
+
 ## Composición óptima del portafolio
-Find the optimal composition of the portfolio that minimizes the Value at Risk.
+
+<br>
+
+La composición óptima del portafolio es aquella que minimiza el valor del VaR para el portafolio en cuestión. Por lo tanto, buscamos los pesos de ambos activos que hacen esta composición. El peso del primer activo está dada por: 
+
+$$w_1 = \frac{2\sigma_2^2-2\sigma_{12}}{2\sigma_1^2+2\sigma_2^2-4\sigma_{12}}$$
+Y por consiguiente el segundo peso será:
+
+$$w_2 = 1 - w_1$$
+
+```{r,echo=FALSE, message=FALSE, warning=FALSE}
+v1 = C[1,1]
+v2 = C[2,2]
+cov12 = C[1,2]
+```
+
+Peso 1:
+
+```{r,echo=FALSE, message=FALSE, warning=FALSE}
+(w1 = ((2*v2)-(2*cov12))/((2*v1) + (2*v2) - (4*cov12)))
+```
+
+<br>
+
+Peso 2: 
+
+```{r,echo=FALSE, message=FALSE, warning=FALSE}
+(w2 = 1 - w1)
+```
+
+<br>
+
+Por lo tanto, tenemos que nuestro portafolio óptimo que minimiza el VaR es aquel de 52.79% de FEMSA y 47.2% de CEMEX.
+
+
+<br>
+<br>
+<br>
+<br>
+
