@@ -312,6 +312,9 @@ rownames(matriz_t_np) <- c("")
 print(matriz_t_np)
 ```
 
+La prueba de backtesting indica que el VaR al 90% y al 95% está siendo levemente subestimada, la diferencia en el VaR al 99% es más significativa. Revisamos los valores del VaR con los datos reales para proponer nuevos valores del value at risk y entender de dónde viene esta diferencia.
+
+
 ```{r}
 quantile(p_g_real,0.1)
 
@@ -320,6 +323,25 @@ quantile(p_g_real,0.05)
 quantile(p_g_real,0.01)
 
 ```
+
+```{r}
+hist(p_g_real, main="Pérdidas y ganancias reales contra Estimación Histórica", xlab = "Pérdida/Ganancia", n=100, col="blue")
+
+hist(W_1, add=TRUE, col=rgb(1, 0, 0, alpha=0.3), n=100) 
+
+legend("topright", legend=c("p_g_real", "W1"), fill=c("blue", "red"))
+abline(v = VaR_NP_90_1, lwd=2, col="red", lty=2)
+abline(v = VaR_NP_95_1, lwd=2, col="blue", lty=2)
+abline(v = VaR_NP_99_1, lwd=2, col="purple", lty=2)
+```
+
+Observando los valores del VaR como percentiles de la pérdida y ganancia real, y contrastando en el histograma los valores reales con la estimación, podemos concluir que las estimaciones del VaR no paramétrico son buenas.
+
+Es decir, el VaR No Paramétrico resulta subestimado en el BackTesting, pero el VaR como percentil de la pérdida y ganancia real es menor al VaR no Paramétrico, esto suena contraintuitivo (si el VaR estimado está subestimado el VaR "real" debería ser mayor al otro) pero se puede explicar con lo siguiente:
+
+Vemos como la frecuencia de ocurrencias que superan la estimación del VaR es mayor en los datos reales, pero la distancia entre estos valores negativos que afectan el backtesting también es mayor, entonces, aunque haya más datos que pasan la frontera del VaR no paramétrico, el percentil que buscamos en los datos reales se sitúa antes de la estimación, ya que hay varios valores alrededor de pérdidas de 600, y las próximas pérdidas ya se van hasta 1,500.
+
+Esto también demuestra la utilidad del backtesting, del VaR y de las visualizaciones, combinando todo esto podemos darnos cuenta de más cosas y obtener mejores insights de lo que puede pasar con nuestro portafolio y modelos.
 
 <br> 
 
